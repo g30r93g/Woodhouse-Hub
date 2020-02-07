@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19D62e" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="StudentDetails" representedClassName="StudentDetails" syncable="YES" codeGenerationType="class">
+        <attribute name="image" attributeType="Binary" allowsExternalBinaryDataStorage="YES" customClassName="UIImage"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="studentNumber" attributeType="String"/>
+        <attribute name="tutorGroup" attributeType="String"/>
+    </entity>
+    <entity name="Timetable" representedClassName="Timetable" syncable="YES" codeGenerationType="class">
+        <attribute name="dayOfWeek" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="endTime" attributeType="String"/>
+        <attribute name="lessonName" attributeType="String"/>
+        <attribute name="room" optional="YES" attributeType="String"/>
+        <attribute name="startTime" attributeType="String"/>
+        <attribute name="teacherName" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="StudentDetails" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Timetable" positionX="-27" positionY="36" width="128" height="133"/>
+    </elements>
+</model>

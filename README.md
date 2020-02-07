@@ -13,10 +13,10 @@ UCAS Predictions and Exam Timetable uses Woodhouse's reportserver system.
 
 Uses student timetable to send lesson notifications 5 mins before lesson.
 
-
 # License
 
 GNU General Public License V3.0
+Images depicting the Woodhouse College Logo are for demonstration purposes only.
 
 Copyright © George Nick Gorzynski 2020
 

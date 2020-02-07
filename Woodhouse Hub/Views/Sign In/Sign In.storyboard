@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Po-KO-gTx">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sign In View Controller-->
+        <scene sceneID="O2a-Ed-KsH">
+            <objects>
+                <viewController id="2Po-KO-gTx" customClass="SignInViewController" customModule="Woodhouse_Hub" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1gk-0p-a6z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K68-2d-gXm">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <color key="backgroundColor" name="Header"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="evO-j4-6Gl">
+                                <rect key="frame" x="0.0" y="44" width="414" height="70"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Gxw-4v-tiM">
+                                        <rect key="frame" x="357" y="5" width="37" height="60"/>
+                                        <color key="color" name="Header Separator"/>
+                                    </activityIndicatorView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Woodhouse Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Rk9-pI-pj6">
+                                        <rect key="frame" x="20" y="5" width="200" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="NpG-aH-een"/>
+                                            <constraint firstAttribute="width" constant="200" id="vua-vn-y4T"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" name="Header"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Gxw-4v-tiM" secondAttribute="trailing" constant="20" id="6DV-HH-JG4"/>
+                                    <constraint firstItem="Rk9-pI-pj6" firstAttribute="leading" secondItem="evO-j4-6Gl" secondAttribute="leading" constant="20" id="Axb-Uc-k0o"/>
+                                    <constraint firstItem="Gxw-4v-tiM" firstAttribute="top" secondItem="Rk9-pI-pj6" secondAttribute="top" id="jbB-2R-fvp"/>
+                                    <constraint firstItem="Gxw-4v-tiM" firstAttribute="centerY" secondItem="evO-j4-6Gl" secondAttribute="centerY" id="pns-NC-sy0"/>
+                                    <constraint firstAttribute="height" constant="70" id="tw8-Hp-6Pl"/>
+                                    <constraint firstItem="Rk9-pI-pj6" firstAttribute="centerY" secondItem="evO-j4-6Gl" secondAttribute="centerY" id="vgb-BO-w08"/>
+                                    <constraint firstItem="Gxw-4v-tiM" firstAttribute="bottom" secondItem="Rk9-pI-pj6" secondAttribute="bottom" id="yS2-MU-QlX"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYk-jf-P0i">
+                                <rect key="frame" x="0.0" y="114" width="414" height="3"/>
+                                <color key="backgroundColor" name="Header Separator"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="EDQ-AR-cDd"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCd-Mu-zeS">
+                                <rect key="frame" x="0.0" y="117" width="414" height="280"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SiA-Bc-qsb">
+                                        <rect key="frame" x="20" y="82" width="374" height="34"/>
+                                        <color key="backgroundColor" name="Alternate Cell"/>
+                                        <color key="textColor" name="Text"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="username"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="2Po-KO-gTx" id="qk4-ED-Tik"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gdq-G9-fQL">
+                                        <rect key="frame" x="20" y="128" width="374" height="34"/>
+                                        <color key="backgroundColor" name="Alternate Cell"/>
+                                        <color key="textColor" name="Text"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="continue" secureTextEntry="YES" textContentType="password"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="2Po-KO-gTx" id="Klm-S6-578"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Woodhouse Hub" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciC-pC-L8R">
+                                        <rect key="frame" x="20" y="12" width="374" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="rXI-Mq-5Wx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <color key="textColor" name="Text"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please log in with your College details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWQ-Gm-tGY">
+                                        <rect key="frame" x="20" y="42" width="374" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" name="Text"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSg-a0-BtW" customClass="RoundButton" customModule="Woodhouse_Hub" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="180" width="374" height="70"/>
+                                        <color key="backgroundColor" name="Buttons"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="VEH-uY-w7D"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                        <state key="normal" title="Sign In">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="35"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="signIn" destination="2Po-KO-gTx" eventType="touchUpInside" id="7kB-xP-I1Q"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Made by George Nick Gorzynski" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PdS-w1-ua8">
+                                        <rect key="frame" x="20" y="270" width="374" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="lUC-pt-RX3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="Background"/>
+                                <constraints>
+                                    <constraint firstItem="iSg-a0-BtW" firstAttribute="top" secondItem="Gdq-G9-fQL" secondAttribute="bottom" constant="18" id="1Oy-AY-BxG"/>
+                                    <constraint firstItem="Gdq-G9-fQL" firstAttribute="top" secondItem="SiA-Bc-qsb" secondAttribute="bottom" constant="12" id="4SF-SA-AZH"/>
+                                    <constraint firstItem="SiA-Bc-qsb" firstAttribute="top" secondItem="AWQ-Gm-tGY" secondAttribute="bottom" constant="20" id="6VG-7v-mXP"/>
+                                    <constraint firstItem="iSg-a0-BtW" firstAttribute="leading" secondItem="Gdq-G9-fQL" secondAttribute="leading" id="6Xa-Sq-A2j"/>
+                                    <constraint firstItem="PdS-w1-ua8" firstAttribute="top" secondItem="iSg-a0-BtW" secondAttribute="bottom" constant="20" id="6rp-hF-s1C"/>
+                                    <constraint firstItem="ciC-pC-L8R" firstAttribute="leading" secondItem="bCd-Mu-zeS" secondAttribute="leading" constant="20" id="8vp-ed-mXL"/>
+                                    <constraint firstItem="Gdq-G9-fQL" firstAttribute="centerX" secondItem="SiA-Bc-qsb" secondAttribute="centerX" id="GHO-yU-0QY"/>
+                                    <constraint firstItem="AWQ-Gm-tGY" firstAttribute="leading" secondItem="ciC-pC-L8R" secondAttribute="leading" id="QZ8-A7-Ia4"/>
+                                    <constraint firstItem="Gdq-G9-fQL" firstAttribute="leading" secondItem="SiA-Bc-qsb" secondAttribute="leading" id="Xs7-G3-zwZ"/>
+                                    <constraint firstItem="AWQ-Gm-tGY" firstAttribute="top" secondItem="ciC-pC-L8R" secondAttribute="bottom" id="YFK-Ld-2a3"/>
+                                    <constraint firstItem="SiA-Bc-qsb" firstAttribute="leading" secondItem="bCd-Mu-zeS" secondAttribute="leading" constant="20" id="ZiN-Ea-Mvd"/>
+                                    <constraint firstAttribute="trailing" secondItem="PdS-w1-ua8" secondAttribute="trailing" constant="20" id="bHh-BG-bCw"/>
+                                    <constraint firstItem="SiA-Bc-qsb" firstAttribute="centerX" secondItem="bCd-Mu-zeS" secondAttribute="centerX" id="dAk-oP-hAI"/>
+                                    <constraint firstItem="iSg-a0-BtW" firstAttribute="centerX" secondItem="Gdq-G9-fQL" secondAttribute="centerX" id="dLq-oi-rpl"/>
+                                    <constraint firstItem="ciC-pC-L8R" firstAttribute="centerX" secondItem="bCd-Mu-zeS" secondAttribute="centerX" id="eIn-Dk-S08"/>
+                                    <constraint firstItem="PdS-w1-ua8" firstAttribute="leading" secondItem="bCd-Mu-zeS" secondAttribute="leading" constant="20" id="mYD-JH-bAc"/>
+                                    <constraint firstItem="AWQ-Gm-tGY" firstAttribute="trailing" secondItem="ciC-pC-L8R" secondAttribute="trailing" id="oDM-oo-lEI"/>
+                                    <constraint firstAttribute="height" constant="280" id="oem-3G-sVZ"/>
+                                    <constraint firstItem="ciC-pC-L8R" firstAttribute="top" secondItem="bCd-Mu-zeS" secondAttribute="top" constant="12" id="rpA-qz-aEJ"/>
+                                    <constraint firstItem="Gdq-G9-fQL" firstAttribute="trailing" secondItem="SiA-Bc-qsb" secondAttribute="trailing" id="vL5-FG-c1P"/>
+                                    <constraint firstItem="iSg-a0-BtW" firstAttribute="trailing" secondItem="Gdq-G9-fQL" secondAttribute="trailing" id="z7h-Bh-LXP"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="Background"/>
+                        <constraints>
+                            <constraint firstItem="bCd-Mu-zeS" firstAttribute="leading" secondItem="Tr0-aP-pjD" secondAttribute="leading" id="5uA-gE-fjT"/>
+                            <constraint firstItem="evO-j4-6Gl" firstAttribute="trailing" secondItem="Tr0-aP-pjD" secondAttribute="trailing" id="Hbu-oI-gKo"/>
+                            <constraint firstItem="cYk-jf-P0i" firstAttribute="top" secondItem="evO-j4-6Gl" secondAttribute="bottom" id="Puh-Lp-Knr"/>
+                            <constraint firstItem="bCd-Mu-zeS" firstAttribute="top" secondItem="cYk-jf-P0i" secondAttribute="bottom" id="RbA-qy-xpD"/>
+                            <constraint firstAttribute="trailing" secondItem="K68-2d-gXm" secondAttribute="trailing" id="Wmz-PO-Qzw"/>
+                            <constraint firstItem="evO-j4-6Gl" firstAttribute="top" secondItem="Tr0-aP-pjD" secondAttribute="top" id="ZuG-tU-2NB"/>
+                            <constraint firstItem="K68-2d-gXm" firstAttribute="top" secondItem="1gk-0p-a6z" secondAttribute="top" id="eOt-jQ-zaa"/>
+                            <constraint firstItem="K68-2d-gXm" firstAttribute="leading" secondItem="1gk-0p-a6z" secondAttribute="leading" id="gJA-bd-qL0"/>
+                            <constraint firstItem="cYk-jf-P0i" firstAttribute="leading" secondItem="1gk-0p-a6z" secondAttribute="leading" id="hR4-1J-eKR"/>
+                            <constraint firstItem="evO-j4-6Gl" firstAttribute="leading" secondItem="Tr0-aP-pjD" secondAttribute="leading" id="l0I-5d-IZL"/>
+                            <constraint firstAttribute="trailing" secondItem="cYk-jf-P0i" secondAttribute="trailing" id="l5j-l0-e3c"/>
+                            <constraint firstItem="evO-j4-6Gl" firstAttribute="top" secondItem="K68-2d-gXm" secondAttribute="bottom" id="rRv-IZ-Xwa"/>
+                            <constraint firstItem="bCd-Mu-zeS" firstAttribute="trailing" secondItem="Tr0-aP-pjD" secondAttribute="trailing" id="unM-s7-R8N"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Tr0-aP-pjD"/>
+                    </view>
+                    <connections>
+                        <outlet property="loadingIndicator" destination="Gxw-4v-tiM" id="jFt-ut-Be2"/>
+                        <outlet property="passwordField" destination="Gdq-G9-fQL" id="GhJ-HO-2aV"/>
+                        <outlet property="usernameField" destination="SiA-Bc-qsb" id="f8a-4d-PvE"/>
+                        <segue destination="FtG-sN-UnE" kind="presentation" identifier="Sign In Successful" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="aA8-2V-3T7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jb9-iC-6aa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-10.144927536231885" y="86.383928571428569"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="4Vw-2E-KEc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="FtG-sN-UnE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xI1-13-Wcd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="634" y="86"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Woodhouse Logo" width="245" height="75"/>
+        <namedColor name="Alternate Cell">
+            <color red="0.94499999284744263" green="0.94499999284744263" blue="0.94499999284744263" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="Background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Buttons">
+            <color red="0.059000000357627869" green="0.15700000524520874" blue="0.46700000762939453" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="Header">
+            <color red="0.94499999284744263" green="0.94499999284744263" blue="0.94499999284744263" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="Header Separator">
+            <color red="0.33700001239776611" green="0.45500001311302185" blue="0.68599998950958252" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>
