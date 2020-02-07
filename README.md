@@ -19,4 +19,5 @@ Uses student timetable to send lesson notifications 5 mins before lesson.
 GNU General Public License V3.0
 
 Copyright © George Nick Gorzynski 2020
-I'm looking for work. I can do better than this :)
+
+*I'm looking for work. I can do better than this :)*
