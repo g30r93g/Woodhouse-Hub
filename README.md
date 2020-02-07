@@ -16,8 +16,9 @@ Uses student timetable to send lesson notifications 5 mins before lesson.
 # License
 
 GNU General Public License V3.0
-Images depicting the Woodhouse College Logo are for demonstration purposes only.
 
 Copyright © George Nick Gorzynski 2020
+
+Images depicting the Woodhouse College Logo are for demonstration purposes only.
 
 *I'm looking for work. I can do better than this :)*
