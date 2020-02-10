@@ -28,7 +28,7 @@ class ReportServerInteractor: NSObject {
 		super.init()
 		
 		self.setupWebViews()
-//		self.loadUCASPredictions()
+		self.loadUCASPredictions()
 		self.loadExamTimetable()
 	}
 	
@@ -48,10 +48,11 @@ class ReportServerInteractor: NSObject {
 	
 	private func fetchUCASPredictions() {
 		Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) { (timer) in
+			
 			self.ucasWebView.evaluateJavaScript("document.documentElement.outerHTML.toString()") { (html, error) in
 				if let error = error { fatalError(error.localizedDescription) }
 				
-				guard let htmlString = html as? String else { fatalError() }
+				guard let htmlString = html as? String else { return }
 				
 				let document = try! SwiftSoup.parse(htmlString)
 				let outerTable = try! document.getElementsByTag("table").filter({$0.hasAttr("lang")})
@@ -124,7 +125,14 @@ class ReportServerInteractor: NSObject {
 					let startTime = Date.reportServerFormat(from: "\(date) \(examData[2])")
 					let endTime = Date.reportServerFormat(from: "\(date) \(examData[3])")
 					
-					let awardingBody = examData[4].capitalized
+					var awardingBody: String {
+						let scrapedBody = examData[4]
+						if scrapedBody == "AQA" {
+							return scrapedBody
+						} else {
+							return scrapedBody.capitalized
+						}
+					}
 					let entryCode = examData[5]
 					let paperName = examData[6].capitalized
 					

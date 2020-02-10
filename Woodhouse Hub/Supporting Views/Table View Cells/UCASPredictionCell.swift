@@ -18,8 +18,7 @@ class UCASPredictionCell: UITableViewCell {
 	
 	// MARK: Methods
 	func setupCell(from data: Student.UCASPredictions, index: Int) {
-		self.reset()
-		if (index % 2) == 1 { self.applyAlternateBackground() }
+		self.reset(index)
 		
 		self.subject.text = data.subject
 		self.meg.text = "Minimum Expected Grade: \(data.meg)"
@@ -27,12 +26,12 @@ class UCASPredictionCell: UITableViewCell {
 		self.ucas.text = "UCAS Predicted Grade: \(data.ucasPrediction)"
 	}
 	
-	private func reset() {
-		self.backgroundColor = UIColor(named: "Cell")
-	}
-	
-	private func applyAlternateBackground() {
-		self.backgroundColor = UIColor(named: "Alternate Cell")
+	private func reset(_ index: Int) {
+		if (index % 2) == 0 {
+			self.contentView.backgroundColor = UIColor(named: "Alternate Cell")!
+		} else {
+			self.contentView.backgroundColor = UIColor(named: "Cell")!
+		}
 	}
 	
 }

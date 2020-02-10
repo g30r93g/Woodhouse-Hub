@@ -111,7 +111,7 @@ class Student {
 	// MARK: Setter Methods
 	public func addDetails(from details: StudentDetails) {
 		if let student = self.studentProfile {
-			self.studentProfile = StudentProfile(details: details, timetable: student.timetable, attendance: student.attendance, ucasPredictions: [], exams: student.exams, markbook: [])
+			self.studentProfile = StudentProfile(details: details, timetable: student.timetable, attendance: student.attendance, ucasPredictions: student.ucasPredictions, exams: student.exams, markbook: [])
 			Settings().studentDetails = details
 		} else {
 			self.studentProfile = StudentProfile(details: details, timetable: [], attendance: nil, ucasPredictions: [], exams: nil, markbook: [])
@@ -122,7 +122,7 @@ class Student {
 	
 	public func addTimetable(from timetable: [TimetableEntry]) {
 		if let student = self.studentProfile {
-			self.studentProfile = StudentProfile(details: student.details, timetable: timetable, attendance: student.attendance, ucasPredictions: [], exams: student.exams, markbook: [])
+			self.studentProfile = StudentProfile(details: student.details, timetable: timetable, attendance: student.attendance, ucasPredictions: student.ucasPredictions, exams: student.exams, markbook: [])
 		} else {
 			self.studentProfile = StudentProfile(details: nil, timetable: timetable, attendance: nil, ucasPredictions: [], exams: nil, markbook: [])
 		}
@@ -130,7 +130,7 @@ class Student {
 	
 	public func addAttendance(from attendance: Attendance) {
 		if let student = self.studentProfile {
-			self.studentProfile = StudentProfile(details: student.details, timetable: student.timetable, attendance: attendance, ucasPredictions: [], exams: student.exams, markbook: [])
+			self.studentProfile = StudentProfile(details: student.details, timetable: student.timetable, attendance: attendance, ucasPredictions: student.ucasPredictions, exams: student.exams, markbook: [])
 		} else {
 			self.studentProfile = StudentProfile(details: nil, timetable: [], attendance: attendance, ucasPredictions: [], exams: nil, markbook: [])
 		}
@@ -138,7 +138,7 @@ class Student {
 	
 	public func addUCASPredictions(from predictions: [UCASPredictions]) {
 		if let student = self.studentProfile {
-			self.studentProfile = StudentProfile(details: student.details, timetable: student.timetable, attendance: student.attendance, ucasPredictions: predictions,exams: student.exams, markbook: [])
+			self.studentProfile = StudentProfile(details: student.details, timetable: student.timetable, attendance: student.attendance, ucasPredictions: predictions, exams: student.exams, markbook: [])
 		} else {
 			self.studentProfile = StudentProfile(details: nil, timetable: [], attendance: nil, ucasPredictions: predictions, exams: nil, markbook: [])
 		}

@@ -39,8 +39,8 @@ class NotificationManager {
 	}
 	
 	private func createTimeTrigger(from entry: Student.TimetableEntry) -> UNCalendarNotificationTrigger {
-		let dateComponents = entry.startTime.addingTimeInterval(-5 * 60).dateComponents()
-		return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+		let dateComponents = entry.startTime.addingTimeInterval(-5 * 60).dateComponents([.weekday, .hour, .minute])
+		return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
 	}
 	
 	private func createTimetableContent(from entry: Student.TimetableEntry) -> UNNotificationContent {

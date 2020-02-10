@@ -80,9 +80,9 @@ extension Date {
 		return dateFormatter.string(from: self)
 	}
 	
-	func dateComponents() -> DateComponents {
+	func dateComponents(_ components: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]) -> DateComponents {
 //		print("**__** \(Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second], from: self))")
-		return Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second], from: self)
+		return Calendar(identifier: .gregorian).dateComponents(components, from: self)
 //
 	}
 	

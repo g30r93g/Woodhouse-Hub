@@ -7,33 +7,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "27FCA0DE-91C9-4B28-B384-E0987D533A77"
+            uuid = "D2C55C93-E9D3-4E30-BF6E-41D7A9CFD878"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Woodhouse Hub/Supporting Views/Table View Cells/TimetableCell.swift"
+            filePath = "Woodhouse Hub/Models/ReportServerInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "highlightNextLesson(from:)"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "fetchUCASPredictions()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9EEEABFE-78A5-4F5C-953B-5B29D2CC4165"
+            uuid = "365CC557-850D-49B1-A5AB-304A5AA8210A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Woodhouse Hub/Supporting Views/Table View Cells/TimetableCell.swift"
+            filePath = "Woodhouse Hub/Models/ReportServerInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "highlightCurrentLesson(from:)"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "fetchUCASPredictions()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "365CC557-850D-49B1-A5AB-304A5AA8210A - 23fee0ba0ab22d71"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.NSTimer) -&gt; () in Woodhouse_Hub.ReportServerInteractor.(fetchUCASPredictions in _AE4857F6FB5959B89385179F9398C556)() -&gt; ()"
+                  moduleName = "Woodhouse Hub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/g30r93g/Local%20Documents/GitHub/Woodhouse-Hub/Woodhouse%20Hub/Models/ReportServerInteractor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "34">
+               </Location>
+               <Location
+                  uuid = "365CC557-850D-49B1-A5AB-304A5AA8210A - c719c6732b1abae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (__C.NSTimer) -&gt; () in Woodhouse_Hub.ReportServerInteractor.(fetchUCASPredictions in _AE4857F6FB5959B89385179F9398C556)() -&gt; ()"
+                  moduleName = "Woodhouse Hub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/g30r93g/Local%20Documents/GitHub/Woodhouse-Hub/Woodhouse%20Hub/Models/ReportServerInteractor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "507">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
