@@ -48,7 +48,6 @@ class ReportServerInteractor: NSObject {
 	
 	private func fetchUCASPredictions() {
 		Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) { (timer) in
-			
 			self.ucasWebView.evaluateJavaScript("document.documentElement.outerHTML.toString()") { (html, error) in
 				if let error = error { fatalError(error.localizedDescription) }
 				
@@ -57,7 +56,7 @@ class ReportServerInteractor: NSObject {
 				let document = try! SwiftSoup.parse(htmlString)
 				let outerTable = try! document.getElementsByTag("table").filter({$0.hasAttr("lang")})
 				
-				if 3 > outerTable.count - 1 { print("**E**"); return }
+				if 3 > outerTable.count - 1 { return }
 				let innerTable = try! outerTable[3].getElementsByTag("table")[0].getElementsByAttributeValue("valign", "top")
 				
 				var predictions: [Student.UCASPredictions] = []

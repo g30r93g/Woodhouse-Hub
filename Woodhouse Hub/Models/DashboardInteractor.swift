@@ -250,12 +250,17 @@ class DashboardInteractor: NSObject {
 						
 						if onMouseOverContent.count == 0 { continue }
 						
+						var classIdentifier: String!
 						var className: String!
 						var startTime: Date!
 						var endTime: Date!
 						var teacher: String?
 						var room: String?
 						var attendanceMark: String?
+						
+						let identifier = try! col.text()
+						classIdentifier = identifier.extract(until: " ").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
+						print(" *&*&^ \(classIdentifier)")
 						
 						let firstCloseTag = onMouseOverContent.firstIndex(of: ">")!
 						let secondCloseTag = onMouseOverContent[firstCloseTag...].firstIndex(of: ">")!
@@ -295,7 +300,7 @@ class DashboardInteractor: NSObject {
 								// Attendance
 								attendanceMark = String(stringValue.replacingOccurrences(of: "(", with: "").first!)
 							default:
-								break
+								print(" **__**## - Index \(extractedIndex): \(stringValue)")
 							}
 						}
 						
@@ -304,7 +309,7 @@ class DashboardInteractor: NSObject {
 							room = String(Int(onMouseOverContent.extract(from: onMouseOverContent.count - 9).extract(until: ")").trimmingCharacters(in: .letters).trimmingCharacters(in: .whitespacesAndNewlines))!)
 						}
 						
-						let entry = Student.TimetableEntry(name: className, day: dayIndex, startTime: startTime, endTime: endTime, teacher: teacher, room: room, attendanceMark: attendanceMark)
+						let entry = Student.TimetableEntry(classIdentifier: classIdentifier, name: className, day: dayIndex, startTime: startTime, endTime: endTime, teacher: teacher, room: room, attendanceMark: attendanceMark)
 						timetable.append(entry)
 					}
 				}

@@ -20,7 +20,17 @@ class CoreDataManager {
 //		self.deleteAndRebuild()
 	}
 	
-	// MARK: Properties
+	// MARK: Structs
+	struct Timetable_Codable: Codable {
+		
+		// MARK: Properties
+		var timetable: [Student.TimetableEntry] = []
+		
+		init(timetable: [Student.TimetableEntry]) {
+			self.timetable = timetable
+		}
+		
+	}
 	
 	// MARK: Core Data Stack
 	lazy var persistentContainer: NSPersistentContainer = {
@@ -92,45 +102,20 @@ class CoreDataManager {
 	}
 	
 	public func getStudentTimetable() -> [Student.TimetableEntry]? {
-		return nil
-		
-		let managedContext = self.persistentContainer.viewContext
-		let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Timetable")
-		
-		var timetable: [Student.TimetableEntry] = []
-		
-		do {
-			let fetchedTimetable = try managedContext.fetch(fetchRequest)
-			
-			for entry in fetchedTimetable {
-				if let lessonName = entry.value(forKey: "lessonName") as? String, let day = entry.value(forKey: "dayOfWeek") as? Int, let startTime = entry.value(forKey: "startTime") as? String, let endTime = entry.value(forKey: "endTime") as? String, let room = entry.value(forKey: "room") as? String?, let teacher = entry.value(forKey: "teacherName") as? String? {
-					
-					let startHour = Int(startTime.split(separator: ":")[0].trimmingCharacters(in: .whitespacesAndNewlines))!
-					let startMinute = Int(startTime.split(separator: ":")[1].trimmingCharacters(in: .whitespacesAndNewlines))!
-					let startDate = Date().getMondayOfWeek().addDays(value: day).usingTime(startHour, startMinute, 00)
-					
-					let endHour = Int(startTime.split(separator: ":")[0].trimmingCharacters(in: .whitespacesAndNewlines))!
-					let endMinute = Int(startTime.split(separator: ":")[1].trimmingCharacters(in: .whitespacesAndNewlines))!
-					let endDate = Date().getMondayOfWeek().addDays(value: day).usingTime(endHour, endMinute, 00)
-					
-					let entry = Student.TimetableEntry(name: lessonName, day: day, startTime: startDate, endTime: endDate, teacher: teacher, room: room, attendanceMark: nil)
-					
-					timetable.append(entry)
+		if let data = UserDefaults.data.object(forKey: "Student-Timetable") as? Data {
+			let decoder = JSONDecoder()
+			if let decodedTimetable = try? decoder.decode(Timetable_Codable.self, from: data) {
+				if !decodedTimetable.timetable.isEmpty {
+					return decodedTimetable.timetable
 				}
 			}
-		} catch let error as NSError {
-			  print("Could not fetch. \(error), \(error.userInfo)")
 		}
 		
-		if timetable.isEmpty {
-			return nil
-		} else {
-			return timetable
-		}
+		return nil
 	}
 	
 	// MARK: Write Methods
-	public func saveStudentDetails(from data: Student.StudentDetails, overwrite: Bool = true) {
+	public func saveStudentDetails(from studentDetails: Student.StudentDetails, overwrite: Bool = true) {
 		let managedContext = self.persistentContainer.viewContext
 		
 		guard let studentDetailsEntity = NSEntityDescription.entity(forEntityName: "StudentDetails", in: managedContext) else { return }
@@ -139,11 +124,11 @@ class CoreDataManager {
 			// TODO: Drop table and add new details
 		}
 		
-		let studentDetails = NSManagedObject(entity: studentDetailsEntity, insertInto: managedContext)
-		studentDetails.setValue(data.name, forKey: "name")
-		studentDetails.setValue(data.id, forKey: "studentNumber")
-		studentDetails.setValue(data.tutorGroup, forKey: "tutorGroup")
-		studentDetails.setValue(data.image!.jpegData(compressionQuality: 1), forKey: "image")
+		let studentDetailsEntry = NSManagedObject(entity: studentDetailsEntity, insertInto: managedContext)
+		studentDetailsEntry.setValue(studentDetails.name, forKey: "name")
+		studentDetailsEntry.setValue(studentDetails.id, forKey: "studentNumber")
+		studentDetailsEntry.setValue(studentDetails.tutorGroup, forKey: "tutorGroup")
+		studentDetailsEntry.setValue(studentDetails.image!.jpegData(compressionQuality: 1), forKey: "image")
 		
 		do {
 		   try managedContext.save()
@@ -152,29 +137,14 @@ class CoreDataManager {
 		 }
 	}
 	
-	public func saveStudentTimetable(from data: [Student.TimetableEntry], overwrite: Bool = true) {
-		let managedContext = self.persistentContainer.viewContext
+	public func saveTimetable(from data: [Student.TimetableEntry]) {
+		let timetable = Timetable_Codable(timetable: data)
 		
-		guard let timetableEntity = NSEntityDescription.entity(forEntityName: "Timetable", in: managedContext) else { return }
-		
-		if overwrite {
-			// TODO: Drop table and add new details
-		}
-		
-		for timetableEntry in data {
-			let entry = NSManagedObject(entity: timetableEntity, insertInto: managedContext)
-			entry.setValue(timetableEntry.name, forKey: "lessonName")
-			entry.setValue(timetableEntry.day, forKey: "dayOfWeek")
-			entry.setValue(timetableEntry.startTime.time(), forKey: "startTime")
-			entry.setValue(timetableEntry.endTime.time(), forKey: "endTime")
-			entry.setValue(timetableEntry.room, forKey: "room")
-			entry.setValue(timetableEntry.teacher, forKey: "teacherName")
-		}
-		
-		do {
-		  try managedContext.save()
-		} catch let error as NSError {
-		   print("[CoreDataManager] Couldn't save student details - \(error.localizedDescription)")
+		let encoder = JSONEncoder()
+		if let data = try? encoder.encode(timetable).self {
+			UserDefaults.data.set(data, forKey: "Student-Timetable")
+		} else {
+			print("[CoreDataManager] Couldn't persist student timetable")
 		}
 	}
 	

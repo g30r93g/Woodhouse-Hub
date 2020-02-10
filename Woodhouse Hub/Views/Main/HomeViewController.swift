@@ -79,6 +79,16 @@ class HomeViewController: UIViewController {
 	}
 	
 	func start() {
+		// Show student details if cached
+		if let studentDetails = Student.current.getDetails() {
+			self.updateStudentDetailsView(with: studentDetails)
+		}
+		
+		// Show timetable if cached
+		if Student.current.getTimetable() != nil {
+			self.studentTimetable.reloadData()
+		}
+		
 		WoodleInteractor.shared.signIn()
 		_ = ReportServerInteractor.shared
 		
@@ -93,9 +103,6 @@ class HomeViewController: UIViewController {
 	
 	func awaitStudentDetails() {
 		Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { (timer) in
-			if let studentDetails = Student.current.getDetails() {
-				self.updateStudentDetailsView(with: studentDetails)
-			}
 			guard let attendanceDetails = Student.current.studentProfile?.attendance else { return }
 			
 			self.studentAttendance.text = "Attendance: \(attendanceDetails.attendance)%"
@@ -121,7 +128,7 @@ class HomeViewController: UIViewController {
 				self.studentPunctualityIndicator.backgroundColor = .green
 			}
 			
-			
+			self.studentTimetable.reloadData()
 			
 			timer.invalidate()
 

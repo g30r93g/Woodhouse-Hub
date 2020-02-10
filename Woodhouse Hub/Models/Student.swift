@@ -15,7 +15,17 @@ class Student {
 	static let current = Student()
 	
 	// MARK: Initialiser
-	init() { }
+	init() {
+		// Get details
+		if let details = self.getDetails() {
+			self.addDetails(from: details)
+		}
+		
+		// Get timetable
+		if let timetable = self.getTimetable() {
+			self.addTimetable(from: timetable)
+		}
+	}
 	
 	// MARK: Properties
 	private(set) var studentProfile: StudentProfile?
@@ -30,14 +40,49 @@ class Student {
 		var markbook: [SubjectMarkbook]
 	}
 	
-	struct StudentDetails {
+	struct StudentDetails: Codable {
 		let name: String
 		let id: String
 		let tutorGroup: String
 		let image: UIImage?
+		
+		// MARK: Initialiser
+		init(name: String, id: String, tutorGroup: String, image: UIImage?) {
+			self.name = name
+			self.id = id
+			self.tutorGroup = tutorGroup
+			self.image = image
+		}
+		
+		// MARK: Codable
+		enum CodingKeys: String, CodingKey {
+			case name
+			case id
+			case tutorGroup
+			case image
+		}
+		
+		init(from decoder: Decoder) throws {
+			let container = try decoder.container(keyedBy: CodingKeys.self)
+			
+			name = try container.decode(String.self, forKey: .name)
+			id = try container.decode(String.self, forKey: .id)
+			tutorGroup = try container.decode(String.self, forKey: .tutorGroup)
+			image = UIImage(data: try container.decode(Data.self, forKey: .image))
+		}
+		
+		func encode(to encoder: Encoder) throws {
+			var container = encoder.container(keyedBy: CodingKeys.self)
+			
+			try container.encode(name, forKey: .name)
+			try container.encode(id, forKey: .id)
+			try container.encode(tutorGroup, forKey: .tutorGroup)
+			try container.encode(image?.jpegData(compressionQuality: 1), forKey: .image)
+		}
 	}
 	
-	struct TimetableEntry: Equatable {
+	struct TimetableEntry: Equatable, Codable {
+		let classIdentifier: String
 		let name: String
 		let day: Int
 		let startTime: Date
@@ -105,7 +150,12 @@ class Student {
 	}
 	
 	public func getTimetable() -> [TimetableEntry]? {
-		return CoreDataManager.manager.getStudentTimetable() ?? self.studentProfile?.timetable
+		if let storedTimetable = CoreDataManager.manager.getStudentTimetable() {
+			storedTimetable.forEach({print(" **&&**&&** \($0)")})
+			return storedTimetable
+		} else {
+			return self.studentProfile?.timetable
+		}
 	}
 	
 	// MARK: Setter Methods
@@ -121,6 +171,8 @@ class Student {
 	}
 	
 	public func addTimetable(from timetable: [TimetableEntry]) {
+		CoreDataManager.manager.saveTimetable(from: timetable)
+		
 		if let student = self.studentProfile {
 			self.studentProfile = StudentProfile(details: student.details, timetable: timetable, attendance: student.attendance, ucasPredictions: student.ucasPredictions, exams: student.exams, markbook: [])
 		} else {

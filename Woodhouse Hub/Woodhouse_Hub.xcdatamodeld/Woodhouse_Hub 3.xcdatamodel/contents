@@ -4,10 +4,9 @@
         <attribute name="image" attributeType="Binary" allowsExternalBinaryDataStorage="YES" customClassName="UIImage"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="studentNumber" attributeType="String"/>
-        <attribute name="timetable" attributeType="Transformable" customClassName="Timetable_CoreData"/>
         <attribute name="tutorGroup" attributeType="String"/>
     </entity>
     <elements>
-        <element name="StudentDetails" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="StudentDetails" positionX="-63" positionY="-18" width="128" height="103"/>
     </elements>
 </model>
