@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Today View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="Timetable" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EXm-fe-Q12">
+                                <rect key="frame" x="0.0" y="48" width="320" height="252"/>
+                                <color key="backgroundColor" name="Background"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TimetableEntry" rowHeight="90" id="tHx-dg-hkZ" customClass="TimetableCell" customModule="Timetable" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tHx-dg-hkZ" id="fUA-qm-PQB">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lesson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Te-QQ-BtA">
+                                                    <rect key="frame" x="15" y="10" width="290" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="qoT-51-ARe"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMf-rp-pdE">
+                                                    <rect key="frame" x="15" y="39" width="290" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="Mcl-Si-jzU"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eib-qm-OBI">
+                                                    <rect key="frame" x="15" y="64" width="290" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0Te-QQ-BtA" firstAttribute="leading" secondItem="fUA-qm-PQB" secondAttribute="leading" constant="15" id="04k-5j-iVd"/>
+                                                <constraint firstItem="DMf-rp-pdE" firstAttribute="leading" secondItem="0Te-QQ-BtA" secondAttribute="leading" id="0qr-zw-iMg"/>
+                                                <constraint firstItem="0Te-QQ-BtA" firstAttribute="centerX" secondItem="fUA-qm-PQB" secondAttribute="centerX" id="Bx0-qn-FWx"/>
+                                                <constraint firstItem="DMf-rp-pdE" firstAttribute="centerX" secondItem="0Te-QQ-BtA" secondAttribute="centerX" id="Ca6-tw-8S2"/>
+                                                <constraint firstItem="eib-qm-OBI" firstAttribute="top" secondItem="DMf-rp-pdE" secondAttribute="bottom" constant="5" id="KgN-Ta-1j3"/>
+                                                <constraint firstItem="eib-qm-OBI" firstAttribute="height" secondItem="DMf-rp-pdE" secondAttribute="height" multiplier="0.975" id="Xn4-ha-4f3"/>
+                                                <constraint firstItem="eib-qm-OBI" firstAttribute="leading" secondItem="DMf-rp-pdE" secondAttribute="leading" id="gEo-YW-83C"/>
+                                                <constraint firstItem="eib-qm-OBI" firstAttribute="centerX" secondItem="DMf-rp-pdE" secondAttribute="centerX" id="hIm-H3-fSb"/>
+                                                <constraint firstItem="DMf-rp-pdE" firstAttribute="top" secondItem="0Te-QQ-BtA" secondAttribute="bottom" constant="5" id="mer-OI-nUW"/>
+                                                <constraint firstItem="0Te-QQ-BtA" firstAttribute="top" secondItem="fUA-qm-PQB" secondAttribute="top" constant="10" id="nya-ut-NDB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="Cell"/>
+                                        <connections>
+                                            <outlet property="lessonName" destination="0Te-QQ-BtA" id="uEr-96-Ogh"/>
+                                            <outlet property="lessonTime" destination="DMf-rp-pdE" id="kVZ-t7-jVi"/>
+                                            <outlet property="room" destination="eib-qm-OBI" id="Egu-Du-VWv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="M4Y-Lb-cyx" id="ekw-YT-ob6"/>
+                                    <outlet property="delegate" destination="M4Y-Lb-cyx" id="3qC-bp-dnL"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timetable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QwO-88-qx2">
+                                <rect key="frame" x="10" y="10" width="98" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="3da-jO-GmI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                <color key="textColor" name="Text"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eV-Yi-OAx">
+                                <rect key="frame" x="0.0" y="45" width="320" height="3"/>
+                                <color key="backgroundColor" name="Header Separator"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="YOQ-8Y-OAl"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6eV-Yi-OAx" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="9i9-eS-gmA"/>
+                            <constraint firstAttribute="trailing" secondItem="6eV-Yi-OAx" secondAttribute="trailing" id="Un1-DK-7B3"/>
+                            <constraint firstItem="EXm-fe-Q12" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="XwA-Ac-uWN"/>
+                            <constraint firstItem="EXm-fe-Q12" firstAttribute="bottom" secondItem="ssy-KU-ocm" secondAttribute="bottom" id="arb-nk-NCe"/>
+                            <constraint firstItem="EXm-fe-Q12" firstAttribute="trailing" secondItem="ssy-KU-ocm" secondAttribute="trailing" id="avu-7b-yrA"/>
+                            <constraint firstItem="QwO-88-qx2" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="10" id="eBJ-uZ-uC4"/>
+                            <constraint firstItem="QwO-88-qx2" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" constant="10" id="eab-uD-Mf1"/>
+                            <constraint firstItem="6eV-Yi-OAx" firstAttribute="top" secondItem="QwO-88-qx2" secondAttribute="bottom" constant="10" id="phT-Af-29M"/>
+                            <constraint firstItem="EXm-fe-Q12" firstAttribute="top" secondItem="6eV-Yi-OAx" secondAttribute="bottom" id="t9W-4M-9Iu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="300"/>
+                    <connections>
+                        <outlet property="timetable" destination="EXm-fe-Q12" id="IdR-eh-NUe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-143.47826086956522" y="132.58928571428572"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="Background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Cell">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="Header Separator">
+            <color red="0.33700001239776611" green="0.45500001311302185" blue="0.68599998950958252" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

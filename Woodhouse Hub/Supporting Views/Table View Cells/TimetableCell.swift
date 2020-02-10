@@ -13,7 +13,7 @@ class TimetableCell: UITableViewCell {
 	// MARK: IBOutlets
 	@IBOutlet weak var lessonName: UILabel!
 	@IBOutlet weak var lessonTime: UILabel!
-	@IBOutlet weak var teacher: UILabel!
+	@IBOutlet weak var teacher: UILabel?
 	@IBOutlet weak var room: UILabel!
 	
 	// MARK: Methods
@@ -26,16 +26,17 @@ class TimetableCell: UITableViewCell {
 		self.lessonName.text = data.name
 		self.lessonTime.text = "\(data.startTime.time()) - \(data.endTime.time())"
 		
-		if let teacher = data.teacher {
-			self.teacher.text = teacher
-		} else {
-			self.teacher.text = ""
-		}
-		
 		if let room = data.room {
 			self.room.text = "Room \(room)"
 		} else {
 			self.room.text = ""
+		}
+		
+		guard let teacherLabel = self.teacher else { return }
+		if let teacher = data.teacher {
+			teacherLabel.text = teacher
+		} else {
+			teacherLabel.text = ""
 		}
 	}
 	
@@ -48,10 +49,10 @@ class TimetableCell: UITableViewCell {
 		
 		self.lessonName.textColor = .label
 		self.lessonTime.textColor = .label
-		self.teacher.textColor = .label
 		self.room.textColor = .label
 		
-		
+		guard let teacherLabel = self.teacher else { return }
+		teacherLabel.textColor = .label
 	}
 	
 	private func highlightCurrentLesson(from data: Student.TimetableEntry) {
@@ -59,8 +60,10 @@ class TimetableCell: UITableViewCell {
 			self.contentView.backgroundColor = #colorLiteral(red: 0.05725816637, green: 0.1552535594, blue: 0.4649428725, alpha: 1)
 			self.lessonName.textColor = .white
 			self.lessonTime.textColor = .white
-			self.teacher.textColor = .white
 			self.room.textColor = .white
+
+			guard let teacherLabel = self.teacher else { return }
+			teacherLabel.textColor = .white
 		}
 	}
 	
@@ -71,8 +74,10 @@ class TimetableCell: UITableViewCell {
 			self.contentView.backgroundColor = #colorLiteral(red: 0.211450547, green: 0.4082797468, blue: 0.5572861433, alpha: 1)
 			self.lessonName.textColor = .white
 			self.lessonTime.textColor = .white
-			self.teacher.textColor = .white
 			self.room.textColor = .white
+			
+			guard let teacherLabel = self.teacher else { return }
+			teacherLabel.textColor = .white
 		}
 	}
 	
