@@ -111,7 +111,6 @@ extension Date {
 	}
 	
 	func dateComponents(_ components: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]) -> DateComponents {
-//		print("**__** \(Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second], from: self))")
 		return Calendar(identifier: .gregorian).dateComponents(components, from: self)
 	}
 	
@@ -137,7 +136,10 @@ extension Date {
 	}
 	
 	func getMondayOfWeek() -> Date {
-		return Calendar(identifier: .gregorian).date(from: Calendar(identifier: .gregorian).dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!.addDays(value: 1)
+		var calendar = Calendar(identifier: .gregorian)
+		calendar.locale = Locale(identifier: "en_GB")
+			
+		return calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
 	}
 	
 	func addDays(value: Int) -> Date {

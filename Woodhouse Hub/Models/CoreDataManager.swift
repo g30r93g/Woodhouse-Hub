@@ -20,18 +20,6 @@ class CoreDataManager {
 //		self.deleteAndRebuild()
 	}
 	
-	// MARK: Structs
-	struct Timetable_Codable: Codable {
-		
-		// MARK: Properties
-		var timetable: [Student.TimetableEntry] = []
-		
-		init(timetable: [Student.TimetableEntry]) {
-			self.timetable = timetable
-		}
-		
-	}
-	
 	// MARK: Core Data Stack
 	lazy var persistentContainer: NSPersistentContainer = {
 	    /*
@@ -103,10 +91,9 @@ class CoreDataManager {
 	
 	public func getStudentTimetable() -> [Student.TimetableEntry]? {
 		if let data = UserDefaults.data.object(forKey: "Student-Timetable") as? Data {
-			let decoder = JSONDecoder()
-			if let decodedTimetable = try? decoder.decode(Timetable_Codable.self, from: data) {
-				if !decodedTimetable.timetable.isEmpty {
-					return decodedTimetable.timetable
+			if let decodedTimetable = try? JSONDecoder().decode([Student.TimetableEntry].self, from: data) {
+				if !decodedTimetable.isEmpty {
+					return decodedTimetable
 				}
 			}
 		}
@@ -138,18 +125,11 @@ class CoreDataManager {
 	}
 	
 	public func saveTimetable(from data: [Student.TimetableEntry]) {
-		let timetable = Timetable_Codable(timetable: data)
-		
-		let encoder = JSONEncoder()
-		if let data = try? encoder.encode(timetable).self {
+		if let data = try? JSONEncoder().encode(data).self {
 			UserDefaults.data.set(data, forKey: "Student-Timetable")
 		} else {
 			print("[CoreDataManager] Couldn't persist student timetable")
 		}
-	}
-	
-	public func clearAll() {
-		
 	}
 	
 }

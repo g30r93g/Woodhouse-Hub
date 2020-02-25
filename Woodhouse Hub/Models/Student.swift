@@ -65,10 +65,10 @@ class Student {
 		init(from decoder: Decoder) throws {
 			let container = try decoder.container(keyedBy: CodingKeys.self)
 			
-			name = try container.decode(String.self, forKey: .name)
-			id = try container.decode(String.self, forKey: .id)
-			tutorGroup = try container.decode(String.self, forKey: .tutorGroup)
-			image = UIImage(data: try container.decode(Data.self, forKey: .image))
+			self.name = try container.decode(String.self, forKey: .name)
+			self.id = try container.decode(String.self, forKey: .id)
+			self.tutorGroup = try container.decode(String.self, forKey: .tutorGroup)
+			self.image = UIImage(data: try container.decode(Data.self, forKey: .image))
 		}
 		
 		func encode(to encoder: Encoder) throws {

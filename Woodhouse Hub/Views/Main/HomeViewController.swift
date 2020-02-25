@@ -227,7 +227,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 			}
 		}
 		
-		cell.setupCell(from: data, index: indexPath.row, isWidget: false)
+		cell.setupCell(from: data, index: indexPath.row)
 		
 		return cell
 	}

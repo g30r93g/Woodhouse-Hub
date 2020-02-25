@@ -305,11 +305,11 @@ class DashboardInteractor: NSObject {
 								
 								let startHour = Int(times[0].split(separator: ":")[0].trimmingCharacters(in: .whitespacesAndNewlines))!
 								let startMinute = Int(times[0].split(separator: ":")[1].trimmingCharacters(in: .whitespacesAndNewlines))!
-								let startDate = Date().getMondayOfWeek().addDays(value: dayIndex).usingTime(startHour, startMinute, 00)
+								let startDate = Date().getMondayOfWeek().addDays(value: dayIndex - 1).usingTime(startHour, startMinute, 00)
 								
 								let endHour = Int(times[1].split(separator: ":")[0].trimmingCharacters(in: .whitespacesAndNewlines))!
 								let endMinute = Int(times[1].split(separator: ":")[1].trimmingCharacters(in: .whitespacesAndNewlines))!
-								let endDate = Date().getMondayOfWeek().addDays(value: dayIndex).usingTime(endHour, endMinute, 00)
+								let endDate = Date().getMondayOfWeek().addDays(value: dayIndex - 1).usingTime(endHour, endMinute, 00)
 								
 								if Date().isWeekend {
 									startTime = startDate.addDays(value: 7)
