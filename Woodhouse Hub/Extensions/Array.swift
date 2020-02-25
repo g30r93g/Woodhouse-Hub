@@ -23,3 +23,17 @@ extension Array {
 	}
 	
 }
+
+extension Array where Element: Hashable {
+	
+	/// Removes any duplicate items in an array
+	/// - Returns: An array with no duplicates
+    func removeDuplicates() -> [Element] {
+		var addedDict: [Element : Bool] = [:]
+		
+        return filter {
+            addedDict.updateValue(true, forKey: $0) == nil
+        }
+    }
+}
+

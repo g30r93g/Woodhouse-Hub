@@ -19,7 +19,7 @@ class WoodleInteractor: NSObject {
 	private let upcomingEventsURL = URL(string: "https://vle.woodhouse.ac.uk/studenthome.aspx?eventcat=Events&#eventlist")!
 	private let registeredEventsURL = URL(string: "https://vle.woodhouse.ac.uk/studenthome.aspx?eventcat=Registered&#eventlist")!
 	
-	// MARK: Properties
+	// MARK: Properties 
 	private var homeWebView = WKWebView()
 	
 	// MARK: Data Properties
@@ -155,8 +155,8 @@ class WoodleInteractor: NSObject {
 							return (fromDate, toDate)
 						} else {
 							// Date
-							let fromDateString = splitDates[0]
-							let toDateString = splitDates[1]
+							guard let fromDateString = splitDates.first else { return (Date(), Date()) }
+							guard let toDateString = splitDates.safelyAccess(index: 1) else { return (Date(), Date()) }
 							
 							let fromDate = Date.woodleFormat(from: fromDateString)
 							let toDate = Date.woodleFormat(from: toDateString)

@@ -17,10 +17,12 @@ class DashboardInteractor: NSObject {
 	// MARK: URLs
 	internal let home = URL(string: "https://est.woodhouse.ac.uk")!
 	internal let markbook = URL(string: "https://est.woodhouse.ac.uk/MyEMarkBook.aspx")!
+	internal let studentProfile = URL(string: "https://est.woodhouse.ac.uk/StudentProfile.aspx")!
 	
 	// MARK: Properties
 	internal var homeWebView = WKWebView()
 	internal var markbookWebView = WKWebView()
+	internal var studentProfileWebView = WKWebView()
 	
 	public var currentDay: Int {
 		switch Date().dayName() {
@@ -53,17 +55,19 @@ class DashboardInteractor: NSObject {
 		
 		self.markbookWebView.configuration.preferences.javaScriptEnabled = true
 		self.markbookWebView.navigationDelegate = self
+		
+		self.studentProfileWebView.configuration.preferences.javaScriptEnabled = true
+		self.studentProfileWebView.navigationDelegate = self
 	}
 	
+	// MARK: Sign In
 	public func signIn(username: String, password: String, completion: @escaping(Bool) -> Void) {
 		WoodhouseCredentials.shared.setUsername(to: username)
 		WoodhouseCredentials.shared.setPassword(to: password)
 		
-		let request = URLRequest(url: home)
-		self.homeWebView.load(request)
-		NotificationCenter.default.post(name: Notification.Name("dashboard.didNavigate"), object: nil, userInfo: nil)
-		
+		self.loadHome()
 		self.loadMarkbook()
+		self.loadAttendance()
 		
 		self.determineIfSignedIn() { (isSignedIn) in
 			completion(isSignedIn)
@@ -93,6 +97,18 @@ class DashboardInteractor: NSObject {
 				}
 			}
 		}
+	}
+	
+	func signOut() {
+		self.homeWebView = WKWebView()
+		self.markbookWebView = WKWebView()
+	}
+	
+	// MARK: Student Profile
+	private func loadHome() {
+		let request = URLRequest(url: home)
+		self.homeWebView.load(request)
+		NotificationCenter.default.post(name: Notification.Name("dashboard.didNavigate"), object: nil, userInfo: nil)
 	}
 	
 	private func getBasicStudentDetails() {
@@ -185,7 +201,11 @@ class DashboardInteractor: NSObject {
 		
 		attendanceDispatch.notify(queue: .global(qos: .userInitiated)) {
 			if let attendance = studentAttendance, let punctuality = studentPunctuality {
-				Student.current.addAttendance(from: Student.Attendance(attendance: attendance, punctuality: punctuality))
+				if let attendanceDetails = Student.current.getAttendance(), !attendanceDetails.detailedAttendance.isEmpty {
+					Student.current.addAttendance(from: Student.Attendance(overallAttendance: attendance, overallPunctuality: punctuality, detailedAttendance: attendanceDetails.detailedAttendance))
+				} else {
+					Student.current.addAttendance(from: Student.Attendance(overallAttendance: attendance, overallPunctuality: punctuality, detailedAttendance: []))
+				}
 			}
 		}
 		
@@ -205,9 +225,14 @@ class DashboardInteractor: NSObject {
 		
 		punctualityDispatch.notify(queue: .global(qos: .userInitiated)) {
 			if let attendance = studentAttendance, let punctuality = studentPunctuality {
-				Student.current.addAttendance(from: Student.Attendance(attendance: attendance, punctuality: punctuality))
-				NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "dashboard.gatheredDetails"), object: nil)
+				if let attendanceDetails = Student.current.getAttendance(), !attendanceDetails.detailedAttendance.isEmpty {
+					Student.current.addAttendance(from: Student.Attendance(overallAttendance: attendance, overallPunctuality: punctuality, detailedAttendance: attendanceDetails.detailedAttendance))
+				} else {
+					Student.current.addAttendance(from: Student.Attendance(overallAttendance: attendance, overallPunctuality: punctuality, detailedAttendance: []))
+				}
 			}
+			
+			NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "dashboard.gatheredDetails"), object: nil)
 		}
 	}
 	
@@ -222,6 +247,7 @@ class DashboardInteractor: NSObject {
 		}
 	}
 	
+	// MARK: Timetable
 	private func getStudentTimetable() {
 		var timetable: [Student.TimetableEntry] = []
 		
@@ -260,7 +286,6 @@ class DashboardInteractor: NSObject {
 						
 						let identifier = try! col.text()
 						classIdentifier = identifier.extract(until: " ").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
-						print(" *&*&^ \(classIdentifier)")
 						
 						let firstCloseTag = onMouseOverContent.firstIndex(of: ">")!
 						let secondCloseTag = onMouseOverContent[firstCloseTag...].firstIndex(of: ">")!
@@ -333,6 +358,7 @@ class DashboardInteractor: NSObject {
 		}
 	}
 	
+	// MARK: Markbook
 	private func loadMarkbook() {
 		let request = URLRequest(url: markbook)
 		self.markbookWebView.load(request)
@@ -406,13 +432,92 @@ class DashboardInteractor: NSObject {
 				}
 				
 				Student.current.addMarkbook(from: markbook)
+				timer.invalidate()
 			}
 		}
 	}
 	
-	func signOut() {
-		self.homeWebView = WKWebView()
-		self.markbookWebView = WKWebView()
+	// MARK: Attendance
+	func loadAttendance() {
+		let request = URLRequest(url: studentProfile)
+		self.studentProfileWebView.load(request)
+	}
+	
+	func retryAttendance() {
+		Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { (_) in
+			self.getAttendance()
+		}
+	}
+	
+	func getAttendance() {
+		self.studentProfileWebView.evaluateJavaScript("document.getElementsByClassName('option')[3].click()") { (_, error) in
+			if let error = error { self.retryAttendance(); print(error.localizedDescription); return }
+			
+			self.studentProfileWebView.evaluateJavaScript("document.getElementsByClassName('option')[3].click()") { (_, error) in
+				if let error = error { self.retryAttendance(); print(error.localizedDescription); return }
+				
+				Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
+					self.studentProfileWebView.evaluateJavaScript("document.documentElement.outerHTML.toString()") { (html, error) in
+						if let error = error { fatalError(error.localizedDescription) }
+						
+						guard let attendanceHTML = html as? String else { fatalError() }
+						let attendanceDoc = try! SwiftSoup.parse(attendanceHTML)
+						
+						if !attendanceHTML.contains("Overall Cumulative Summary") { print("[DashboardInteractor] Retrying Attendance"); return }
+						print("[DasboardInteractor] Successfully loaded Attendance")
+						
+						var attendanceEntries: [Student.AttendanceEntry] = []
+						
+						// Get Weekly Summary Tables
+						guard let weeklySummary = try! attendanceDoc.getElementById("cphMain_spStudentProfile_tcTabContainer_tpAttendance_saStudentAttendance_pnlWeeklySummary") else { fatalError() }
+						guard let attendanceMarkingsTable = try! weeklySummary.getElementsByClass("standardTable fullWidth_Sma").last() else { fatalError() }
+						print("[DasboardInteractor] Accessed Attendance Markings:")
+//						print(try! attendanceMarkingsTable.html())
+						
+						// Get rows for attendance markings
+						let markingsTableRows = try! attendanceMarkingsTable.getElementsByTag("tr")
+						
+						for row in markingsTableRows {
+							// Get matching table row
+							let markingRow = try! row.getElementsByTag("td")
+							
+							if markingRow.count <= 7 { continue }
+							
+							// Iterate through table row to determine date
+							for mark in markingRow[7...markingRow.count - 1] {
+								// Determine if cell is empty
+								if try! mark.className() == "hide_Sma" { continue }
+								
+								let attendanceMark = Student.AttendanceMark(rawValue: try! mark.text()) ?? .mark
+								
+								guard let attendanceDetail = try! mark.getElementsByAttribute("onmouseover").first() else { continue }
+								let detail = try! attendanceDetail.attr("onmouseover").extract(from: "'").extract(until: ";")
+								
+								// "\'PHYS-A-UA1<br />24/02/2020\', TITLE, \'Present\')"
+								// Extract Class Identifier from ' to <
+								// Extract date from > to \
+								
+								let classIdentifier: String = detail.extract(from: "'").extract(until: "<").replacingOccurrences(of: "'", with: "")
+								let classDateString: String = detail.extract(from: ">").extract(until: "'").replacingOccurrences(of: ">", with: "")
+								let classDate: Date = Date.markbookFormat(from: classDateString)
+								
+								print("[DashboardInteractor] Attendance for \(classIdentifier) on \(classDate) - \(attendanceMark)")
+								
+								attendanceEntries.append(Student.AttendanceEntry(classIdentifier: classIdentifier, attendanceMark: attendanceMark, date: classDate))
+							}
+						}
+						
+						if let attendanceDetails = Student.current.getAttendance() {
+							Student.current.addAttendance(from: Student.Attendance(overallAttendance: attendanceDetails.overallAttendance, overallPunctuality: attendanceDetails.overallPunctuality, detailedAttendance: attendanceEntries))
+						} else {
+							Student.current.addAttendance(from: Student.Attendance(overallAttendance: 0, overallPunctuality: 0, detailedAttendance: attendanceEntries))
+						}
+						
+						timer.invalidate()
+					}
+				}
+			}
+		}
 	}
 	
 }
@@ -431,7 +536,8 @@ extension DashboardInteractor: WKNavigationDelegate {
 		case self.markbookWebView:
 			// Student Results
 			self.getMarkbookGrades()
-			break
+		case self.studentProfileWebView:
+			self.getAttendance()
 		default:
 			break
 		}

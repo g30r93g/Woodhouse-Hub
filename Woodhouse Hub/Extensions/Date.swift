@@ -21,7 +21,7 @@ extension Date {
 		} else {
 			dateFormatter.dateFormat = "dd MMMM yyyy"
 		}
-		dateFormatter.locale = Locale(identifier: "en_UK")
+		dateFormatter.locale = Locale(identifier: "en_GB")
 		
 		return dateFormatter.date(from: string) ?? Date()
 	}
@@ -29,7 +29,7 @@ extension Date {
 	static func markbookFormat(from string: String) -> Date {
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
-		dateFormatter.locale = Locale(identifier: "en_UK")
+		dateFormatter.locale = Locale(identifier: "en_GB")
 		
 		return dateFormatter.date(from: string) ?? Date()
 	}
@@ -45,7 +45,16 @@ extension Date {
 	func date() -> String {
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateStyle = .medium
-		dateFormatter.locale = Locale(identifier: "en_UK")
+		dateFormatter.locale = Locale(identifier: "en_GB")
+		
+		return dateFormatter.string(from: self)
+	}
+	
+	/// Returns the date with the week day name
+	func extendedDate() -> String {
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "EEEE dd MMM yyyy"
+		dateFormatter.locale = Locale(identifier: "en_GB")
 		
 		return dateFormatter.string(from: self)
 	}
@@ -75,21 +84,41 @@ extension Date {
 	func dayName() -> String {
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "EEEE"
-		dateFormatter.locale = Locale(identifier: "en_UK")
+		dateFormatter.locale = Locale(identifier: "en_GB")
 		
 		return dateFormatter.string(from: self)
+	}
+	
+	func dayOfWeek() -> Int {
+		switch self.dayName() {
+		case "Monday":
+			return 1
+		case "Tuesday":
+			return 2
+		case "Wednesday":
+			return 3
+		case "Thursday":
+			return 4
+		case "Friday":
+			return 5
+		case "Saturday":
+			return 6
+		case "Sunday":
+			return 7
+		default:
+			return 0
+		}
 	}
 	
 	func dateComponents(_ components: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]) -> DateComponents {
 //		print("**__** \(Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second], from: self))")
 		return Calendar(identifier: .gregorian).dateComponents(components, from: self)
-//
 	}
 	
 	func extractTime(from string: String) -> Date {
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "EEEE"
-		dateFormatter.locale = Locale(identifier: "en_UK")
+		dateFormatter.locale = Locale(identifier: "en_GB")
 		
 		return dateFormatter.date(from: string)!
 	}
@@ -100,7 +129,6 @@ extension Date {
 	
 	/// Determines whether the current date falls in the range of two dates
 	func fallsIn(lower: Date, upper: Date) -> Bool {
-		print("**_** \(lower) < \(self) < \(upper)")
 		return lower <= self && self <= upper
 	}
 	
@@ -109,7 +137,7 @@ extension Date {
 	}
 	
 	func getMondayOfWeek() -> Date {
-		return Calendar(identifier: .gregorian).date(from: Calendar(identifier: .gregorian).dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
+		return Calendar(identifier: .gregorian).date(from: Calendar(identifier: .gregorian).dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!.addDays(value: 1)
 	}
 	
 	func addDays(value: Int) -> Date {
@@ -121,7 +149,7 @@ extension Date {
 		let dateFormatter = DateFormatter()
 		dateFormatter.timeStyle = .short
 		dateFormatter.dateStyle = .medium
-		dateFormatter.locale = Locale(identifier: "en_UK")
+		dateFormatter.locale = Locale(identifier: "en_GB")
 		
 		return dateFormatter.string(from: self)
 	}

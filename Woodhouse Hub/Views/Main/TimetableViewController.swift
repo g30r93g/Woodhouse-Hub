@@ -72,7 +72,7 @@ extension TimetableViewController: UITableViewDelegate, UITableViewDataSource {
 		guard let timetable = Student.current.studentProfile?.timetable else { return cell }
 		let data = timetable.filter({$0.day == self.daySegments.selectedSegmentIndex + 1})[indexPath.row]
 		
-		cell.setupCell(from: data, index: indexPath.row)
+		cell.setupCell(from: data, index: indexPath.row, isWidget: true)
 		
 		return cell
 	}

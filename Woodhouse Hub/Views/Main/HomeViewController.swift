@@ -105,11 +105,11 @@ class HomeViewController: UIViewController {
 		Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { (timer) in
 			guard let attendanceDetails = Student.current.studentProfile?.attendance else { return }
 			
-			self.studentAttendance.text = "Attendance: \(attendanceDetails.attendance)%"
-			self.studentPunctuality.text = "Punctuality: \(attendanceDetails.punctuality)%"
+			self.studentAttendance.text = "Attendance: \(attendanceDetails.overallAttendance)%"
+			self.studentPunctuality.text = "Punctuality: \(attendanceDetails.overallPunctuality)%"
 			
-			if attendanceDetails.attendance < 95 {
-				if attendanceDetails.attendance < 90 {
+			if attendanceDetails.overallAttendance < 95 {
+				if attendanceDetails.overallAttendance < 90 {
 					self.studentAttendanceIndicator.backgroundColor = .red
 				} else {
 					self.studentAttendanceIndicator.backgroundColor = .orange
@@ -118,8 +118,8 @@ class HomeViewController: UIViewController {
 				self.studentAttendanceIndicator.backgroundColor = .green
 			}
 			
-			if attendanceDetails.punctuality < 95 {
-				if attendanceDetails.punctuality < 90 {
+			if attendanceDetails.overallPunctuality < 95 {
+				if attendanceDetails.overallPunctuality < 90 {
 					self.studentPunctualityIndicator.backgroundColor = .red
 				} else {
 					self.studentPunctualityIndicator.backgroundColor = .orange
@@ -227,7 +227,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 			}
 		}
 		
-		cell.setupCell(from: data, index: indexPath.row)
+		cell.setupCell(from: data, index: indexPath.row, isWidget: false)
 		
 		return cell
 	}

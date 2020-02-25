@@ -17,8 +17,8 @@ class TimetableCell: UITableViewCell {
 	@IBOutlet weak var room: UILabel!
 	
 	// MARK: Methods
-	func setupCell(from data: Student.TimetableEntry, index: Int) {
-		self.reset(index)
+	func setupCell(from data: Student.TimetableEntry, index: Int, isWidget: Bool) {
+		self.reset(index, isWidget)
 		
 		self.highlightCurrentLesson(from: data)
 		self.highlightNextLesson(from: data)
@@ -40,11 +40,15 @@ class TimetableCell: UITableViewCell {
 		}
 	}
 	
-	private func reset(_ index: Int) {
-		if (index % 2) == 1 {
-			self.contentView.backgroundColor = UIColor(named: "Alternate Cell")!
+	private func reset(_ index: Int, _ isWidget: Bool) {
+		if isWidget {
+			self.contentView.backgroundColor = .clear
 		} else {
-			self.contentView.backgroundColor = UIColor(named: "Cell")!
+			if (index % 2) == 1 {
+				self.contentView.backgroundColor = UIColor(named: "Alternate Cell")!
+			} else {
+				self.contentView.backgroundColor = UIColor(named: "Cell")!
+			}
 		}
 		
 		self.lessonName.textColor = .label

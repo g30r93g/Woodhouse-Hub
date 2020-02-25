@@ -93,9 +93,30 @@ class Student {
 	}
 	
 	struct Attendance {
-		let attendance: Int
-		let punctuality: Int
-//		let detailedAttendance: [AttendanceEntry] = []
+		let overallAttendance: Int
+		let overallPunctuality: Int
+		let detailedAttendance: [AttendanceEntry]
+	}
+	
+	struct AttendanceEntry {
+		let classIdentifier: String
+		let attendanceMark: AttendanceMark
+		let date: Date
+	}
+	
+	enum AttendanceMark: String {
+		case present = "/"
+		case late = "L"
+		case veryLate = "V"
+		case unauthorisedAbsence = "O"
+		case notifiedAbsence = "N"
+		case internalExam = "E"
+		case permissionToMiss = "P"
+		case cancelled = "C"
+		case transferIntoSet = ">"
+		case transferOutOfSet = "<"
+		case event = "|"
+		case mark = ""
 	}
 	
 	struct UCASPredictions {
@@ -151,11 +172,14 @@ class Student {
 	
 	public func getTimetable() -> [TimetableEntry]? {
 		if let storedTimetable = CoreDataManager.manager.getStudentTimetable() {
-			storedTimetable.forEach({print(" **&&**&&** \($0)")})
 			return storedTimetable
 		} else {
 			return self.studentProfile?.timetable
 		}
+	}
+	
+	public func getAttendance() -> Attendance? {
+		return self.studentProfile?.attendance
 	}
 	
 	// MARK: Setter Methods
