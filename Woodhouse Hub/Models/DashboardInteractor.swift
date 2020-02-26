@@ -340,7 +340,12 @@ class DashboardInteractor: NSObject {
 				}
 			}
 			
+			// Add timetable
 			Student.current.addTimetable(from: timetable)
+			
+			// Add timetable notifications
+			DashboardInteractor.shared.setupTimetableNotifications()
+			
 			NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "dashboard.gatheredTimetable"), object: nil)
 			NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "dashboard.finished"), object: nil)
 		}
@@ -353,9 +358,7 @@ class DashboardInteractor: NSObject {
 	}
 	
 	public func removeTimetableNotifications() {
-		if let timetable = Student.current.studentProfile?.timetable {
-			NotificationManager.session.removeTimetableNotifications(for: timetable)
-		}
+		NotificationManager.session.removeTimetableNotifications()
 	}
 	
 	// MARK: Markbook

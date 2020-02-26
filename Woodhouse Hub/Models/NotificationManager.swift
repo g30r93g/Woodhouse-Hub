@@ -22,17 +22,33 @@ class NotificationManager {
 	// MARK: Properties
 	var isPermitted: Bool = false
 	
-	// MARK: Timetable Notifications
+	// MARK: Timetable Notitications
 	func setupTimetableNotifications(for timetable: [Student.TimetableEntry]) {
-		let category = UNNotificationCategory(identifier: "Timetabled", actions: [], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: .hiddenPreviewsShowTitle)
-		self.addCategory(category)
+		// Remove all timetable notifications
+		self.removeTimetableNotifications()
+		
+		// Timetable
+		let timetableCategory = UNNotificationCategory(identifier: "Timetabled", actions: [], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: .hiddenPreviewsShowTitle)
+		self.addCategory(timetableCategory)
 		
 		for timetabledItem in timetable {
 			let content = self.createTimetableContent(from: timetabledItem)
 			let trigger = self.createTimeTrigger(from: timetabledItem)
-//			let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
 			
 			let request = UNNotificationRequest(identifier: "\(timetabledItem.name)-\(timetabledItem.startTime)-\(UUID().uuidString)", content: content, trigger: trigger)
+			
+			self.addNotification(request)
+		}
+		
+		// Morning Timetable
+		let morningTimetableCategory = UNNotificationCategory(identifier: "Morning Timetabled", actions: [], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: .hiddenPreviewsShowTitle)
+		self.addCategory(morningTimetableCategory)
+		
+		for date in timetable.map({$0.startTime.dayOfWeek()}).removeDuplicates().map({Date().getMondayOfWeek().addDays(value: $0)}) {
+			let content = self.createMorningTimetableNotification(for: timetable.filter({$0.startTime.dayOfWeek() == date.dayOfWeek()}).map({$0.name}))
+			let trigger = self.createMorningTimeTrigger(from: date)
+			
+			let request = UNNotificationRequest(identifier: "\(date.dayOfWeek())-\(UUID().uuidString)", content: content, trigger: trigger)
 			
 			self.addNotification(request)
 		}
@@ -71,11 +87,40 @@ class NotificationManager {
 		return notification
 	}
 	
-	func removeTimetableNotifications(for timetable: [Student.TimetableEntry]) {
-		print("Removing timetable notifications")
-		for _ in timetable {
-			self.removeNotification(identifier: "Timetabled")
+	private func createMorningTimeTrigger(from date: Date) -> UNCalendarNotificationTrigger {
+		let dateComponents = date.usingTime(8, 0, 0).dateComponents([.weekday, .hour, .minute])
+		return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+	}
+	
+	private func createMorningTimetableNotification(for lessons: [String]) -> UNNotificationContent {
+		let notification = UNMutableNotificationContent()
+		
+		var body: String = "You have "
+		
+		if lessons.count == 1 {
+			body += "\(lessons[0]) today."
+		} else {
+			for (index, lesson) in lessons.enumerated() {
+				if index == lessons.count - 1 {
+					body += "and \(lesson) today."
+				} else {
+					body += "\(lesson), "
+				}
+			}
 		}
+		
+		notification.title = "Today's Timetable"
+		notification.body = body
+		notification.sound = .default
+		notification.categoryIdentifier = "Morning Timetabled"
+		
+		return notification
+	}
+	
+	func removeTimetableNotifications() {
+		print("Removing timetable notifications")
+		self.removeNotification(identifier: "Timetabled")
+		self.removeNotification(identifier: "Morning Timetabled")
 	}
 	
 	func removeAllNotifications() {

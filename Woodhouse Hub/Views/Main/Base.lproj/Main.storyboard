@@ -631,7 +631,7 @@
                                             <constraint firstAttribute="height" constant="40" id="qOE-P5-Vph"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="bell.fill" catalog="system">
+                                        <state key="normal" image="square.and.arrow.up" catalog="system">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -640,7 +640,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="toggleTimetableNotification:" destination="Khq-9P-kcf" eventType="touchUpInside" id="igc-wZ-aS1"/>
+                                            <action selector="createShareableTimetable:" destination="Khq-9P-kcf" eventType="touchUpInside" id="jpH-8f-eHC"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -779,7 +779,7 @@
                     </view>
                     <connections>
                         <outlet property="daySegments" destination="8aB-VV-mhS" id="Xq8-E6-tSz"/>
-                        <outlet property="notifications" destination="mOT-cA-6fm" id="TE7-gy-f3M"/>
+                        <outlet property="shareTimetable" destination="mOT-cA-6fm" id="Bea-nW-sz4"/>
                         <outlet property="timetable" destination="WH6-Xj-YXD" id="Cwo-PS-gPA"/>
                     </connections>
                 </viewController>
@@ -1881,9 +1881,9 @@
         <image name="Woodhouse Logo" width="245" height="75"/>
         <image name="arrow.clockwise" catalog="system" width="56" height="64"/>
         <image name="arrow.left" catalog="system" width="64" height="48"/>
-        <image name="bell.fill" catalog="system" width="64" height="62"/>
         <image name="chevron.right" catalog="system" width="48" height="64"/>
         <image name="person.fill" catalog="system" width="64" height="60"/>
+        <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
         <namedColor name="Background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

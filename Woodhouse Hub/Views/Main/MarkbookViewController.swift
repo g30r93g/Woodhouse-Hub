@@ -60,7 +60,7 @@ class MarkbookViewController: UIViewController {
 	}
 	
 	private func updateView() {
-		guard let firstUnit = self.currentSubject?.units.first(where: {$0.averageGrade != "X"}) ?? self.currentSubject?.units.first! else { return }
+		guard let firstUnit = self.currentSubject?.units.first(where: {$0.averageGrade != "X"}) ?? self.currentSubject?.units.first else { return }
 		guard let subjectName = self.currentSubject?.name else { return }
 		self.subject.text = subjectName
 		self.meg.text = "Minimum Expected Grade: \(firstUnit.meg)"

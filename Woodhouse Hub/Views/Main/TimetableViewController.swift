@@ -12,7 +12,7 @@ class TimetableViewController: UIViewController {
 	
 	// MARK: IBOutlets
 	@IBOutlet weak var daySegments: UISegmentedControl!
-	@IBOutlet weak var notifications: UIButton!
+	@IBOutlet weak var shareTimetable: UIButton!
 	@IBOutlet weak var timetable: UITableView!
 
 	// MARK: View Controller Life Cycle
@@ -32,8 +32,6 @@ class TimetableViewController: UIViewController {
 			self.daySegments.selectedSegmentIndex = 0
 		}
 		
-		self.notifications.setImage(UIImage(systemName: Settings().isReceivingTimetableNotifications ? "bell.fill" : "bell"), for: .normal)
-		
 		self.timetable.reloadData()
 	}
 	
@@ -46,15 +44,8 @@ class TimetableViewController: UIViewController {
 		self.dismiss(animated: true, completion: nil)
 	}
 	
-	@IBAction func toggleTimetableNotification(_ sender: UIButton) {
-		Settings().isReceivingTimetableNotifications = !Settings().isReceivingTimetableNotifications
+	@IBAction func createShareableTimetable(_ sender: UIButton) {
 		
-		Settings().isReceivingTimetableNotifications ? DashboardInteractor.shared.setupTimetableNotifications() : DashboardInteractor.shared.removeTimetableNotifications()
-		self.notifications.setImage(UIImage(systemName: Settings().isReceivingTimetableNotifications ? "bell.fill" : "bell"), for: .normal)
-		
-		let alert = UIAlertController(title: "Timetable notifications turned \(Settings().isReceivingTimetableNotifications ? "on" : "off")", message: "", preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-		self.present(alert, animated: true, completion: nil)
 	}
 
 }

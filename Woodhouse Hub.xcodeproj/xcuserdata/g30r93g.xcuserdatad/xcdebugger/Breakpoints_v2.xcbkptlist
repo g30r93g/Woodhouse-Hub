@@ -14,8 +14,8 @@
             filePath = "Woodhouse Hub/Models/DashboardInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "505"
-            endingLineNumber = "505"
+            startingLineNumber = "508"
+            endingLineNumber = "508"
             landmarkName = "getAttendance()"
             landmarkType = "7">
          </BreakpointContent>

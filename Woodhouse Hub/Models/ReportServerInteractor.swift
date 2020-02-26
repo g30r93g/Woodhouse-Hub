@@ -119,7 +119,7 @@ class ReportServerInteractor: NSObject {
 					
 					let examData = try! exam.getElementsByTag("div").map({try! $0.text()})
 					
-					let date = examData[1]
+					guard let date = examData.safelyAccess(index: 1) else { return }
 					
 					let startTime = Date.reportServerFormat(from: "\(date) \(examData[2])")
 					let endTime = Date.reportServerFormat(from: "\(date) \(examData[3])")
