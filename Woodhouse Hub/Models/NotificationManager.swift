@@ -45,7 +45,11 @@ class NotificationManager {
 		self.addCategory(morningTimetableCategory)
 		
 		for date in timetable.map({$0.startTime.dayOfWeek()}).removeDuplicates().map({Date().getMondayOfWeek().addDays(value: $0)}) {
-			let content = self.createMorningTimetableNotification(for: timetable.filter({$0.startTime.dayOfWeek() == date.dayOfWeek()}).map({$0.name}))
+			var lessonNames = timetable.filter({$0.startTime.dayOfWeek() == date.dayOfWeek()}).map({$0.name}).removeDuplicates()
+			lessonNames.removeAll(where: {$0.contains("Lunch")})
+			lessonNames.removeAll(where: {$0.contains("Learning Zone Study")})
+			
+			let content = self.createMorningTimetableNotification(for: lessonNames)
 			let trigger = self.createMorningTimeTrigger(from: date)
 			
 			let request = UNNotificationRequest(identifier: "\(date.dayOfWeek())-\(UUID().uuidString)", content: content, trigger: trigger)
@@ -72,7 +76,7 @@ class NotificationManager {
 		
 		var body: String {
 			if let room = entry.room {
-				return "Room \(room) - \(entry.startTime.time())"
+				return "Room \(room) - \(entry.startTime.time()) - \(entry.endTime.time())"
 			} else {
 				return entry.startTime.time()
 			}

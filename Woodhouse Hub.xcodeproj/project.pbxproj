@@ -45,6 +45,7 @@
 		1FDECF1E23CDF1240063DDA8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDECF1D23CDF1240063DDA8 /* SignInViewController.swift */; };
 		1FDECF2023CE11A60063DDA8 /* WoodhouseCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDECF1F23CE11A60063DDA8 /* WoodhouseCredentials.swift */; };
 		1FE0A2BD23F40B6900BEB261 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE0A2BC23F40B6900BEB261 /* SwiftSoup */; };
+		1FE5C4D0240BE5510057611A /* CalendarEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5C4CF240BE5510057611A /* CalendarEventManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		1FDECF1B23CDED9C0063DDA8 /* DashboardInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInteractor.swift; sourceTree = "<group>"; };
 		1FDECF1D23CDF1240063DDA8 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1FDECF1F23CE11A60063DDA8 /* WoodhouseCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoodhouseCredentials.swift; sourceTree = "<group>"; };
+		1FE5C4CF240BE5510057611A /* CalendarEventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +260,7 @@
 				1F34E41023D514460024C031 /* ReportServerInteractor.swift */,
 				1F1D290923D24E7E00707A4F /* WoodleInteractor.swift */,
 				1F1D290723D20B9000707A4F /* NotificationManager.swift */,
+				1FE5C4CF240BE5510057611A /* CalendarEventManager.swift */,
 				1F07518223D3763C00600B18 /* CoreDataManager.swift */,
 				1F07517D23D3719F00600B18 /* Settings.swift */,
 			);
@@ -467,6 +470,7 @@
 				1FD0E99823DC551700D7185A /* Array.swift in Sources */,
 				1FDECF1C23CDED9C0063DDA8 /* DashboardInteractor.swift in Sources */,
 				1F8C25C223F1EDE0004CECB7 /* AttendanceViewController.swift in Sources */,
+				1FE5C4D0240BE5510057611A /* CalendarEventManager.swift in Sources */,
 				1F1D290823D20B9000707A4F /* NotificationManager.swift in Sources */,
 				1F34E41323D520AD0024C031 /* WoodleEventsViewController.swift in Sources */,
 				1F10C32123D132BB004E98B1 /* HomeViewController.swift in Sources */,
@@ -663,7 +667,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Woodhouse Hub/Woodhouse Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = 3V93A3ACV9;
 				INFOPLIST_FILE = "Woodhouse Hub/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -686,7 +690,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Woodhouse Hub/Woodhouse Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = 3V93A3ACV9;
 				INFOPLIST_FILE = "Woodhouse Hub/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
