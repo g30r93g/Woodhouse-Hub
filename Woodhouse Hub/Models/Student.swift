@@ -98,10 +98,20 @@ class Student {
 		let detailedAttendance: [AttendanceEntry]
 	}
 	
-	struct AttendanceEntry {
+	struct AttendanceEntry: Comparable {
 		let classIdentifier: String
 		let attendanceMark: AttendanceMark
 		let date: Date
+		
+		// MARK: Equatable
+		static func == (lhs: AttendanceEntry, rhs: AttendanceEntry) -> Bool {
+			return lhs.date == rhs.date && lhs.classIdentifier == rhs.classIdentifier && lhs.attendanceMark == rhs.attendanceMark
+		}
+		
+		// MARK: Comparable
+		static func < (lhs: AttendanceEntry, rhs: AttendanceEntry) -> Bool {
+			return lhs.date < rhs.date
+		}
 	}
 	
 	enum AttendanceMark: String {
@@ -156,13 +166,18 @@ class Student {
 		let grades: [MarkbookGrade]
 	}
 	
-	struct MarkbookGrade {
+	struct MarkbookGrade: Comparable {
 		let name: String
 		let markingType: String
 		let weighting: Double
 		let date: Date
 		let mark: String
 		let percentage: Int
+		
+		// MARK: Comparable
+		static func < (lhs: MarkbookGrade, rhs: MarkbookGrade) -> Bool {
+			return lhs.date > rhs.date
+		}
 	}
 	
 	// MARK: Getter Methods

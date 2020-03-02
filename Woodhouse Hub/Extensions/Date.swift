@@ -156,4 +156,11 @@ extension Date {
 		return dateFormatter.string(from: self)
 	}
 	
+	func numberOfDays(to date: Date) -> Int {
+		let startDate = self.usingTime(0, 0, 0).getMondayOfWeek() // Number of days from monday...
+		let endDate = date.usingTime(0, 0, 0).getMondayOfWeek().addDays(value: 5) // ...to friday
+		
+		return Int(startDate.distance(to: endDate)) / (60*60*24)
+	}
+	
 }

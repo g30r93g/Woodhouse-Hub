@@ -8,19 +8,16 @@
 
 import UIKit
 
-class AttendanceCell: UITableViewCell {
+class AttendanceCell: RoundUICollectionViewCell {
 	
 	// MARK: IBOutlets
-	@IBOutlet weak private var lesson: UILabel!
+	@IBOutlet weak private var lessonName: UILabel!
 	@IBOutlet weak private var date: UILabel!
 	@IBOutlet weak private var teacher: UILabel!
 	@IBOutlet weak private var attendanceMark: UILabel!
 	
 	// MARK: Methods
-	func setupCell(from data: Student.AttendanceEntry, index: Int) {
-		self.reset()
-		if (index % 2) == 1 { self.applyAlternateBackground() }
-		
+	func setupCell(from data: Student.AttendanceEntry) {
 		self.date.text = "Date: \(data.date.extendedDate())"
 		
 		switch data.attendanceMark {
@@ -64,19 +61,11 @@ class AttendanceCell: UITableViewCell {
 		}
 		
 		if let timetable = Student.current.getTimetable(), let matchingClass = timetable.first(where: {$0.day == data.date.dayOfWeek() && $0.classIdentifier == data.classIdentifier}) {
-			self.lesson.text = matchingClass.name
+			self.lessonName.text = matchingClass.name
 			self.teacher.text = matchingClass.teacher ?? ""
 		} else {
-			self.lesson.text = data.classIdentifier
+			self.lessonName.text = data.classIdentifier
 		}
-	}
-	
-	private func reset() {
-		self.backgroundColor = UIColor(named: "Cell")
-	}
-	
-	private func applyAlternateBackground() {
-		self.backgroundColor = UIColor(named: "Alternate Cell")
 	}
 	
 }

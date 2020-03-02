@@ -11,32 +11,33 @@
 		1F07518023D3721600600B18 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F07517F23D3721600600B18 /* UserDefaults.swift */; };
 		1F07518323D3763C00600B18 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F07518223D3763C00600B18 /* CoreDataManager.swift */; };
 		1F07518523D376B300600B18 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F07518423D376B300600B18 /* Student.swift */; };
-		1F10C32123D132BB004E98B1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F10C32023D132BB004E98B1 /* HomeViewController.swift */; };
 		1F10C32B23D138E8004E98B1 /* TimetableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F10C32A23D138E8004E98B1 /* TimetableCell.swift */; };
 		1F10C32D23D1390B004E98B1 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F10C32C23D1390B004E98B1 /* Date.swift */; };
 		1F10C32F23D1392A004E98B1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F10C32E23D1392A004E98B1 /* String.swift */; };
-		1F1D290623D1FB9200707A4F /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D290523D1FB9200707A4F /* TimetableViewController.swift */; };
 		1F1D290823D20B9000707A4F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D290723D20B9000707A4F /* NotificationManager.swift */; };
 		1F1D290A23D24E7E00707A4F /* WoodleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D290923D24E7E00707A4F /* WoodleInteractor.swift */; };
 		1F34E40923D4FA880024C031 /* UCASPredictionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E40823D4FA880024C031 /* UCASPredictionCell.swift */; };
-		1F34E40B23D50CC50024C031 /* UCASPredictionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E40A23D50CC50024C031 /* UCASPredictionsViewController.swift */; };
-		1F34E40D23D50DE90024C031 /* ExamTimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E40C23D50DE90024C031 /* ExamTimetableViewController.swift */; };
 		1F34E40F23D50EF00024C031 /* ExamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E40E23D50EF00024C031 /* ExamCell.swift */; };
 		1F34E41123D514460024C031 /* ReportServerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E41023D514460024C031 /* ReportServerInteractor.swift */; };
-		1F34E41323D520AD0024C031 /* WoodleEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E41223D520AD0024C031 /* WoodleEventsViewController.swift */; };
 		1F34E41523D521220024C031 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E41423D521220024C031 /* EventCell.swift */; };
-		1F34E41723D67DB20024C031 /* MarkbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E41623D67DB20024C031 /* MarkbookViewController.swift */; };
 		1F34E41923D67EE80024C031 /* MarkbookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E41823D67EE80024C031 /* MarkbookCell.swift */; };
+		1F576973240C77250033D8C6 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F576972240C77250033D8C6 /* CalendarCell.swift */; };
+		1F576975240C862F0033D8C6 /* MarkbookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F576974240C862F0033D8C6 /* MarkbookView.swift */; };
+		1F6DC985240C95D70096C20C /* CLISpinner in Frameworks */ = {isa = PBXBuildFile; productRef = 1F6DC984240C95D70096C20C /* CLISpinner */; };
+		1F6DC989240C9BA90096C20C /* OtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6DC988240C9BA80096C20C /* OtherView.swift */; };
 		1F7DAAA223D06F8F00D42997 /* Sign In.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F7DAAA123D06F8F00D42997 /* Sign In.storyboard */; };
 		1F7DAAA423D0723D00D42997 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7DAAA323D0723D00D42997 /* Round.swift */; };
-		1F8C25C223F1EDE0004CECB7 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8C25C123F1EDE0004CECB7 /* AttendanceViewController.swift */; };
 		1FB0D4052404A9AE00586D52 /* AttendanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB0D4042404A9AE00586D52 /* AttendanceCell.swift */; };
+		1FBC5296240C4FF800E2922C /* AttendanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBC5295240C4FF800E2922C /* AttendanceView.swift */; };
+		1FBC5298240C500D00E2922C /* PillBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBC5297240C500D00E2922C /* PillBar.swift */; };
+		1FBC529A240C51CF00E2922C /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBC5299240C51CF00E2922C /* StudentInformation.swift */; };
 		1FC0B89823ED7B6000D7EBEA /* Woodhouse_Hub.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1FC0B89623ED7B6000D7EBEA /* Woodhouse_Hub.xcdatamodeld */; };
+		1FCD87CE240C2E3800D37C84 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCD87CD240C2E3800D37C84 /* MainViewController.swift */; };
+		1FCD87D0240C37C100D37C84 /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCD87CF240C37C100D37C84 /* TimetableView.swift */; };
 		1FD0E99823DC551700D7185A /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD0E99723DC551700D7185A /* Array.swift */; };
 		1FD0E99A23DC79CD00D7185A /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD0E99923DC79CD00D7185A /* TimeInterval.swift */; };
 		1FDECEE023CDDAC60063DDA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDECEDF23CDDAC60063DDA8 /* AppDelegate.swift */; };
 		1FDECEE223CDDAC60063DDA8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDECEE123CDDAC60063DDA8 /* SceneDelegate.swift */; };
-		1FDECEE723CDDAC60063DDA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FDECEE523CDDAC60063DDA8 /* Main.storyboard */; };
 		1FDECEEC23CDDAC80063DDA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FDECEEB23CDDAC80063DDA8 /* Assets.xcassets */; };
 		1FDECEEF23CDDAC80063DDA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FDECEED23CDDAC80063DDA8 /* LaunchScreen.storyboard */; };
 		1FDECEFA23CDDAC90063DDA8 /* Woodhouse_HubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDECEF923CDDAC90063DDA8 /* Woodhouse_HubTests.swift */; };
@@ -46,6 +47,7 @@
 		1FDECF2023CE11A60063DDA8 /* WoodhouseCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDECF1F23CE11A60063DDA8 /* WoodhouseCredentials.swift */; };
 		1FE0A2BD23F40B6900BEB261 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE0A2BC23F40B6900BEB261 /* SwiftSoup */; };
 		1FE5C4D0240BE5510057611A /* CalendarEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5C4CF240BE5510057611A /* CalendarEventManager.swift */; };
+		1FF6ABCA240C18860065444B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FF6ABC9240C18860065444B /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,36 +86,36 @@
 		1F07518123D3724100600B18 /* Woodhouse Hub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Woodhouse Hub.entitlements"; sourceTree = "<group>"; };
 		1F07518223D3763C00600B18 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		1F07518423D376B300600B18 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
-		1F10C32023D132BB004E98B1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1F10C32A23D138E8004E98B1 /* TimetableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCell.swift; sourceTree = "<group>"; };
 		1F10C32C23D1390B004E98B1 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		1F10C32E23D1392A004E98B1 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		1F1D290523D1FB9200707A4F /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		1F1D290723D20B9000707A4F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		1F1D290923D24E7E00707A4F /* WoodleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoodleInteractor.swift; sourceTree = "<group>"; };
 		1F34E40823D4FA880024C031 /* UCASPredictionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCASPredictionCell.swift; sourceTree = "<group>"; };
-		1F34E40A23D50CC50024C031 /* UCASPredictionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCASPredictionsViewController.swift; sourceTree = "<group>"; };
-		1F34E40C23D50DE90024C031 /* ExamTimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamTimetableViewController.swift; sourceTree = "<group>"; };
 		1F34E40E23D50EF00024C031 /* ExamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamCell.swift; sourceTree = "<group>"; };
 		1F34E41023D514460024C031 /* ReportServerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportServerInteractor.swift; sourceTree = "<group>"; };
-		1F34E41223D520AD0024C031 /* WoodleEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoodleEventsViewController.swift; sourceTree = "<group>"; };
 		1F34E41423D521220024C031 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
-		1F34E41623D67DB20024C031 /* MarkbookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkbookViewController.swift; sourceTree = "<group>"; };
 		1F34E41823D67EE80024C031 /* MarkbookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkbookCell.swift; sourceTree = "<group>"; };
+		1F576972240C77250033D8C6 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		1F576974240C862F0033D8C6 /* MarkbookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkbookView.swift; sourceTree = "<group>"; };
+		1F6DC988240C9BA80096C20C /* OtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherView.swift; sourceTree = "<group>"; };
 		1F7DAAA123D06F8F00D42997 /* Sign In.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Sign In.storyboard"; sourceTree = "<group>"; };
 		1F7DAAA323D0723D00D42997 /* Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
 		1F8C25C023F1E16D004CECB7 /* Woodhouse_Hub 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Woodhouse_Hub 2.xcdatamodel"; sourceTree = "<group>"; };
-		1F8C25C123F1EDE0004CECB7 /* AttendanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		1F8C25C323F1F009004CECB7 /* Woodhouse_Hub 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Woodhouse_Hub 3.xcdatamodel"; sourceTree = "<group>"; };
 		1F8C25CC23F1FDAF004CECB7 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		1FB0D4042404A9AE00586D52 /* AttendanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCell.swift; sourceTree = "<group>"; };
+		1FBC5295240C4FF800E2922C /* AttendanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceView.swift; sourceTree = "<group>"; };
+		1FBC5297240C500D00E2922C /* PillBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillBar.swift; sourceTree = "<group>"; };
+		1FBC5299240C51CF00E2922C /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		1FC0B89723ED7B6000D7EBEA /* Woodhouse_Hub.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Woodhouse_Hub.xcdatamodel; sourceTree = "<group>"; };
+		1FCD87CD240C2E3800D37C84 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		1FCD87CF240C37C100D37C84 /* TimetableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
 		1FD0E99723DC551700D7185A /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		1FD0E99923DC79CD00D7185A /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		1FDECEDC23CDDAC60063DDA8 /* Woodhouse Hub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Woodhouse Hub.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FDECEDF23CDDAC60063DDA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FDECEE123CDDAC60063DDA8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1FDECEE623CDDAC60063DDA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1FDECEEB23CDDAC80063DDA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FDECEEE23CDDAC80063DDA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FDECEF023CDDAC80063DDA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 		1FDECF1D23CDF1240063DDA8 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1FDECF1F23CE11A60063DDA8 /* WoodhouseCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoodhouseCredentials.swift; sourceTree = "<group>"; };
 		1FE5C4CF240BE5510057611A /* CalendarEventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventManager.swift; sourceTree = "<group>"; };
+		1FF6ABC9240C18860065444B /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FE0A2BD23F40B6900BEB261 /* SwiftSoup in Frameworks */,
+				1F6DC985240C95D70096C20C /* CLISpinner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,17 +167,18 @@
 			path = "UI View Elements";
 			sourceTree = "<group>";
 		};
-		1F10C32323D132D1004E98B1 /* Table View Cells */ = {
+		1F10C32323D132D1004E98B1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				1F10C32A23D138E8004E98B1 /* TimetableCell.swift */,
+				1FB0D4042404A9AE00586D52 /* AttendanceCell.swift */,
+				1F576972240C77250033D8C6 /* CalendarCell.swift */,
 				1F34E41823D67EE80024C031 /* MarkbookCell.swift */,
 				1F34E40823D4FA880024C031 /* UCASPredictionCell.swift */,
 				1F34E41423D521220024C031 /* EventCell.swift */,
 				1F34E40E23D50EF00024C031 /* ExamCell.swift */,
-				1FB0D4042404A9AE00586D52 /* AttendanceCell.swift */,
 			);
-			path = "Table View Cells";
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		1F8C25CB23F1FDAF004CECB7 /* Frameworks */ = {
@@ -182,6 +187,13 @@
 				1F8C25CC23F1FDAF004CECB7 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1FCD87C6240C1CCA00D37C84 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		1FDECED323CDDAC60063DDA8 = {
@@ -246,7 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				1FDECF1723CDDB2B0063DDA8 /* Sign In */,
-				1FDECF1823CDDB390063DDA8 /* Main */,
+				1FF6ABC8240C17F00065444B /* Main */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -282,6 +294,7 @@
 		1FDECF1523CDDAEC0063DDA8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1FCD87C6240C1CCA00D37C84 /* Fonts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -289,8 +302,9 @@
 		1FDECF1623CDDB140063DDA8 /* Supporting Views */ = {
 			isa = PBXGroup;
 			children = (
+				1FBC5297240C500D00E2922C /* PillBar.swift */,
 				1F10C32223D132C7004E98B1 /* UI View Elements */,
-				1F10C32323D132D1004E98B1 /* Table View Cells */,
+				1F10C32323D132D1004E98B1 /* Cells */,
 			);
 			path = "Supporting Views";
 			sourceTree = "<group>";
@@ -304,17 +318,16 @@
 			path = "Sign In";
 			sourceTree = "<group>";
 		};
-		1FDECF1823CDDB390063DDA8 /* Main */ = {
+		1FF6ABC8240C17F00065444B /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				1FDECEE523CDDAC60063DDA8 /* Main.storyboard */,
-				1F10C32023D132BB004E98B1 /* HomeViewController.swift */,
-				1F8C25C123F1EDE0004CECB7 /* AttendanceViewController.swift */,
-				1F1D290523D1FB9200707A4F /* TimetableViewController.swift */,
-				1F34E41623D67DB20024C031 /* MarkbookViewController.swift */,
-				1F34E41223D520AD0024C031 /* WoodleEventsViewController.swift */,
-				1F34E40A23D50CC50024C031 /* UCASPredictionsViewController.swift */,
-				1F34E40C23D50DE90024C031 /* ExamTimetableViewController.swift */,
+				1FF6ABC9240C18860065444B /* Main.storyboard */,
+				1FCD87CD240C2E3800D37C84 /* MainViewController.swift */,
+				1FBC5299240C51CF00E2922C /* StudentInformation.swift */,
+				1FCD87CF240C37C100D37C84 /* TimetableView.swift */,
+				1FBC5295240C4FF800E2922C /* AttendanceView.swift */,
+				1F576974240C862F0033D8C6 /* MarkbookView.swift */,
+				1F6DC988240C9BA80096C20C /* OtherView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -338,6 +351,7 @@
 			name = "Woodhouse Hub";
 			packageProductDependencies = (
 				1FE0A2BC23F40B6900BEB261 /* SwiftSoup */,
+				1F6DC984240C95D70096C20C /* CLISpinner */,
 			);
 			productName = "Woodhouse Hub";
 			productReference = 1FDECEDC23CDDAC60063DDA8 /* Woodhouse Hub.app */;
@@ -413,6 +427,7 @@
 			mainGroup = 1FDECED323CDDAC60063DDA8;
 			packageReferences = (
 				1F10C32423D136C6004E98B1 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				1F6DC983240C95D70096C20C /* XCRemoteSwiftPackageReference "CLISpinner" */,
 			);
 			productRefGroup = 1FDECEDD23CDDAC60063DDA8 /* Products */;
 			projectDirPath = "";
@@ -433,7 +448,7 @@
 				1FDECEEF23CDDAC80063DDA8 /* LaunchScreen.storyboard in Resources */,
 				1F7DAAA223D06F8F00D42997 /* Sign In.storyboard in Resources */,
 				1FDECEEC23CDDAC80063DDA8 /* Assets.xcassets in Resources */,
-				1FDECEE723CDDAC60063DDA8 /* Main.storyboard in Resources */,
+				1FF6ABCA240C18860065444B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,21 +474,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F1D290A23D24E7E00707A4F /* WoodleInteractor.swift in Sources */,
+				1FCD87CE240C2E3800D37C84 /* MainViewController.swift in Sources */,
 				1FDECF2023CE11A60063DDA8 /* WoodhouseCredentials.swift in Sources */,
 				1F34E41523D521220024C031 /* EventCell.swift in Sources */,
 				1F10C32F23D1392A004E98B1 /* String.swift in Sources */,
+				1F6DC989240C9BA90096C20C /* OtherView.swift in Sources */,
 				1F10C32D23D1390B004E98B1 /* Date.swift in Sources */,
 				1F07518323D3763C00600B18 /* CoreDataManager.swift in Sources */,
+				1F576973240C77250033D8C6 /* CalendarCell.swift in Sources */,
 				1F07518023D3721600600B18 /* UserDefaults.swift in Sources */,
+				1FBC529A240C51CF00E2922C /* StudentInformation.swift in Sources */,
+				1FBC5298240C500D00E2922C /* PillBar.swift in Sources */,
 				1F34E41923D67EE80024C031 /* MarkbookCell.swift in Sources */,
+				1FBC5296240C4FF800E2922C /* AttendanceView.swift in Sources */,
 				1F10C32B23D138E8004E98B1 /* TimetableCell.swift in Sources */,
 				1FD0E99823DC551700D7185A /* Array.swift in Sources */,
 				1FDECF1C23CDED9C0063DDA8 /* DashboardInteractor.swift in Sources */,
-				1F8C25C223F1EDE0004CECB7 /* AttendanceViewController.swift in Sources */,
 				1FE5C4D0240BE5510057611A /* CalendarEventManager.swift in Sources */,
+				1FCD87D0240C37C100D37C84 /* TimetableView.swift in Sources */,
 				1F1D290823D20B9000707A4F /* NotificationManager.swift in Sources */,
-				1F34E41323D520AD0024C031 /* WoodleEventsViewController.swift in Sources */,
-				1F10C32123D132BB004E98B1 /* HomeViewController.swift in Sources */,
 				1F07517E23D3719F00600B18 /* Settings.swift in Sources */,
 				1FDECEE023CDDAC60063DDA8 /* AppDelegate.swift in Sources */,
 				1FC0B89823ED7B6000D7EBEA /* Woodhouse_Hub.xcdatamodeld in Sources */,
@@ -481,14 +500,11 @@
 				1FD0E99A23DC79CD00D7185A /* TimeInterval.swift in Sources */,
 				1F07518523D376B300600B18 /* Student.swift in Sources */,
 				1FDECF1E23CDF1240063DDA8 /* SignInViewController.swift in Sources */,
-				1F34E40D23D50DE90024C031 /* ExamTimetableViewController.swift in Sources */,
 				1F34E40F23D50EF00024C031 /* ExamCell.swift in Sources */,
 				1F7DAAA423D0723D00D42997 /* Round.swift in Sources */,
-				1F1D290623D1FB9200707A4F /* TimetableViewController.swift in Sources */,
-				1F34E40B23D50CC50024C031 /* UCASPredictionsViewController.swift in Sources */,
 				1FB0D4052404A9AE00586D52 /* AttendanceCell.swift in Sources */,
 				1FDECEE223CDDAC60063DDA8 /* SceneDelegate.swift in Sources */,
-				1F34E41723D67DB20024C031 /* MarkbookViewController.swift in Sources */,
+				1F576975240C862F0033D8C6 /* MarkbookView.swift in Sources */,
 				1F34E40923D4FA880024C031 /* UCASPredictionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,14 +541,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1FDECEE523CDDAC60063DDA8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1FDECEE623CDDAC60063DDA8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1FDECEED23CDDAC80063DDA8 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -840,9 +848,22 @@
 				minimumVersion = 2.3.0;
 			};
 		};
+		1F6DC983240C95D70096C20C /* XCRemoteSwiftPackageReference "CLISpinner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kiliankoe/CLISpinner";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1F6DC984240C95D70096C20C /* CLISpinner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1F6DC983240C95D70096C20C /* XCRemoteSwiftPackageReference "CLISpinner" */;
+			productName = CLISpinner;
+		};
 		1FE0A2BC23F40B6900BEB261 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1F10C32423D136C6004E98B1 /* XCRemoteSwiftPackageReference "SwiftSoup" */;

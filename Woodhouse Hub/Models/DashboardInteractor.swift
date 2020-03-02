@@ -62,6 +62,7 @@ class DashboardInteractor: NSObject {
 	
 	// MARK: Sign In
 	public func signIn(username: String, password: String, completion: @escaping(Bool) -> Void) {
+		print("[DashboardInteractor] Signing In")
 		WoodhouseCredentials.shared.setUsername(to: username)
 		WoodhouseCredentials.shared.setPassword(to: password)
 		
@@ -70,6 +71,7 @@ class DashboardInteractor: NSObject {
 		self.loadAttendance()
 		
 		self.determineIfSignedIn() { (isSignedIn) in
+		print("[DashboardInteractor] Signed In")
 			completion(isSignedIn)
 		}
 	}
@@ -88,7 +90,6 @@ class DashboardInteractor: NSObject {
 						completion(true)
 					} else if htmlString.contains("401 - Unauthorized: Access is denied due to invalid credentials.") {
 						print("Incorrect Credentials")
-						NotificationCenter.default.post(name: Notification.Name("dashboard.finished"), object: nil, userInfo: nil)
 						
 						timer.invalidate()
 						
@@ -143,6 +144,8 @@ class DashboardInteractor: NSObject {
 			if let name = studentName, let id = studentID, let tutorGroup = studentTutorGroup {
 				Student.current.addDetails(from: Student.StudentDetails(name: name, id: id, tutorGroup: tutorGroup, image: studentImage))
 			}
+			
+			NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "dashboard.gatheredDetails")))
 		}
 		
 		// Student ID Number
@@ -165,6 +168,8 @@ class DashboardInteractor: NSObject {
 			if let name = studentName, let id = studentID, let tutorGroup = studentTutorGroup {
 				Student.current.addDetails(from: Student.StudentDetails(name: name, id: id, tutorGroup: tutorGroup, image: studentImage))
 			}
+			
+			NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "dashboard.gatheredDetails")))
 		}
 		
 		// Student Tutor Group
@@ -183,6 +188,8 @@ class DashboardInteractor: NSObject {
 			if let name = studentName, let id = studentID, let tutorGroup = studentTutorGroup {
 				Student.current.addDetails(from: Student.StudentDetails(name: name, id: id, tutorGroup: tutorGroup, image: studentImage))
 			}
+			
+			NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "dashboard.gatheredDetails")))
 		}
 		
 		// Student Attendance
@@ -207,6 +214,8 @@ class DashboardInteractor: NSObject {
 					Student.current.addAttendance(from: Student.Attendance(overallAttendance: attendance, overallPunctuality: punctuality, detailedAttendance: []))
 				}
 			}
+			
+			NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "dashboard.gatheredDetails")))
 		}
 		
 		// Student Punctuality
@@ -232,7 +241,7 @@ class DashboardInteractor: NSObject {
 				}
 			}
 			
-			NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "dashboard.gatheredDetails"), object: nil)
+			NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "dashboard.gatheredDetails")))
 		}
 	}
 	
@@ -242,6 +251,8 @@ class DashboardInteractor: NSObject {
 		DispatchQueue.global(qos: .userInteractive).async {
 			guard let imageData = try? Data(contentsOf: imageURL) else { completion(nil); return }
 			let image = UIImage(data: imageData)
+			
+			NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "dashboard.gatheredDetails")))
 			
 			completion(image)
 		}
@@ -346,8 +357,10 @@ class DashboardInteractor: NSObject {
 			// Add timetable notifications
 			DashboardInteractor.shared.setupTimetableNotifications()
 			
-			NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "dashboard.gatheredTimetable"), object: nil)
-			NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "dashboard.finished"), object: nil)
+			// Post notification for update
+			NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "dashboard.gatheredTimetable")))
+			
+			print("[DashboardInteractor] Timetable Updated")
 		}
 	}
 	
@@ -373,6 +386,8 @@ class DashboardInteractor: NSObject {
 				if let error = error {
 					fatalError(error.localizedDescription)
 				}
+				
+				print("[DashboardInteractor] Retrieving Markbook")
 				
 				guard let timetableHTML = html as? String else { fatalError() }
 				let markbookDoc = try! SwiftSoup.parse(timetableHTML)
@@ -435,6 +450,9 @@ class DashboardInteractor: NSObject {
 				}
 				
 				Student.current.addMarkbook(from: markbook)
+				
+				print("[DashboardInteractor] Markbook Retrieved")
+				NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "dashboard.gatheredMarkbook")))
 				timer.invalidate()
 			}
 		}
@@ -467,15 +485,12 @@ class DashboardInteractor: NSObject {
 						let attendanceDoc = try! SwiftSoup.parse(attendanceHTML)
 						
 						if !attendanceHTML.contains("Overall Cumulative Summary") { print("[DashboardInteractor] Retrying Attendance"); return }
-						print("[DasboardInteractor] Successfully loaded Attendance")
 						
 						var attendanceEntries: [Student.AttendanceEntry] = []
 						
 						// Get Weekly Summary Tables
 						guard let weeklySummary = try! attendanceDoc.getElementById("cphMain_spStudentProfile_tcTabContainer_tpAttendance_saStudentAttendance_pnlWeeklySummary") else { fatalError() }
 						guard let attendanceMarkingsTable = try! weeklySummary.getElementsByClass("standardTable fullWidth_Sma").last() else { fatalError() }
-						print("[DasboardInteractor] Accessed Attendance Markings:")
-//						print(try! attendanceMarkingsTable.html())
 						
 						// Get rows for attendance markings
 						let markingsTableRows = try! attendanceMarkingsTable.getElementsByTag("tr")
@@ -515,6 +530,9 @@ class DashboardInteractor: NSObject {
 						} else {
 							Student.current.addAttendance(from: Student.Attendance(overallAttendance: 0, overallPunctuality: 0, detailedAttendance: attendanceEntries))
 						}
+						
+						NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "dashboard.gatheredAttendance")))
+						print("[DashboardInteractor] Attendance Retrieved")
 						
 						timer.invalidate()
 					}
