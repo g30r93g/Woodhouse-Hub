@@ -38,6 +38,19 @@
                                         <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07s-oW-zCr">
+                                        <rect key="frame" x="20" y="464" width="374" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="NBK-4Y-DkM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="Made by George Nick Gorzynski">
+                                            <color key="titleColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapAuthorName:" destination="8BR-wp-zL4" eventType="touchUpInside" id="f1l-Yr-3N2"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="Background"/>
                                 <constraints>
@@ -965,6 +978,7 @@
                             <constraint firstItem="ekj-SQ-ps4" firstAttribute="top" secondItem="cD9-91-duo" secondAttribute="bottom" constant="5" id="0Me-Xi-0Ic"/>
                             <constraint firstItem="cD9-91-duo" firstAttribute="leading" secondItem="LQn-Ri-hkb" secondAttribute="leading" id="Acy-ps-iPp"/>
                             <constraint firstAttribute="bottom" secondItem="hXa-2v-4Sg" secondAttribute="bottom" id="Ad0-XF-qPn"/>
+                            <constraint firstItem="OBs-No-dLG" firstAttribute="top" secondItem="07s-oW-zCr" secondAttribute="bottom" constant="14" id="CkQ-b9-AsH"/>
                             <constraint firstItem="LQn-Ri-hkb" firstAttribute="bottom" secondItem="OBs-No-dLG" secondAttribute="bottom" constant="20" id="DnM-VF-qiR"/>
                             <constraint firstItem="hXa-2v-4Sg" firstAttribute="leading" secondItem="LQn-Ri-hkb" secondAttribute="leading" id="EbV-Gu-1Ry"/>
                             <constraint firstItem="hXa-2v-4Sg" firstAttribute="top" secondItem="cD9-91-duo" secondAttribute="bottom" constant="5" id="GZV-Qa-XBb"/>
@@ -984,6 +998,8 @@
                             <constraint firstItem="gIA-ue-KHI" firstAttribute="leading" secondItem="LQn-Ri-hkb" secondAttribute="leading" constant="6" id="guE-NS-CYH"/>
                             <constraint firstItem="1dt-46-OU8" firstAttribute="leading" secondItem="LQn-Ri-hkb" secondAttribute="leading" id="hz7-9h-Cyh"/>
                             <constraint firstItem="1dt-46-OU8" firstAttribute="top" secondItem="cD9-91-duo" secondAttribute="bottom" constant="5" id="n9R-ac-EL2"/>
+                            <constraint firstItem="07s-oW-zCr" firstAttribute="leading" secondItem="OBs-No-dLG" secondAttribute="leading" id="oj6-iy-nuK"/>
+                            <constraint firstItem="07s-oW-zCr" firstAttribute="trailing" secondItem="OBs-No-dLG" secondAttribute="trailing" id="owi-wt-6QW"/>
                             <constraint firstItem="OBs-No-dLG" firstAttribute="leading" secondItem="LQn-Ri-hkb" secondAttribute="leading" constant="20" id="q4r-4L-03o"/>
                             <constraint firstItem="ekj-SQ-ps4" firstAttribute="trailing" secondItem="LQn-Ri-hkb" secondAttribute="trailing" id="qDS-Wf-Syx"/>
                             <constraint firstItem="cD9-91-duo" firstAttribute="trailing" secondItem="LQn-Ri-hkb" secondAttribute="trailing" id="uiS-aK-WDA"/>

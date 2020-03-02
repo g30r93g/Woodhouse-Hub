@@ -23,7 +23,6 @@
 		1F34E41923D67EE80024C031 /* MarkbookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E41823D67EE80024C031 /* MarkbookCell.swift */; };
 		1F576973240C77250033D8C6 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F576972240C77250033D8C6 /* CalendarCell.swift */; };
 		1F576975240C862F0033D8C6 /* MarkbookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F576974240C862F0033D8C6 /* MarkbookView.swift */; };
-		1F6DC985240C95D70096C20C /* CLISpinner in Frameworks */ = {isa = PBXBuildFile; productRef = 1F6DC984240C95D70096C20C /* CLISpinner */; };
 		1F6DC989240C9BA90096C20C /* OtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6DC988240C9BA80096C20C /* OtherView.swift */; };
 		1F7DAAA223D06F8F00D42997 /* Sign In.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F7DAAA123D06F8F00D42997 /* Sign In.storyboard */; };
 		1F7DAAA423D0723D00D42997 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7DAAA323D0723D00D42997 /* Round.swift */; };
@@ -138,7 +137,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FE0A2BD23F40B6900BEB261 /* SwiftSoup in Frameworks */,
-				1F6DC985240C95D70096C20C /* CLISpinner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +349,6 @@
 			name = "Woodhouse Hub";
 			packageProductDependencies = (
 				1FE0A2BC23F40B6900BEB261 /* SwiftSoup */,
-				1F6DC984240C95D70096C20C /* CLISpinner */,
 			);
 			productName = "Woodhouse Hub";
 			productReference = 1FDECEDC23CDDAC60063DDA8 /* Woodhouse Hub.app */;
@@ -427,7 +424,6 @@
 			mainGroup = 1FDECED323CDDAC60063DDA8;
 			packageReferences = (
 				1F10C32423D136C6004E98B1 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
-				1F6DC983240C95D70096C20C /* XCRemoteSwiftPackageReference "CLISpinner" */,
 			);
 			productRefGroup = 1FDECEDD23CDDAC60063DDA8 /* Products */;
 			projectDirPath = "";
@@ -848,22 +844,9 @@
 				minimumVersion = 2.3.0;
 			};
 		};
-		1F6DC983240C95D70096C20C /* XCRemoteSwiftPackageReference "CLISpinner" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kiliankoe/CLISpinner";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.4.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1F6DC984240C95D70096C20C /* CLISpinner */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1F6DC983240C95D70096C20C /* XCRemoteSwiftPackageReference "CLISpinner" */;
-			productName = CLISpinner;
-		};
 		1FE0A2BC23F40B6900BEB261 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1F10C32423D136C6004E98B1 /* XCRemoteSwiftPackageReference "SwiftSoup" */;

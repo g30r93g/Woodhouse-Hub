@@ -11,12 +11,14 @@ import UIKit
 class OtherView: RoundTopView {
 	
 	// MARK: IBOutlets
-	@IBOutlet weak private var scrollView: UIScrollView!
 	
 	// MARK: Overriden Methods
 	
 	// MARK: Methods
 	
 	// MARK: IBActions
+	@IBAction private func didTapAuthorName(_ sender: UIButton) {
+		UIApplication.shared.open(URL(string: "instagram://user?username=g30r93g")!, options: [:], completionHandler: nil)
+	}
 	
 }
