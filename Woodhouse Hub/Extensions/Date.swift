@@ -163,4 +163,8 @@ extension Date {
 		return Int(startDate.distance(to: endDate)) / (60*60*24)
 	}
 	
+	func updateToCurrentWeek() -> Date {
+		return self.getMondayOfWeek().addDays(value: self.dayOfWeek() - 1).usingTime(self.dateComponents().hour!, self.dateComponents().minute!, self.dateComponents().second!)
+	}
+	
 }

@@ -14,8 +14,13 @@ class CalendarCell: RoundUICollectionViewCell{
 	@IBOutlet weak private var day: UILabel!
 	@IBOutlet weak private var month: UILabel!
 	
+	// MARK: Properties
+	private(set) var date: Date!
+	
 	// MARK: Methods
-	func setupCell(with date: Date) {
+	func setupCell(with date: Date, selectedDate: Date) {
+		self.date = date
+		
 		let dateComponents = date.dateComponents()
 		// Setup day
 		self.day.text = "\(dateComponents.day ?? 0)"
@@ -49,6 +54,23 @@ class CalendarCell: RoundUICollectionViewCell{
 		default:
 			break
 		}
+		
+		// Setup appearance
+		if date == selectedDate {
+			self.select()
+		} else {
+			self.deselect()
+		}
+	}
+	
+	public func select() {
+		self.day.textColor = .black
+		self.backgroundColor = .white
+	}
+	
+	public func deselect() {
+		self.day.textColor = .white
+		self.backgroundColor = .systemGray3
 	}
 	
 }

@@ -21,6 +21,7 @@
 		1F34E41123D514460024C031 /* ReportServerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E41023D514460024C031 /* ReportServerInteractor.swift */; };
 		1F34E41523D521220024C031 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E41423D521220024C031 /* EventCell.swift */; };
 		1F34E41923D67EE80024C031 /* MarkbookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E41823D67EE80024C031 /* MarkbookCell.swift */; };
+		1F3EA003240D01A1000F7F44 /* LoadingSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3EA002240D01A1000F7F44 /* LoadingSignInViewController.swift */; };
 		1F576973240C77250033D8C6 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F576972240C77250033D8C6 /* CalendarCell.swift */; };
 		1F576975240C862F0033D8C6 /* MarkbookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F576974240C862F0033D8C6 /* MarkbookView.swift */; };
 		1F6DC989240C9BA90096C20C /* OtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6DC988240C9BA80096C20C /* OtherView.swift */; };
@@ -95,6 +96,7 @@
 		1F34E41023D514460024C031 /* ReportServerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportServerInteractor.swift; sourceTree = "<group>"; };
 		1F34E41423D521220024C031 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		1F34E41823D67EE80024C031 /* MarkbookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkbookCell.swift; sourceTree = "<group>"; };
+		1F3EA002240D01A1000F7F44 /* LoadingSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSignInViewController.swift; sourceTree = "<group>"; };
 		1F576972240C77250033D8C6 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		1F576974240C862F0033D8C6 /* MarkbookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkbookView.swift; sourceTree = "<group>"; };
 		1F6DC988240C9BA80096C20C /* OtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherView.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 			children = (
 				1F7DAAA123D06F8F00D42997 /* Sign In.storyboard */,
 				1FDECF1D23CDF1240063DDA8 /* SignInViewController.swift */,
+				1F3EA002240D01A1000F7F44 /* LoadingSignInViewController.swift */,
 			);
 			path = "Sign In";
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				1F576973240C77250033D8C6 /* CalendarCell.swift in Sources */,
 				1F07518023D3721600600B18 /* UserDefaults.swift in Sources */,
 				1FBC529A240C51CF00E2922C /* StudentInformation.swift in Sources */,
+				1F3EA003240D01A1000F7F44 /* LoadingSignInViewController.swift in Sources */,
 				1FBC5298240C500D00E2922C /* PillBar.swift in Sources */,
 				1F34E41923D67EE80024C031 /* MarkbookCell.swift in Sources */,
 				1FBC5296240C4FF800E2922C /* AttendanceView.swift in Sources */,
@@ -671,7 +675,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Woodhouse Hub/Woodhouse Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 3V93A3ACV9;
 				INFOPLIST_FILE = "Woodhouse Hub/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -694,7 +698,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Woodhouse Hub/Woodhouse Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 3V93A3ACV9;
 				INFOPLIST_FILE = "Woodhouse Hub/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

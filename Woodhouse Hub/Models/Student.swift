@@ -24,6 +24,10 @@ class Student {
 		// Get timetable
 		if let timetable = self.getTimetable() {
 			self.addTimetable(from: timetable)
+			
+			for entry in self.studentProfile!.timetable {
+				entry.updateTimesForCurrentWeek()
+			}
 		}
 	}
 	
@@ -81,15 +85,40 @@ class Student {
 		}
 	}
 	
-	struct TimetableEntry: Equatable, Codable {
+	class TimetableEntry: Equatable, Codable {
 		let classIdentifier: String
 		let name: String
 		let day: Int
-		let startTime: Date
-		let endTime: Date
+		private(set) var startTime: Date
+		private(set) var endTime: Date
 		let teacher: String?
 		let room: String?
 		let attendanceMark: String?
+		
+		// MARK: Initialiser
+		init(classIdentifier: String, name: String, day: Int, startTime: Date, endTime: Date, teacher: String?, room: String?, attendanceMark: String?) {
+			self.classIdentifier = classIdentifier
+			self.name = name
+			self.day = day
+			self.startTime = startTime
+			self.endTime = endTime
+			self.teacher = teacher
+			self.room = room
+			self.attendanceMark = attendanceMark
+			
+			self.updateTimesForCurrentWeek()
+		}
+		
+		// MARK: Methods
+		func updateTimesForCurrentWeek() {
+			self.startTime = Date().getMondayOfWeek().addDays(value: startTime.dayOfWeek() - 1).usingTime(startTime.dateComponents().hour!, startTime.dateComponents().minute!, startTime.dateComponents().second!)
+			self.endTime = Date().getMondayOfWeek().addDays(value: endTime.dayOfWeek() - 1).usingTime(endTime.dateComponents().hour!, endTime.dateComponents().minute!, endTime.dateComponents().second!)
+		}
+		
+		// MARK: Equatable
+		static func == (lhs: Student.TimetableEntry, rhs: Student.TimetableEntry) -> Bool {
+			return lhs.classIdentifier == rhs.classIdentifier && lhs.day == rhs.day && lhs.startTime == rhs.startTime
+		}
 	}
 	
 	struct Attendance {
@@ -195,6 +224,14 @@ class Student {
 	
 	public func getAttendance() -> Attendance? {
 		return self.studentProfile?.attendance
+	}
+	
+	public func getMarkbook() -> [SubjectMarkbook]? {
+		if let markbook = self.studentProfile?.markbook, markbook.count > 0 {
+			return markbook
+		} else {
+			return nil
+		}
 	}
 	
 	// MARK: Setter Methods

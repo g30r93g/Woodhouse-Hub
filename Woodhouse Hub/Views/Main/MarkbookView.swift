@@ -46,7 +46,7 @@ class MarkbookView: RoundTopView {
 	
 	@objc private func updateView() {
 		guard let subject = self.currentSubject ?? Student.current.studentProfile?.markbook.first else { return }
-		guard let firstUnit = subject.units.first(where: {$0.averageGrade != "X"}) ?? self.currentSubject?.units.first else { fatalError(); return }
+		guard let firstUnit = subject.units.first(where: {$0.averageGrade != "X"}) ?? self.currentSubject?.units.first else { return }
 		self.currentSubject = subject
 		DispatchQueue.main.async {
 			UIView.animate(withDuration: 0.2, animations: {
@@ -62,7 +62,7 @@ class MarkbookView: RoundTopView {
 	}
 	
 	private func handleChangeSubject() {
-		guard let subjects = Student.current.studentProfile?.markbook else { return }
+		guard let subjects = Student.current.studentProfile?.markbook, subjects.count > 0 else { return }
 		let alert = UIAlertController(title: "Change Subject", message: "Please select from the following below", preferredStyle: .actionSheet)
 		
 		for (index, subject) in subjects.enumerated() {
@@ -104,6 +104,10 @@ extension MarkbookView: UICollectionViewDelegate, UICollectionViewDataSource, UI
 		cell.setupCell(from: data)
 		
 		return cell
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		return CGSize(width: collectionView.bounds.width, height: 80)
 	}
 	
 }
