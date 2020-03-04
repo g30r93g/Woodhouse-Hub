@@ -8,6 +8,20 @@
 
 import UIKit
 
+protocol ShowProtocol {
+	
+	func showRequested(_ view: MainViewController.OtherViews)
+	func signOutRequested()
+	func showDisclaimer()
+	
+}
+
+protocol DismissProtocol {
+	
+	func dismissRequested()
+	
+}
+
 class MainViewController: UIViewController {
 	
 	// MARK: IBOutlets
@@ -16,6 +30,10 @@ class MainViewController: UIViewController {
 	@IBOutlet weak private var attendanceView: AttendanceView!
 	@IBOutlet weak private var markbookView: MarkbookView!
 	@IBOutlet weak private var otherView: OtherView!
+	@IBOutlet weak private var ucasPredictionsView: UCASPredictionsView!
+	@IBOutlet weak private var examTimetableView: ExamTimetableView!
+	@IBOutlet weak private var woodleEventsView: WoodleEventsView!
+	@IBOutlet weak private var studentBulletinView: StudentBulletinView!
 	
 	// MARK: View Controller Life Cycle
     override func viewDidLoad() {
@@ -26,10 +44,44 @@ class MainViewController: UIViewController {
 		self.showTimetableView()
     }
 	
+	// MARK: Enums
+	enum OtherViews {
+		case ucas
+		case examTimetable
+		case woodleEvents
+		case studentBulletin
+	}
+	
 	// MARK: Methods
 	private func setupView() {
 		self.pillBar.delegate = self
 		self.markbookView.delegate = self
+		self.otherView.delegate = self
+		self.ucasPredictionsView.delegate = self
+		self.examTimetableView.delegate = self
+		self.woodleEventsView.delegate = self
+		self.studentBulletinView.delegate = self
+	}
+	
+	private func signOut() {
+		let alert = UIAlertController(title: "Confirm Sign Out", message: nil, preferredStyle: .alert)
+		
+		alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+		alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (_) in
+			Settings().signOut()
+			self.performSegue(withIdentifier: "Sign Out", sender: nil)
+		}))
+		
+		self.present(alert, animated: true, completion: nil)
+	}
+	
+	internal func showDisclaimerMessage() {
+		let message = "This application has been made with the intention of aggregating Woodhouse College's Learning Management and student facing systems. No harm is intended to the developers of the original systems, rather that the systems are slow, dated and unintuitive to use. This application is a mitigation to those factors, by taking advantage of local storage of a student's timetable, details and other cached data, as well as extending the system to notify for lessons. This application is in compliance with GDPR, since it piggybacks off of existing systems. Students can only access their information with their login details, unique to them. I am a student of the college and have no affiliation directly with the development teams responsible for Dashboard, Woodle, ReportServer or any other services used by the college."
+		let alert = UIAlertController(title: "Disclaimer", message: message, preferredStyle: .alert)
+		
+		alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+		
+		self.present(alert, animated: true, completion: nil)
 	}
 	
 	private func showTimetableView() {
@@ -39,6 +91,10 @@ class MainViewController: UIViewController {
 				self.timetableView.alpha = 1
 				self.markbookView.alpha = 0
 				self.otherView.alpha = 0
+				self.ucasPredictionsView.alpha = 0
+				self.examTimetableView.alpha = 0
+				self.woodleEventsView.alpha = 0
+				self.studentBulletinView.alpha = 0
 			})
 		}
 	}
@@ -50,6 +106,10 @@ class MainViewController: UIViewController {
 				self.timetableView.alpha = 0
 				self.markbookView.alpha = 0
 				self.otherView.alpha = 0
+				self.ucasPredictionsView.alpha = 0
+				self.examTimetableView.alpha = 0
+				self.woodleEventsView.alpha = 0
+				self.studentBulletinView.alpha = 0
 			})
 		}
 	}
@@ -61,6 +121,10 @@ class MainViewController: UIViewController {
 				self.timetableView.alpha = 0
 				self.markbookView.alpha = 1
 				self.otherView.alpha = 0
+				self.ucasPredictionsView.alpha = 0
+				self.examTimetableView.alpha = 0
+				self.woodleEventsView.alpha = 0
+				self.studentBulletinView.alpha = 0
 			})
 		}
 	}
@@ -72,6 +136,70 @@ class MainViewController: UIViewController {
 				self.timetableView.alpha = 0
 				self.markbookView.alpha = 0
 				self.otherView.alpha = 1
+				self.ucasPredictionsView.alpha = 0
+				self.examTimetableView.alpha = 0
+				self.woodleEventsView.alpha = 0
+				self.studentBulletinView.alpha = 0
+			})
+		}
+	}
+	
+	private func showUCASPredictionsView() {
+		DispatchQueue.main.async {
+			UIView.animate(withDuration: 0.2, animations: {
+				self.attendanceView.alpha = 0
+				self.timetableView.alpha = 0
+				self.markbookView.alpha = 0
+				self.otherView.alpha = 0
+				self.ucasPredictionsView.alpha = 1
+				self.examTimetableView.alpha = 0
+				self.woodleEventsView.alpha = 0
+				self.studentBulletinView.alpha = 0
+			})
+		}
+	}
+	
+	private func showExamTimetableView() {
+		DispatchQueue.main.async {
+			UIView.animate(withDuration: 0.2, animations: {
+				self.attendanceView.alpha = 0
+				self.timetableView.alpha = 0
+				self.markbookView.alpha = 0
+				self.otherView.alpha = 0
+				self.ucasPredictionsView.alpha = 0
+				self.examTimetableView.alpha = 1
+				self.woodleEventsView.alpha = 0
+				self.studentBulletinView.alpha = 0
+			})
+		}
+	}
+	
+	private func showWoodleEventsView() {
+		DispatchQueue.main.async {
+			UIView.animate(withDuration: 0.2, animations: {
+				self.attendanceView.alpha = 0
+				self.timetableView.alpha = 0
+				self.markbookView.alpha = 0
+				self.otherView.alpha = 0
+				self.ucasPredictionsView.alpha = 0
+				self.examTimetableView.alpha = 0
+				self.woodleEventsView.alpha = 1
+				self.studentBulletinView.alpha = 0
+			})
+		}
+	}
+	
+	private func showStudentBulletin() {
+		DispatchQueue.main.async {
+			UIView.animate(withDuration: 0.2, animations: {
+				self.attendanceView.alpha = 0
+				self.timetableView.alpha = 0
+				self.markbookView.alpha = 0
+				self.otherView.alpha = 0
+				self.ucasPredictionsView.alpha = 0
+				self.examTimetableView.alpha = 0
+				self.woodleEventsView.alpha = 0
+				self.studentBulletinView.alpha = 1
 			})
 		}
 	}
@@ -99,6 +227,35 @@ extension MainViewController: MarkbookProtocol {
 	
 	func changeSubjectRequiresDisplay(alert: UIAlertController){
 		self.present(alert, animated: true)
+	}
+	
+}
+
+extension MainViewController: ShowProtocol, DismissProtocol {
+	
+	func showRequested(_ view: OtherViews) {
+		switch view {
+		case .ucas:
+			self.showUCASPredictionsView()
+		case .examTimetable:
+			self.showExamTimetableView()
+		case .woodleEvents:
+			self.showWoodleEventsView()
+		case .studentBulletin:
+			self.showStudentBulletin()
+		}
+	}
+	
+	func signOutRequested() {
+		self.signOut()
+	}
+	
+	func showDisclaimer() {
+		self.showDisclaimerMessage()
+	}
+	
+	func dismissRequested() {
+		self.showOtherView()
 	}
 	
 }

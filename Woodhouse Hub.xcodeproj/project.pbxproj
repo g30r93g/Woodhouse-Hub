@@ -16,6 +16,7 @@
 		1F10C32F23D1392A004E98B1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F10C32E23D1392A004E98B1 /* String.swift */; };
 		1F1D290823D20B9000707A4F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D290723D20B9000707A4F /* NotificationManager.swift */; };
 		1F1D290A23D24E7E00707A4F /* WoodleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D290923D24E7E00707A4F /* WoodleInteractor.swift */; };
+		1F318E01240E754B0004D2F5 /* NSRegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F318E00240E754B0004D2F5 /* NSRegularExpression.swift */; };
 		1F34E40923D4FA880024C031 /* UCASPredictionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E40823D4FA880024C031 /* UCASPredictionCell.swift */; };
 		1F34E40F23D50EF00024C031 /* ExamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E40E23D50EF00024C031 /* ExamCell.swift */; };
 		1F34E41123D514460024C031 /* ReportServerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E41023D514460024C031 /* ReportServerInteractor.swift */; };
@@ -27,6 +28,9 @@
 		1F6DC989240C9BA90096C20C /* OtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6DC988240C9BA80096C20C /* OtherView.swift */; };
 		1F7DAAA223D06F8F00D42997 /* Sign In.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F7DAAA123D06F8F00D42997 /* Sign In.storyboard */; };
 		1F7DAAA423D0723D00D42997 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7DAAA323D0723D00D42997 /* Round.swift */; };
+		1FA28A71240DC78100BEEA70 /* ExamTimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA28A70240DC78100BEEA70 /* ExamTimetableView.swift */; };
+		1FA28A73240DC79200BEEA70 /* WoodleEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA28A72240DC79200BEEA70 /* WoodleEventsView.swift */; };
+		1FA28A75240DC7A500BEEA70 /* StudentBulletinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA28A74240DC7A500BEEA70 /* StudentBulletinView.swift */; };
 		1FB0D4052404A9AE00586D52 /* AttendanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB0D4042404A9AE00586D52 /* AttendanceCell.swift */; };
 		1FBC5296240C4FF800E2922C /* AttendanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBC5295240C4FF800E2922C /* AttendanceView.swift */; };
 		1FBC5298240C500D00E2922C /* PillBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBC5297240C500D00E2922C /* PillBar.swift */; };
@@ -46,7 +50,7 @@
 		1FDECF1E23CDF1240063DDA8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDECF1D23CDF1240063DDA8 /* SignInViewController.swift */; };
 		1FDECF2023CE11A60063DDA8 /* WoodhouseCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDECF1F23CE11A60063DDA8 /* WoodhouseCredentials.swift */; };
 		1FE0A2BD23F40B6900BEB261 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE0A2BC23F40B6900BEB261 /* SwiftSoup */; };
-		1FE5C4D0240BE5510057611A /* CalendarEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5C4CF240BE5510057611A /* CalendarEventManager.swift */; };
+		1FE5ADB4240DD5F1002C2532 /* UCASPredictionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5ADB3240DD5F1002C2532 /* UCASPredictionsView.swift */; };
 		1FF6ABCA240C18860065444B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FF6ABC9240C18860065444B /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +95,7 @@
 		1F10C32E23D1392A004E98B1 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		1F1D290723D20B9000707A4F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		1F1D290923D24E7E00707A4F /* WoodleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoodleInteractor.swift; sourceTree = "<group>"; };
+		1F318E00240E754B0004D2F5 /* NSRegularExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRegularExpression.swift; sourceTree = "<group>"; };
 		1F34E40823D4FA880024C031 /* UCASPredictionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCASPredictionCell.swift; sourceTree = "<group>"; };
 		1F34E40E23D50EF00024C031 /* ExamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamCell.swift; sourceTree = "<group>"; };
 		1F34E41023D514460024C031 /* ReportServerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportServerInteractor.swift; sourceTree = "<group>"; };
@@ -105,6 +110,9 @@
 		1F8C25C023F1E16D004CECB7 /* Woodhouse_Hub 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Woodhouse_Hub 2.xcdatamodel"; sourceTree = "<group>"; };
 		1F8C25C323F1F009004CECB7 /* Woodhouse_Hub 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Woodhouse_Hub 3.xcdatamodel"; sourceTree = "<group>"; };
 		1F8C25CC23F1FDAF004CECB7 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		1FA28A70240DC78100BEEA70 /* ExamTimetableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamTimetableView.swift; sourceTree = "<group>"; };
+		1FA28A72240DC79200BEEA70 /* WoodleEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoodleEventsView.swift; sourceTree = "<group>"; };
+		1FA28A74240DC7A500BEEA70 /* StudentBulletinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentBulletinView.swift; sourceTree = "<group>"; };
 		1FB0D4042404A9AE00586D52 /* AttendanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCell.swift; sourceTree = "<group>"; };
 		1FBC5295240C4FF800E2922C /* AttendanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceView.swift; sourceTree = "<group>"; };
 		1FBC5297240C500D00E2922C /* PillBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillBar.swift; sourceTree = "<group>"; };
@@ -129,7 +137,7 @@
 		1FDECF1B23CDED9C0063DDA8 /* DashboardInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInteractor.swift; sourceTree = "<group>"; };
 		1FDECF1D23CDF1240063DDA8 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1FDECF1F23CE11A60063DDA8 /* WoodhouseCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoodhouseCredentials.swift; sourceTree = "<group>"; };
-		1FE5C4CF240BE5510057611A /* CalendarEventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventManager.swift; sourceTree = "<group>"; };
+		1FE5ADB3240DD5F1002C2532 /* UCASPredictionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCASPredictionsView.swift; sourceTree = "<group>"; };
 		1FF6ABC9240C18860065444B /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,13 +195,6 @@
 				1F8C25CC23F1FDAF004CECB7 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		1FCD87C6240C1CCA00D37C84 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		1FDECED323CDDAC60063DDA8 = {
@@ -272,7 +273,6 @@
 				1F34E41023D514460024C031 /* ReportServerInteractor.swift */,
 				1F1D290923D24E7E00707A4F /* WoodleInteractor.swift */,
 				1F1D290723D20B9000707A4F /* NotificationManager.swift */,
-				1FE5C4CF240BE5510057611A /* CalendarEventManager.swift */,
 				1F07518223D3763C00600B18 /* CoreDataManager.swift */,
 				1F07517D23D3719F00600B18 /* Settings.swift */,
 			);
@@ -287,6 +287,7 @@
 				1F07517F23D3721600600B18 /* UserDefaults.swift */,
 				1FD0E99723DC551700D7185A /* Array.swift */,
 				1FD0E99923DC79CD00D7185A /* TimeInterval.swift */,
+				1F318E00240E754B0004D2F5 /* NSRegularExpression.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -294,7 +295,6 @@
 		1FDECF1523CDDAEC0063DDA8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1FCD87C6240C1CCA00D37C84 /* Fonts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -329,6 +329,10 @@
 				1FBC5295240C4FF800E2922C /* AttendanceView.swift */,
 				1F576974240C862F0033D8C6 /* MarkbookView.swift */,
 				1F6DC988240C9BA80096C20C /* OtherView.swift */,
+				1FE5ADB3240DD5F1002C2532 /* UCASPredictionsView.swift */,
+				1FA28A70240DC78100BEEA70 /* ExamTimetableView.swift */,
+				1FA28A72240DC79200BEEA70 /* WoodleEventsView.swift */,
+				1FA28A74240DC7A500BEEA70 /* StudentBulletinView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -488,9 +492,12 @@
 				1F34E41923D67EE80024C031 /* MarkbookCell.swift in Sources */,
 				1FBC5296240C4FF800E2922C /* AttendanceView.swift in Sources */,
 				1F10C32B23D138E8004E98B1 /* TimetableCell.swift in Sources */,
+				1FA28A71240DC78100BEEA70 /* ExamTimetableView.swift in Sources */,
+				1FA28A75240DC7A500BEEA70 /* StudentBulletinView.swift in Sources */,
 				1FD0E99823DC551700D7185A /* Array.swift in Sources */,
 				1FDECF1C23CDED9C0063DDA8 /* DashboardInteractor.swift in Sources */,
-				1FE5C4D0240BE5510057611A /* CalendarEventManager.swift in Sources */,
+				1FE5ADB4240DD5F1002C2532 /* UCASPredictionsView.swift in Sources */,
+				1F318E01240E754B0004D2F5 /* NSRegularExpression.swift in Sources */,
 				1FCD87D0240C37C100D37C84 /* TimetableView.swift in Sources */,
 				1F1D290823D20B9000707A4F /* NotificationManager.swift in Sources */,
 				1F07517E23D3719F00600B18 /* Settings.swift in Sources */,
@@ -502,6 +509,7 @@
 				1FDECF1E23CDF1240063DDA8 /* SignInViewController.swift in Sources */,
 				1F34E40F23D50EF00024C031 /* ExamCell.swift in Sources */,
 				1F7DAAA423D0723D00D42997 /* Round.swift in Sources */,
+				1FA28A73240DC79200BEEA70 /* WoodleEventsView.swift in Sources */,
 				1FB0D4052404A9AE00586D52 /* AttendanceCell.swift in Sources */,
 				1FDECEE223CDDAC60063DDA8 /* SceneDelegate.swift in Sources */,
 				1F576975240C862F0033D8C6 /* MarkbookView.swift in Sources */,
@@ -675,7 +683,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Woodhouse Hub/Woodhouse Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = 3V93A3ACV9;
 				INFOPLIST_FILE = "Woodhouse Hub/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -698,7 +706,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Woodhouse Hub/Woodhouse Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = 3V93A3ACV9;
 				INFOPLIST_FILE = "Woodhouse Hub/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

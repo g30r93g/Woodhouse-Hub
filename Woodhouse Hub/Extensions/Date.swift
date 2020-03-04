@@ -16,8 +16,8 @@ extension Date {
 	
 	static func woodleFormat(from string: String) -> Date {
 		let dateFormatter = DateFormatter()
-		if string.contains("-") {
-			dateFormatter.dateFormat = "dd MMMM yyyy - HH:mm"
+		if string.contains(":") {
+			dateFormatter.dateFormat = "dd MMMM yyyy HH:mm"
 		} else {
 			dateFormatter.dateFormat = "dd MMMM yyyy"
 		}

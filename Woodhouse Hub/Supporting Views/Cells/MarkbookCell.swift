@@ -26,6 +26,8 @@ class MarkbookCell: UICollectionViewCell {
 			} else {
 				self.grade.text = "Grade Pending"
 			}
+		} else if data.mark == "Absent" {
+			self.grade.text = "Absent During Test"
 		} else if let mark = Int(data.mark), mark == data.percentage {
 			self.grade.text = "Percentage: \(data.percentage)%"
 		} else {

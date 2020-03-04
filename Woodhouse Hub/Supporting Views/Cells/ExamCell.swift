@@ -8,35 +8,22 @@
 
 import UIKit
 
-class ExamCell: UITableViewCell {
+class ExamCell: RoundUICollectionViewCell {
 	
 	// MARK: IBOutlets
 	@IBOutlet weak var paper: UILabel!
 	@IBOutlet weak var paperCode: UILabel!
+	@IBOutlet weak var startTime: UILabel!
 	@IBOutlet weak var room: UILabel!
 	@IBOutlet weak var seat: UILabel!
-	@IBOutlet weak var startTime: UILabel!
-	@IBOutlet weak var duration: UILabel!
 	
 	// MARK: Methods
-	func setupCell(from data: Student.ExamEntry, index: Int) {
-		self.reset()
-		if (index % 2) == 1 { self.applyAlternateBackground() }
-		
+	func setupCell(from data: Student.ExamEntry) {
 		self.paper.text = data.paperName
-		self.paperCode.text = data.awardingBody
+		self.paperCode.text = "\(data.awardingBody) (\(data.entryCode))"
 		self.room.text = "Room: \(data.room)"
 		self.seat.text = "Seat: \(data.seat)"
-		self.startTime.text = "Start Time: \(data.startTime.prettify())"
-		self.duration.text = "Duration: \(data.endTime.timeIntervalSince(data.startTime).stringFromTimeInterval())"
-	}
-	
-	private func reset() {
-		self.backgroundColor = UIColor(named: "Cell")
-	}
-	
-	private func applyAlternateBackground() {
-		self.backgroundColor = UIColor(named: "Alternate Cell")
+		self.startTime.text = "\(data.startTime.prettify()) (\(data.endTime.timeIntervalSince(data.startTime).stringFromTimeInterval()))"
 	}
 	
 }

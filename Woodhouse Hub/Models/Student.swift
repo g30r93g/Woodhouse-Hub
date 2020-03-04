@@ -234,6 +234,18 @@ class Student {
 		}
 	}
 	
+	public func getPredictions() -> [UCASPredictions]? {
+		if let predictions = self.studentProfile?.ucasPredictions, predictions.count > 0 {
+			return predictions
+		} else {
+			return nil
+		}
+	}
+	
+	public func getExams() -> Exams? {
+		return self.studentProfile?.exams
+	}
+	
 	// MARK: Setter Methods
 	public func addDetails(from details: StudentDetails) {
 		if let student = self.studentProfile {

@@ -63,7 +63,7 @@ class TimetableCell: RoundUICollectionViewCell {
 		print("[TimetableCell] \(data.startTime) < \(Date()) < \(data.endTime) == \(Date().fallsIn(lower: data.startTime, upper: data.endTime))")
 		if Date().fallsIn(lower: data.startTime, upper: data.endTime) {
 			self.lessonContainerView.backgroundColor = #colorLiteral(red: 0.1490196078, green: 0.4156862745, blue: 0.7176470588, alpha: 1)
-			self.nextCurrentLesson.text = "Now"
+			self.nextCurrentLesson.text = "\(Int(data.endTime.timeIntervalSince(Date()) / 60)) mins left"
 			self.nextCurrentLesson.alpha = 1
 		}
 	}

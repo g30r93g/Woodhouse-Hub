@@ -44,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			DashboardInteractor.shared.signIn(username: Settings().username!, password: Settings().password!) { (_) in }
 			WoodleInteractor.shared.signIn()
 			_ = ReportServerInteractor.shared
+			NotificationManager.session.setupBulletinNotifications()
 		}
 	}
 

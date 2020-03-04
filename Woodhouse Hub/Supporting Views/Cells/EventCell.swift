@@ -8,45 +8,40 @@
 
 import UIKit
 
-class EventCell: UITableViewCell {
+class EventCell: RoundUICollectionViewCell {
 	
 	// MARK: IBOutlets
-	@IBOutlet weak var title: UILabel!
-	@IBOutlet weak var desc: UILabel!
-	@IBOutlet weak var date: UILabel!
-	@IBOutlet weak var fee: UILabel!
-	@IBOutlet weak var placesAvailable: UILabel!
+	@IBOutlet weak private var title: UILabel!
+	@IBOutlet weak private var eventDescription: UILabel!
+	@IBOutlet weak private var date: UILabel!
+	@IBOutlet weak private var fee: UILabel!
+	@IBOutlet weak private var placesAvailable: UILabel!
 	
 	// MARK: Methods
-	func setupCell(from data: WoodleInteractor.Event, index: Int) {
-		self.reset()
-		if (index % 2) == 1 { self.applyAlternateBackground() }
-		
+	func setupCell(from data: WoodleInteractor.Event) {
 		self.title.text = data.title
-		self.desc.text = data.description
+		self.eventDescription.text = data.description
 		self.date.text = "\(data.startDate.prettify()) to \(data.endDate.prettify())"
 		
 		if data.fee != 0 {
-			self.fee.text = "Fee: £\(String(format: "%.2f", data.fee))"
+			self.fee.text = "£\(String(format: "%.2f", data.fee))"
 		} else {
-			self.fee.text = "Fee: Free"
+			self.fee.text = "Free Event"
 		}
 		
-		if WoodleInteractor.shared.upcomingEvents.contains(data) {
+		if let upcomingEvents = WoodleInteractor.shared.getUpcomingEvents(), upcomingEvents.contains(data) {
 			if let placesRemaining = data.placesRemaining, let placesAvailable = data.totalPlaces {
-				self.placesAvailable.text = "Places Available: \(placesRemaining)/\(placesAvailable)"
+				if placesRemaining == 0 {
+					self.placesAvailable.text = "No Places Remaining (\(placesAvailable) Available)"
+				} else {
+					self.placesAvailable.text = "\(placesRemaining) Places Remaining (\(placesAvailable) Available)"
+				}
 			} else {
 				self.placesAvailable.text = "Unlimited Places Available"
 			}
+		} else {
+			self.placesAvailable.text = "Ask college staff about availability"
 		}
-	}
-	
-	private func reset() {
-		self.backgroundColor = UIColor(named: "Cell")
-	}
-	
-	private func applyAlternateBackground() {
-		self.backgroundColor = UIColor(named: "Alternate Cell")
 	}
 	
 }

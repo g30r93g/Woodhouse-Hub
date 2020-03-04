@@ -7,32 +7,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5B0C9498-C130-4C93-B2D6-EB37EA28CB3B"
-            shouldBeEnabled = "Yes"
+            uuid = "2DF0C2F6-8EA7-4756-A9FC-508A290CE1C0"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Woodhouse Hub/Views/Main/MarkbookView.swift"
+            filePath = "Woodhouse Hub/Models/WoodleInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "handleChangeSubject()"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
+            landmarkName = "fetchRegisteredEvents()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C3AF549F-A82D-4028-BB82-872D98C49303"
+            uuid = "92EEB4D9-38FC-4945-A313-1D038D3786B4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Woodhouse Hub/Views/Main/AttendanceView.swift"
+            filePath = "Woodhouse Hub/Models/WoodleInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "collectionView(_:didSelectItemAt:)"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
+            landmarkName = "fetchRegisteredEvents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "773C932A-A25D-44A0-84E5-95C405F4E8B9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Woodhouse Hub/Models/WoodleInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
+            landmarkName = "fetchRegisteredEvents()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

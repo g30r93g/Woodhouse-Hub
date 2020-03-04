@@ -89,7 +89,7 @@ class DashboardInteractor: NSObject {
 						
 						completion(true)
 					} else if htmlString.contains("401 - Unauthorized: Access is denied due to invalid credentials.") {
-						print("Incorrect Credentials")
+						print("[DashboardInteractor] Incorrect Credentials")
 						
 						timer.invalidate()
 						
@@ -134,7 +134,7 @@ class DashboardInteractor: NSObject {
 			if error != nil { fatalError() }
 			
 			guard let name = text as? String else { fatalError() }
-			print("Student name: \(name.replacingOccurrences(of: "\n", with: " "))")
+			print("[DashboardInteractor] Student name: \(name.replacingOccurrences(of: "\n", with: " "))")
 			
 			studentName = name.replacingOccurrences(of: "\n", with: " ")
 			nameDispatch.leave()
@@ -154,7 +154,7 @@ class DashboardInteractor: NSObject {
 			if error != nil { fatalError() }
 			
 			guard let id = text as? String else { fatalError() }
-			print("Student ID: \(id)")
+			print("[DashboardInteractor] Student ID: \(id)")
 			
 			self.getStudentImage(studentID: id) { (image) in
 				studentImage = image
@@ -178,7 +178,7 @@ class DashboardInteractor: NSObject {
 			if error != nil { fatalError() }
 			
 			guard let tutorGroup = text as? String else { fatalError() }
-			print("Student tutor group: \(tutorGroup)")
+			print("[DashboardInteractor] Student tutor group: \(tutorGroup)")
 			
 			studentTutorGroup = tutorGroup
 			tutorGroupDispatch.leave()
@@ -200,7 +200,7 @@ class DashboardInteractor: NSObject {
 			guard let attendance = text as? String else { fatalError() }
 			let attendanceValue = attendance.extractNumbers()
 			
-			print("Student attendance: \(attendanceValue)%")
+			print("[DashboardInteractor] Student attendance: \(attendanceValue)%")
 			
 			studentAttendance = attendanceValue
 			attendanceDispatch.leave()
@@ -226,7 +226,7 @@ class DashboardInteractor: NSObject {
 			guard let punctuality = text as? String else { fatalError() }
 			let punctualityValue = punctuality.extractNumbers()
 			
-			print("Student punctuality: \(punctualityValue)%")
+			print("[DashboardInteractor] Student punctuality: \(punctualityValue)%")
 			
 			studentPunctuality = punctualityValue
 			punctualityDispatch.leave()
@@ -336,7 +336,7 @@ class DashboardInteractor: NSObject {
 								// Attendance
 								attendanceMark = String(stringValue.replacingOccurrences(of: "(", with: "").first!)
 							default:
-								print(" **__**## - Index \(extractedIndex): \(stringValue)")
+								break
 							}
 						}
 						
@@ -430,8 +430,13 @@ class DashboardInteractor: NSObject {
 							let date = Date.markbookFormat(from: dates[index+3])
 
 							let relevantMarkData = marks[index + 3].split(separator: " ").map({String($0)})
-							guard let mark = relevantMarkData.first else { continue }
-							guard let percentage = relevantMarkData.last?.extractNumbers() else { continue }
+							guard var mark = relevantMarkData.first else { continue }
+							guard var percentage = relevantMarkData.last?.extractNumbers() else { continue }
+							if mark.contains("RD") {
+								// Student was absent
+								mark = "Absent"
+								percentage = 0
+							}
 
 							markbookGrades.append(Student.MarkbookGrade(name: testName, markingType: markingType, weighting: weight, date: date, mark: mark, percentage: percentage))
 						}
