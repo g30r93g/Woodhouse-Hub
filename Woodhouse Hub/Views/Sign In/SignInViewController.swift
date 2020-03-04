@@ -29,13 +29,6 @@ class SignInViewController: UIViewController {
 		Settings().isSignedIn = false
 	}
 	
-	// MARK: Navigation
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "Sign In Successful" {
-//			let destVC = segue.destination as! HomeViewController
-		}
-	}
-	
 	// MARK: IBActions
 	@IBAction func signIn() {
 		self.loadingIndicator.startAnimating()
@@ -43,19 +36,8 @@ class SignInViewController: UIViewController {
 		guard let username = self.usernameField.text else { return }
 		guard let password = self.passwordField.text else { return }
 		
-		DashboardInteractor.shared.signIn(username: username, password: password) { (success) in
-			self.loadingIndicator.stopAnimating()
-			
-			if success {
-				self.performSegue(withIdentifier: "Sign In Successful", sender: self)
-			} else {
-				let alert = UIAlertController(title: "Log In Failed", message: "Please check your username and password.", preferredStyle: .alert)
-				
-				alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-				
-				self.present(alert, animated: true, completion: nil)
-			}
-		}
+		WoodhouseCredentials.shared.setUsername(to: username)
+		WoodhouseCredentials.shared.setPassword(to: password)
 	}
 	
 }

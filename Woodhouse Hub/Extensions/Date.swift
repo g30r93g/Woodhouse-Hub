@@ -16,8 +16,8 @@ extension Date {
 	
 	static func woodleFormat(from string: String) -> Date {
 		let dateFormatter = DateFormatter()
-		if string.contains("-") {
-			dateFormatter.dateFormat = "dd MMMM yyyy - HH:mm"
+		if string.contains(":") {
+			dateFormatter.dateFormat = "dd MMMM yyyy HH:mm"
 		} else {
 			dateFormatter.dateFormat = "dd MMMM yyyy"
 		}
@@ -154,6 +154,17 @@ extension Date {
 		dateFormatter.locale = Locale(identifier: "en_GB")
 		
 		return dateFormatter.string(from: self)
+	}
+	
+	func numberOfDays(to date: Date) -> Int {
+		let startDate = self.usingTime(0, 0, 0).getMondayOfWeek() // Number of days from monday...
+		let endDate = date.usingTime(0, 0, 0).getMondayOfWeek().addDays(value: 5) // ...to friday
+		
+		return Int(startDate.distance(to: endDate)) / (60*60*24)
+	}
+	
+	func updateToCurrentWeek() -> Date {
+		return self.getMondayOfWeek().addDays(value: self.dayOfWeek() - 1).usingTime(self.dateComponents().hour!, self.dateComponents().minute!, self.dateComponents().second!)
 	}
 	
 }

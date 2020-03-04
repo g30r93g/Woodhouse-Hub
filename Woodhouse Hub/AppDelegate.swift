@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		UNUserNotificationCenter.current().delegate = self
 		_ = NotificationManager.session
 		
+		// Setup username and password for dashboard
+		self.start()
+		
 		return true
 	}
 
@@ -33,6 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Called when the user discards a scene session.
 		// If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
 		// Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+	}
+	
+	func start() {
+		// Start
+		if Settings().isSignedIn {
+			DashboardInteractor.shared.signIn(username: Settings().username!, password: Settings().password!) { (_) in }
+			WoodleInteractor.shared.signIn()
+			_ = ReportServerInteractor.shared
+			NotificationManager.session.setupBulletinNotifications()
+		}
 	}
 
 }

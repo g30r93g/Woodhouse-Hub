@@ -127,14 +127,58 @@ class NotificationManager {
 		self.removeNotification(identifier: "Morning Timetabled")
 	}
 	
-	func removeAllNotifications() {
-		UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-		UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+	// MARK: Student Bulletin Notifications
+	func setupBulletinNotifications() {
+		self.removeBulletinNotifications()
+		
+		let bulletinCategory = UNNotificationCategory(identifier: "Student Bulletin", actions: [], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: .hiddenPreviewsShowTitle)
+		self.addCategory(bulletinCategory)
+		
+		let content = self.createBulletinNotificationContent()
+		let mondayTrigger = self.createMondayBulletinTimeTrigger()
+		let thursdayTrigger = self.createThursdayBulletinTimeTrigger()
+		
+		let mondayRequest = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: mondayTrigger)
+		let thursdayRequest = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: thursdayTrigger)
+		
+		self.addNotification(mondayRequest)
+		self.addNotification(thursdayRequest)
+	}
+	
+	private func createMondayBulletinTimeTrigger() -> UNCalendarNotificationTrigger {
+		let dateComponents = Date().getMondayOfWeek().usingTime(10, 30, 0).dateComponents([.weekday, .hour, .minute])
+		return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+	}
+	
+	private func createThursdayBulletinTimeTrigger() -> UNCalendarNotificationTrigger {
+		let dateComponents = Date().getMondayOfWeek().addDays(value: 4).usingTime(10, 30, 0).dateComponents([.weekday, .hour, .minute])
+		return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+	}
+	
+	private func createBulletinNotificationContent() -> UNNotificationContent {
+		let notification = UNMutableNotificationContent()
+		
+		notification.title = "Student Bulletin Updated"
+		notification.body = "Head over to the 'Other' tab and tap Student Bulletin to see the latest update."
+		notification.sound = .default
+		notification.categoryIdentifier = "Student Bulletin"
+		
+		return notification
+	}
+	
+	func removeBulletinNotifications() {
+		print("Removing bulletin notifications")
+		self.removeNotification(identifier: "Student Bulletin")
 	}
 	
 }
 
 extension NotificationManager {
+	
+	func removeAllNotifications() {
+		UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+		UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+	}
 	
 	private func askForNotificationPermissions() {
 		UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (authorized, error) in

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UCASPredictionCell: UITableViewCell {
+class UCASPredictionCell: RoundUICollectionViewCell {
 	
 	// MARK: IBOutlets
 	@IBOutlet weak var subject: UILabel!
@@ -17,21 +17,11 @@ class UCASPredictionCell: UITableViewCell {
 	@IBOutlet weak var ucas: UILabel!
 	
 	// MARK: Methods
-	func setupCell(from data: Student.UCASPredictions, index: Int) {
-		self.reset(index)
-		
+	func setupCell(from data: Student.UCASPredictions) {
 		self.subject.text = data.subject
 		self.meg.text = "Minimum Expected Grade: \(data.meg)"
 		self.mock.text = "Mock Grade: \(data.mock)"
 		self.ucas.text = "UCAS Predicted Grade: \(data.ucasPrediction)"
-	}
-	
-	private func reset(_ index: Int) {
-		if (index % 2) == 0 {
-			self.contentView.backgroundColor = UIColor(named: "Alternate Cell")!
-		} else {
-			self.contentView.backgroundColor = UIColor(named: "Cell")!
-		}
 	}
 	
 }

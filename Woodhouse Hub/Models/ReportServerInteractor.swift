@@ -47,7 +47,10 @@ class ReportServerInteractor: NSObject {
 	}
 	
 	private func fetchUCASPredictions() {
+		print("[ReportServerInteractor] Fetching UCAS Predictions")
 		Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) { (timer) in
+			print("[ReportServerInteractor] Retrying UCAS Predictions")
+			
 			self.ucasWebView.evaluateJavaScript("document.documentElement.outerHTML.toString()") { (html, error) in
 				if let error = error { fatalError(error.localizedDescription) }
 				
@@ -84,6 +87,10 @@ class ReportServerInteractor: NSObject {
 				
 				timer.invalidate()
 				Student.current.addUCASPredictions(from: predictions.sorted(by: {$0.subject < $1.subject}))
+				print("[ReportServerInteractor] Added UCAS Predictions - \(predictions)")
+				
+				// Post notification for update
+				NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "reportServer.ucasPredictions")))
 			}
 		}
 	}
@@ -94,11 +101,10 @@ class ReportServerInteractor: NSObject {
 	}
 	
 	private func fetchExamTimetable() {
-		var count = 0
+		print("[ReportServerInteractor] Fetching Exam Timetable")
+		
 		Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) { (timer) in
-			if count <= 5 { timer.invalidate() }
-			
-			count += 1
+			print("[ReportServerInteractor] Retrying Exam Timetable")
 			self.examWebView.evaluateJavaScript("document.documentElement.outerHTML.toString()") { (html, error) in
 				if let error = error { fatalError(error.localizedDescription) }
 				
@@ -108,7 +114,7 @@ class ReportServerInteractor: NSObject {
 				if tables.count < 8 { return }
 				
 				let candidateNumber = try! tables[7].getElementsByTag("div").first()?.text() ?? ""
-				print(" - Candidate Number: \(candidateNumber)")
+				print("[ReportServerInteractor] Candidate Number: \(candidateNumber)")
 				
 				if candidateNumber == "" { return }
 				let examsTable = try! tables[3].getElementsByTag("table").last()!.getElementsByAttributeValue("valign", "top")
@@ -141,6 +147,10 @@ class ReportServerInteractor: NSObject {
 					exams.append(Student.ExamEntry(paperName: paperName, entryCode: entryCode, awardingBody: awardingBody, startTime: startTime, endTime: endTime, room: room, seat: seat))
 				}
 				Student.current.addExams(from: Student.Exams(candidateNumber: candidateNumber, exams: exams))
+				print("[ReportServerInteractor] Retrieved Exam Timetable - \(exams)")
+				
+				// Post notification for update
+				NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "reportServer.examTimetable")))
 				
 				timer.invalidate()
 			}

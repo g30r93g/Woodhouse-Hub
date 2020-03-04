@@ -32,9 +32,9 @@ class RoundView: UIView {
 	
 }
 
-// A UIView that has the top left corner rounded
+// A UIView that has the top corners rounded
 @IBDesignable
-class RoundLeftView: UIView {
+class RoundTopView: UIView {
 	
 	@IBInspectable var cornerRadius: CGFloat = 0.0 {
         didSet {
@@ -44,11 +44,10 @@ class RoundLeftView: UIView {
 	
 	private func updateCornerRadius() {
 		self.layer.cornerRadius = cornerRadius
-		self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+		self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
 	}
 	
 }
-
 // A round UIButton
 @IBDesignable
 class RoundButton: UIButton {
@@ -192,6 +191,18 @@ class RoundTableView: UITableView {
 // A round UICollectionViewCell
 @IBDesignable
 class RoundUICollectionViewCell: UICollectionViewCell {
+	
+	@IBInspectable var cornerRadius: CGFloat = 0.0 {
+		didSet {
+			layer.cornerRadius = cornerRadius
+		}
+	}
+	
+}
+
+// A round visual effect view
+@IBDesignable
+class RoundVisualView: UIVisualEffectView {
 	
 	@IBInspectable var cornerRadius: CGFloat = 0.0 {
 		didSet {

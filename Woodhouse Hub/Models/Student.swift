@@ -24,6 +24,10 @@ class Student {
 		// Get timetable
 		if let timetable = self.getTimetable() {
 			self.addTimetable(from: timetable)
+			
+			for entry in self.studentProfile!.timetable {
+				entry.updateTimesForCurrentWeek()
+			}
 		}
 	}
 	
@@ -81,15 +85,40 @@ class Student {
 		}
 	}
 	
-	struct TimetableEntry: Equatable, Codable {
+	class TimetableEntry: Equatable, Codable {
 		let classIdentifier: String
 		let name: String
 		let day: Int
-		let startTime: Date
-		let endTime: Date
+		private(set) var startTime: Date
+		private(set) var endTime: Date
 		let teacher: String?
 		let room: String?
 		let attendanceMark: String?
+		
+		// MARK: Initialiser
+		init(classIdentifier: String, name: String, day: Int, startTime: Date, endTime: Date, teacher: String?, room: String?, attendanceMark: String?) {
+			self.classIdentifier = classIdentifier
+			self.name = name
+			self.day = day
+			self.startTime = startTime
+			self.endTime = endTime
+			self.teacher = teacher
+			self.room = room
+			self.attendanceMark = attendanceMark
+			
+			self.updateTimesForCurrentWeek()
+		}
+		
+		// MARK: Methods
+		func updateTimesForCurrentWeek() {
+			self.startTime = Date().getMondayOfWeek().addDays(value: startTime.dayOfWeek() - 1).usingTime(startTime.dateComponents().hour!, startTime.dateComponents().minute!, startTime.dateComponents().second!)
+			self.endTime = Date().getMondayOfWeek().addDays(value: endTime.dayOfWeek() - 1).usingTime(endTime.dateComponents().hour!, endTime.dateComponents().minute!, endTime.dateComponents().second!)
+		}
+		
+		// MARK: Equatable
+		static func == (lhs: Student.TimetableEntry, rhs: Student.TimetableEntry) -> Bool {
+			return lhs.classIdentifier == rhs.classIdentifier && lhs.day == rhs.day && lhs.startTime == rhs.startTime
+		}
 	}
 	
 	struct Attendance {
@@ -98,10 +127,20 @@ class Student {
 		let detailedAttendance: [AttendanceEntry]
 	}
 	
-	struct AttendanceEntry {
+	struct AttendanceEntry: Comparable {
 		let classIdentifier: String
 		let attendanceMark: AttendanceMark
 		let date: Date
+		
+		// MARK: Equatable
+		static func == (lhs: AttendanceEntry, rhs: AttendanceEntry) -> Bool {
+			return lhs.date == rhs.date && lhs.classIdentifier == rhs.classIdentifier && lhs.attendanceMark == rhs.attendanceMark
+		}
+		
+		// MARK: Comparable
+		static func < (lhs: AttendanceEntry, rhs: AttendanceEntry) -> Bool {
+			return lhs.date < rhs.date
+		}
 	}
 	
 	enum AttendanceMark: String {
@@ -156,13 +195,18 @@ class Student {
 		let grades: [MarkbookGrade]
 	}
 	
-	struct MarkbookGrade {
+	struct MarkbookGrade: Comparable {
 		let name: String
 		let markingType: String
 		let weighting: Double
 		let date: Date
 		let mark: String
 		let percentage: Int
+		
+		// MARK: Comparable
+		static func < (lhs: MarkbookGrade, rhs: MarkbookGrade) -> Bool {
+			return lhs.date > rhs.date
+		}
 	}
 	
 	// MARK: Getter Methods
@@ -180,6 +224,26 @@ class Student {
 	
 	public func getAttendance() -> Attendance? {
 		return self.studentProfile?.attendance
+	}
+	
+	public func getMarkbook() -> [SubjectMarkbook]? {
+		if let markbook = self.studentProfile?.markbook, markbook.count > 0 {
+			return markbook
+		} else {
+			return nil
+		}
+	}
+	
+	public func getPredictions() -> [UCASPredictions]? {
+		if let predictions = self.studentProfile?.ucasPredictions, predictions.count > 0 {
+			return predictions
+		} else {
+			return nil
+		}
+	}
+	
+	public func getExams() -> Exams? {
+		return self.studentProfile?.exams
 	}
 	
 	// MARK: Setter Methods
