@@ -103,8 +103,8 @@ class WoodleInteractor: NSObject {
 					if error != nil { fatalError() }
 					
 					self.homeWebView.evaluateJavaScript("document.getElementById('ImageButton1').click()") { (_, error) in
-						completion(error == nil)
 						print("[WoodleInteractor] Finished Sign In Sequence")
+						completion(error == nil)
 					}
 				}
 			}

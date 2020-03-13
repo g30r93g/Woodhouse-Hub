@@ -18,6 +18,9 @@ class TimetableView: RoundTopView {
 	@IBOutlet weak private var timetableDaySelectorSeparation: NSLayoutConstraint!
 	@IBOutlet weak private var timetable: UICollectionView!
 	
+	// MARK: Properties
+	private var refreshTimer: Timer!
+	
 	// MARK: Overriden Methods
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -35,6 +38,11 @@ class TimetableView: RoundTopView {
 	}
 	
 	private func setupView() {
+		self.refreshTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (_) in
+			print("[TimetableView] Refreshing from timer.")
+			self.timetable.reloadData()
+			})
+		
 		DispatchQueue.main.async {
 			self.daySelector.alpha = 0
 			
@@ -53,6 +61,10 @@ class TimetableView: RoundTopView {
 		self.updateTimetable()
 		self.updateTimetableAppearance()
 		self.updateSummaryLabel()
+	}
+	
+	public func stopUpdate() {
+		self.refreshTimer.invalidate()
 	}
 	
 	private func updateSummaryLabel() {

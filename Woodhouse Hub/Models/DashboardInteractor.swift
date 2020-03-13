@@ -71,7 +71,7 @@ class DashboardInteractor: NSObject {
 		self.loadAttendance()
 		
 		self.determineIfSignedIn() { (isSignedIn) in
-		print("[DashboardInteractor] Signed In")
+			print("[DashboardInteractor] Signed In")
 			completion(isSignedIn)
 		}
 	}
@@ -103,6 +103,7 @@ class DashboardInteractor: NSObject {
 	func signOut() {
 		self.homeWebView = WKWebView()
 		self.markbookWebView = WKWebView()
+		self.studentProfileWebView = WKWebView()
 	}
 	
 	// MARK: Student Profile
@@ -414,7 +415,7 @@ class DashboardInteractor: NSObject {
 						guard let unitName = try? unitTable.getElementsByClass("blank").first()?.text() else { fatalError() }
 						
 						let tableRows = try! unitTable.getElementsByTag("tr")
-										
+						
 						if tableRows.count < 5 { continue }
 						
 						let testNames = try! tableRows[0].getElementsByTag("th").map({try! $0.attr("onmouseover")})
@@ -428,7 +429,7 @@ class DashboardInteractor: NSObject {
 							let markingType = markingType[index]
 							let weight = Double(weighting[index]) ?? -1
 							let date = Date.markbookFormat(from: dates[index+3])
-
+							
 							let relevantMarkData = marks[index + 3].split(separator: " ").map({String($0)})
 							guard var mark = relevantMarkData.first else { continue }
 							guard var percentage = relevantMarkData.last?.extractNumbers() else { continue }
@@ -437,16 +438,16 @@ class DashboardInteractor: NSObject {
 								mark = "Absent"
 								percentage = 0
 							}
-
+							
 							markbookGrades.append(Student.MarkbookGrade(name: testName, markingType: markingType, weighting: weight, date: date, mark: mark, percentage: percentage))
 						}
-
+						
 						let avgGCSE = Double(marks[0]) ?? -1
 						let meg = marks[1]
 						let ctg = marks[2]
 						let avgPercent = marks[marks.count - 2].extractNumbers(limit: 2)
 						let avgGrade = marks[marks.count - 1]
-
+						
 						markbookUnit = Student.MarkbookUnit(name: unitName, avgGCSE: avgGCSE, meg: meg, ctg: ctg, averagePercentage: avgPercent, averageGrade: avgGrade, grades: markbookGrades)
 						subjectUnits.append(markbookUnit)
 					}
@@ -538,9 +539,72 @@ class DashboardInteractor: NSObject {
 						
 						NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "dashboard.gatheredAttendance")))
 						print("[DashboardInteractor] Attendance Retrieved")
-						
 						timer.invalidate()
+						
+						// Now attendance is retrieved, we can retrieve pastoral information
+						self.getPastoral()
 					}
+				}
+			}
+		}
+	}
+	
+	// MARK: Pastoral
+	func retryPastoral() {
+		Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { (_) in
+			self.getPastoral()
+		}
+	}
+	
+	private func getPastoral() {
+		self.studentProfileWebView.evaluateJavaScript("document.getElementsByClassName('option')[6].click()") { (_, error) in
+			if let error = error { self.retryPastoral(); print(error.localizedDescription); return }
+			
+			self.studentProfileWebView.evaluateJavaScript("document.getElementsByClassName('option')[6].click()") { (_, error) in
+				if let error = error { self.retryPastoral(); print(error.localizedDescription); return }
+				
+				self.studentProfileWebView.evaluateJavaScript("document.documentElement.outerHTML.toString()") { (html, error) in
+					if let error = error { self.retryPastoral(); fatalError(error.localizedDescription) }
+					
+					guard let pastoralHTML = html as? String else { self.retryPastoral(); return }
+					let pastoralDoc = try! SwiftSoup.parse(pastoralHTML)
+					
+					// Determine if page has fully loaded
+					if !pastoralHTML.contains("Notifications") { self.retryPastoral(); return }
+					
+					// Get overall status
+					guard let pastoralStatus = try! pastoralDoc.getElementsByClass("studentPastoralStatus").first()?.text() else { self.retryPastoral(); return }
+					print("[DashboardInteractor] Pastoral - Status: \(pastoralStatus)")
+					
+					// Get praise, neutral and concern tallies
+					guard let praiseConcern = try! pastoralDoc.getElementsByClass("praiseConcern").first() else { self.retryPastoral(); return }
+					guard let praise = try! praiseConcern.getElementsByClass("praise").first()?.text() else { self.retryPastoral(); return }
+					guard let neutral = try! praiseConcern.getElementsByClass("neutral").first()?.text() else { self.retryPastoral(); return }
+					guard let concern = try! praiseConcern.getElementsByClass("concern").first()?.text() else { self.retryPastoral(); return }
+					print("[DashboardInteractor] Pastoral - Praise: \(praise), Neutral: \(neutral), Concern: \(concern)")
+					
+					// Get Status History
+					guard let statusHistory = try! pastoralDoc.getElementById("cphMain_spStudentProfile_tcTabContainer_tpPastoral_spStudentPastoral_pnlStatusHistory") else { self.retryPastoral(); return }
+					guard let statusHistoryTable = try! statusHistory.getElementsByTag("tbody").first() else { self.retryPastoral(); return }
+					let statusHistoryTableRows = try! statusHistoryTable.getElementsByTag("tr")
+					
+					var statusHistoryEntries: [Student.PastoralHistory] = []
+					for row in statusHistoryTableRows {
+						let dataPoints = try! row.getElementsByTag("td")
+						guard !dataPoints.isEmpty() else { continue }
+						
+						let status = try! dataPoints[1].text().trimmingCharacters(in: .whitespacesAndNewlines)
+						let statusManager = try! dataPoints[2].text().trimmingCharacters(in: .whitespacesAndNewlines)
+						let startDate = try! dataPoints[3].text().trimmingCharacters(in: .whitespacesAndNewlines)
+						
+						print("[DashboardInteractor] Pastoral - Status History Entry. Status: \(status), Manager: \(statusManager), Start Date: \(startDate)")
+						statusHistoryEntries.append(Student.PastoralHistory(status: Student.PastoralStatus(rawValue: status) ?? .unknown, manager: statusManager, startDate: Date.markbookFormat(from: startDate)))
+					}
+					
+					Student.current.addPastoral(from: Student.Pastoral(generalStatus: Student.PastoralStatus(rawValue: pastoralStatus) ?? .unknown, praise: Int(praise)!, neutral: Int(neutral)!, concern: Int(concern)!, pastoralHistory: statusHistoryEntries))
+					
+					NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "dashboard.retrievedPastoral")))
+					print("[DashboardInteractor] Pastoral Retrieved")
 				}
 			}
 		}
@@ -551,18 +615,18 @@ class DashboardInteractor: NSObject {
 extension DashboardInteractor: WKNavigationDelegate {
 	
 	func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//		print("Navigation Ended - \(webView.url?.absoluteString)")
+		print("[DashboardInteractor] Navigation Ended - \(webView.url?.absoluteString)")
 		
 		switch webView {
 		case self.homeWebView:
 			// Timetable & Basic Details
 			self.getBasicStudentDetails()
 			self.getStudentTimetable()
-			_ = ReportServerInteractor.shared
 		case self.markbookWebView:
 			// Student Results
 			self.getMarkbookGrades()
 		case self.studentProfileWebView:
+			// Student Profile
 			self.getAttendance()
 		default:
 			break
@@ -570,7 +634,7 @@ extension DashboardInteractor: WKNavigationDelegate {
 	}
 	
 	func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-//		print("Auth requested for host \(challenge.protectionSpace.host) via \(challenge.protectionSpace.authenticationMethod)")
+		print("[DashboardInteractor] Auth requested for host \(challenge.protectionSpace.host) via \(challenge.protectionSpace.authenticationMethod)")
 		
 		if challenge.protectionSpace.host == "est.woodhouse.ac.uk" {
 			guard let credentials = WoodhouseCredentials.shared.getCredential() else { completionHandler(.performDefaultHandling, nil); return }

@@ -11,6 +11,7 @@ import UIKit
 class OtherView: RoundTopView {
 	
 	// MARK: IBOutlets
+	@IBOutlet weak private var pastoral: UIButton!
 	@IBOutlet weak private var ucasPredictions: UIButton!
 	@IBOutlet weak private var examTimetable: UIButton!
 	@IBOutlet weak private var woodleEvents: UIButton!
@@ -41,6 +42,10 @@ class OtherView: RoundTopView {
 	
 	@IBAction private func showStudentBulletin(_ sender: UIButton) {
 		self.delegate?.showRequested(.studentBulletin)
+	}
+	
+	@IBAction private func showPastoral(_ sender: UIButton) {
+		self.delegate?.showRequested(.pastoral)
 	}
 	
 	@IBAction private func signOutTapped(_ sender: UIButton) {

@@ -46,41 +46,41 @@ class PillBar: RoundView {
 			self.timetableButton.backgroundColor = #colorLiteral(red: 0.01392052043, green: 0.1597468555, blue: 0.4854152203, alpha: 1)
 			self.timetableButton.setTitleColor(.white, for: .normal)
 			
-			self.attendanceButton.backgroundColor = .systemBackground
+			self.attendanceButton.backgroundColor = .background
 			self.attendanceButton.setTitleColor(#colorLiteral(red: 0.137254902, green: 0.2941176471, blue: 0.6, alpha: 1), for: .normal)
-			self.markbookButtton.backgroundColor = .systemBackground
+			self.markbookButtton.backgroundColor = .background
 			self.markbookButtton.setTitleColor(#colorLiteral(red: 0.1373262405, green: 0.2947477698, blue: 0.601218462, alpha: 1), for: .normal)
-			self.otherButton.backgroundColor = .systemBackground
+			self.otherButton.backgroundColor = .background
 			self.otherButton.setTitleColor(#colorLiteral(red: 0.1373262405, green: 0.2947477698, blue: 0.601218462, alpha: 1), for: .normal)
 		case .attendance:
 			self.attendanceButton.backgroundColor = #colorLiteral(red: 0.01392052043, green: 0.1597468555, blue: 0.4854152203, alpha: 1)
 			self.attendanceButton.setTitleColor(.white, for: .normal)
 			
-			self.timetableButton.backgroundColor = .systemBackground
+			self.timetableButton.backgroundColor = .background
 			self.timetableButton.setTitleColor(#colorLiteral(red: 0.1373262405, green: 0.2947477698, blue: 0.601218462, alpha: 1), for: .normal)
-			self.markbookButtton.backgroundColor = .systemBackground
+			self.markbookButtton.backgroundColor = .background
 			self.markbookButtton.setTitleColor(#colorLiteral(red: 0.1373262405, green: 0.2947477698, blue: 0.601218462, alpha: 1), for: .normal)
-			self.otherButton.backgroundColor = .systemBackground
+			self.otherButton.backgroundColor = .background
 			self.otherButton.setTitleColor(#colorLiteral(red: 0.1373262405, green: 0.2947477698, blue: 0.601218462, alpha: 1), for: .normal)
 		case .markbook:
 			self.markbookButtton.backgroundColor = #colorLiteral(red: 0.01392052043, green: 0.1597468555, blue: 0.4854152203, alpha: 1)
 			self.markbookButtton.setTitleColor(.white, for: .normal)
 			
-			self.timetableButton.backgroundColor = .systemBackground
+			self.timetableButton.backgroundColor = .background
 			self.timetableButton.setTitleColor(#colorLiteral(red: 0.1373262405, green: 0.2947477698, blue: 0.601218462, alpha: 1), for: .normal)
-			self.attendanceButton.backgroundColor = .systemBackground
+			self.attendanceButton.backgroundColor = .background
 			self.attendanceButton.setTitleColor(#colorLiteral(red: 0.1373262405, green: 0.2947477698, blue: 0.601218462, alpha: 1), for: .normal)
-			self.otherButton.backgroundColor = .systemBackground
+			self.otherButton.backgroundColor = .background
 			self.otherButton.setTitleColor(#colorLiteral(red: 0.1373262405, green: 0.2947477698, blue: 0.601218462, alpha: 1), for: .normal)
 		case .other:
 			self.otherButton.backgroundColor = #colorLiteral(red: 0.01392052043, green: 0.1597468555, blue: 0.4854152203, alpha: 1)
 			self.otherButton.setTitleColor(.white, for: .normal)
 			
-			self.timetableButton.backgroundColor = .systemBackground
+			self.timetableButton.backgroundColor = .background
 			self.timetableButton.setTitleColor(#colorLiteral(red: 0.1373262405, green: 0.2947477698, blue: 0.601218462, alpha: 1), for: .normal)
-			self.attendanceButton.backgroundColor = .systemBackground
+			self.attendanceButton.backgroundColor = .background
 			self.attendanceButton.setTitleColor(#colorLiteral(red: 0.1373262405, green: 0.2947477698, blue: 0.601218462, alpha: 1), for: .normal)
-			self.markbookButtton.backgroundColor = .systemBackground
+			self.markbookButtton.backgroundColor = .background
 			self.markbookButtton.setTitleColor(#colorLiteral(red: 0.1373262405, green: 0.2947477698, blue: 0.601218462, alpha: 1), for: .normal)
 		}
 		

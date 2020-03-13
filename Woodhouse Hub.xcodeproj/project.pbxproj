@@ -16,6 +16,7 @@
 		1F10C32F23D1392A004E98B1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F10C32E23D1392A004E98B1 /* String.swift */; };
 		1F1D290823D20B9000707A4F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D290723D20B9000707A4F /* NotificationManager.swift */; };
 		1F1D290A23D24E7E00707A4F /* WoodleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D290923D24E7E00707A4F /* WoodleInteractor.swift */; };
+		1F2DB842241B945D009657A8 /* PastoralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2DB841241B945D009657A8 /* PastoralView.swift */; };
 		1F318E01240E754B0004D2F5 /* NSRegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F318E00240E754B0004D2F5 /* NSRegularExpression.swift */; };
 		1F34E40923D4FA880024C031 /* UCASPredictionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E40823D4FA880024C031 /* UCASPredictionCell.swift */; };
 		1F34E40F23D50EF00024C031 /* ExamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E40E23D50EF00024C031 /* ExamCell.swift */; };
@@ -51,6 +52,7 @@
 		1FDECF2023CE11A60063DDA8 /* WoodhouseCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDECF1F23CE11A60063DDA8 /* WoodhouseCredentials.swift */; };
 		1FE0A2BD23F40B6900BEB261 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE0A2BC23F40B6900BEB261 /* SwiftSoup */; };
 		1FE5ADB4240DD5F1002C2532 /* UCASPredictionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5ADB3240DD5F1002C2532 /* UCASPredictionsView.swift */; };
+		1FE905E02411473E009EF9C1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE905DF2411473E009EF9C1 /* UIColor.swift */; };
 		1FF6ABCA240C18860065444B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FF6ABC9240C18860065444B /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +97,7 @@
 		1F10C32E23D1392A004E98B1 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		1F1D290723D20B9000707A4F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		1F1D290923D24E7E00707A4F /* WoodleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoodleInteractor.swift; sourceTree = "<group>"; };
+		1F2DB841241B945D009657A8 /* PastoralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastoralView.swift; sourceTree = "<group>"; };
 		1F318E00240E754B0004D2F5 /* NSRegularExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRegularExpression.swift; sourceTree = "<group>"; };
 		1F34E40823D4FA880024C031 /* UCASPredictionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCASPredictionCell.swift; sourceTree = "<group>"; };
 		1F34E40E23D50EF00024C031 /* ExamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamCell.swift; sourceTree = "<group>"; };
@@ -138,6 +141,7 @@
 		1FDECF1D23CDF1240063DDA8 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1FDECF1F23CE11A60063DDA8 /* WoodhouseCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoodhouseCredentials.swift; sourceTree = "<group>"; };
 		1FE5ADB3240DD5F1002C2532 /* UCASPredictionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCASPredictionsView.swift; sourceTree = "<group>"; };
+		1FE905DF2411473E009EF9C1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		1FF6ABC9240C18860065444B /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -288,6 +292,7 @@
 				1FD0E99723DC551700D7185A /* Array.swift */,
 				1FD0E99923DC79CD00D7185A /* TimeInterval.swift */,
 				1F318E00240E754B0004D2F5 /* NSRegularExpression.swift */,
+				1FE905DF2411473E009EF9C1 /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -333,6 +338,7 @@
 				1FA28A70240DC78100BEEA70 /* ExamTimetableView.swift */,
 				1FA28A72240DC79200BEEA70 /* WoodleEventsView.swift */,
 				1FA28A74240DC7A500BEEA70 /* StudentBulletinView.swift */,
+				1F2DB841241B945D009657A8 /* PastoralView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -498,6 +504,8 @@
 				1FDECF1C23CDED9C0063DDA8 /* DashboardInteractor.swift in Sources */,
 				1FE5ADB4240DD5F1002C2532 /* UCASPredictionsView.swift in Sources */,
 				1F318E01240E754B0004D2F5 /* NSRegularExpression.swift in Sources */,
+				1F2DB842241B945D009657A8 /* PastoralView.swift in Sources */,
+				1FE905E02411473E009EF9C1 /* UIColor.swift in Sources */,
 				1FCD87D0240C37C100D37C84 /* TimetableView.swift in Sources */,
 				1F1D290823D20B9000707A4F /* NotificationManager.swift in Sources */,
 				1F07517E23D3719F00600B18 /* Settings.swift in Sources */,
@@ -683,10 +691,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Woodhouse Hub/Woodhouse Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = 3V93A3ACV9;
 				INFOPLIST_FILE = "Woodhouse Hub/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -706,10 +714,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Woodhouse Hub/Woodhouse Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = 3V93A3ACV9;
 				INFOPLIST_FILE = "Woodhouse Hub/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

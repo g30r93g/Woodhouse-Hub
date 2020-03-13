@@ -15,19 +15,22 @@ class LoadingSignInViewController: UIViewController {
 	@IBOutlet weak private var timetableLoading: UIActivityIndicatorView!
 	@IBOutlet weak private var attendanceLoading: UIActivityIndicatorView!
 	@IBOutlet weak private var markbookLoading: UIActivityIndicatorView!
+	@IBOutlet weak private var pastoralLoading: UIActivityIndicatorView!
 	
 	@IBOutlet weak private var detailsCheck: UIImageView!
 	@IBOutlet weak private var timetableCheck: UIImageView!
 	@IBOutlet weak private var attendanceCheck: UIImageView!
 	@IBOutlet weak private var markbookCheck: UIImageView!
+	@IBOutlet weak private var pastoralCheck: UIImageView!
 	
 	// MARK: Properties
 	private var loadedDetails = false
 	private var loadedTimetable = false
 	private var loadedAttendance = false
 	private var loadedMarkbook = false
+	private var loadedPastoral = false
 	private var shouldSegue: Bool {
-		return self.loadedDetails && self.loadedTimetable && self.loadedAttendance && self.loadedMarkbook
+		return self.loadedDetails && self.loadedTimetable && self.loadedAttendance && self.loadedMarkbook && self.loadedPastoral
 	}
 
 	// MARK: View Controller Life Cycle
@@ -51,6 +54,7 @@ class LoadingSignInViewController: UIViewController {
 		self.timetableCheck.alpha = 0
 		self.attendanceCheck.alpha = 0
 		self.markbookCheck.alpha = 0
+		self.pastoralCheck.alpha = 0
 	}
 	
 	private func signIn() {
@@ -78,11 +82,16 @@ class LoadingSignInViewController: UIViewController {
 			self.loadedTimetable = Student.current.getTimetable() != nil
 			self.loadedAttendance = Student.current.getAttendance() != nil
 			self.loadedMarkbook = Student.current.getMarkbook() != nil
+			self.loadedPastoral = Student.current.getPastoral() != nil
 			
 			self.updateInterface()
 			
 			if self.shouldSegue {
-				self.performSegue(withIdentifier: "Fetched Student Details", sender: self)
+				timer.invalidate()
+				
+				Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { (_) in
+					self.performSegue(withIdentifier: "Fetched Student Details", sender: self)
+				}
 			}
 		}
 	}
@@ -106,6 +115,11 @@ class LoadingSignInViewController: UIViewController {
 		if self.loadedMarkbook {
 			self.markbookLoading.stopAnimating()
 			self.markbookCheck.alpha = 1
+		}
+		
+		if self.loadedPastoral {
+			self.pastoralLoading.stopAnimating()
+			self.pastoralCheck.alpha = 1
 		}
 	}
 

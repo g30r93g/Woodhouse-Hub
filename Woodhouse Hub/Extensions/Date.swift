@@ -160,7 +160,7 @@ extension Date {
 		let startDate = self.usingTime(0, 0, 0).getMondayOfWeek() // Number of days from monday...
 		let endDate = date.usingTime(0, 0, 0).getMondayOfWeek().addDays(value: 5) // ...to friday
 		
-		return Int(startDate.distance(to: endDate)) / (60*60*24)
+		return Int(startDate.timeIntervalSince(endDate)) / (60*60*24)
 	}
 	
 	func updateToCurrentWeek() -> Date {
