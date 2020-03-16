@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MarkbookCell: UICollectionViewCell {
+class MarkbookCell: RoundUICollectionViewCell {
 		
 	// MARK: IBOutlets
 	@IBOutlet weak var name: UILabel!

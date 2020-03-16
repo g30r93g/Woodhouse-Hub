@@ -57,29 +57,25 @@ class StudentInformation: UIView {
 			if let image = details.image {
 				self.studentImage.image = image
 				self.studentImage.contentMode = .scaleAspectFill
-				self.studentImage.sizeToFit()
+//				self.studentImage.sizeToFit()
 			}
 			
 			if let attendanceDetails = Student.current.getAttendance() {
 				self.studentAttendance.text = "Attendance: \(attendanceDetails.overallAttendance)%"
 				self.studentPunctuality.text = "Punctuality: \(attendanceDetails.overallPunctuality)%"
 				
-				if attendanceDetails.overallAttendance < 95 {
-					if attendanceDetails.overallAttendance < 90 {
-						self.studentAttendanceIndicator.backgroundColor = .red
-					} else {
-						self.studentAttendanceIndicator.backgroundColor = .orange
-					}
+				if attendanceDetails.overallAttendance < 90 {
+					self.studentAttendanceIndicator.backgroundColor = .red
+				} else if attendanceDetails.overallAttendance < 95 {
+					self.studentAttendanceIndicator.backgroundColor = .orange
 				} else {
 					self.studentAttendanceIndicator.backgroundColor = .green
 				}
 				
 				if attendanceDetails.overallPunctuality < 95 {
-					if attendanceDetails.overallPunctuality < 90 {
-						self.studentPunctualityIndicator.backgroundColor = .red
-					} else {
-						self.studentPunctualityIndicator.backgroundColor = .orange
-					}
+					self.studentPunctualityIndicator.backgroundColor = .red
+				} else if attendanceDetails.overallPunctuality < 90 {
+					self.studentPunctualityIndicator.backgroundColor = .orange
 				} else {
 					self.studentPunctualityIndicator.backgroundColor = .green
 				}

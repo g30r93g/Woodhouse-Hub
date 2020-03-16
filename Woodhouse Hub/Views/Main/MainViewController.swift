@@ -36,32 +36,8 @@ class MainViewController: UIViewController {
 	@IBOutlet weak private var examTimetableView: ExamTimetableView!
 	@IBOutlet weak private var woodleEventsView: WoodleEventsView!
 	@IBOutlet weak private var studentBulletinView: StudentBulletinView!
-<<<<<<< Updated upstream
-=======
 	@IBOutlet weak private var pastoralView: PastoralView!
 	@IBOutlet weak private var staffGalleryView: StaffGalleryView!
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 	
 	// MARK: View Controller Life Cycle
     override func viewDidLoad() {
@@ -78,47 +54,20 @@ class MainViewController: UIViewController {
 		case examTimetable
 		case woodleEvents
 		case studentBulletin
-<<<<<<< Updated upstream
-=======
 		case pastoral
 		case staffGallery
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 	}
 	
 	// MARK: Methods
 	private func setupView() {
 		self.pillBar.delegate = self
 		self.timetableView.delegate = self
-		self.attendanceView.delegate = self
 		self.markbookView.delegate = self
 		self.otherView.delegate = self
 		self.ucasPredictionsView.delegate = self
 		self.examTimetableView.delegate = self
 		self.woodleEventsView.delegate = self
 		self.studentBulletinView.delegate = self
-<<<<<<< Updated upstream
-=======
 		self.pastoralView.delegate = self
 		self.staffGalleryView.delegate = self
 		
@@ -137,36 +86,16 @@ class MainViewController: UIViewController {
 		guard gesture.state == .began else { return }
 		
 		self.performSegue(withIdentifier: "Find Student Image", sender: self)
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 	}
 	
 	private func signOut() {
-		let alert = UIAlertController(title: "Confirm Sign Out", message: nil, preferredStyle: .alert)
+		let alert = UIAlertController(title: "Confirm Sign Out", message: "The app will crash to reset completely.", preferredStyle: .alert)
 		
 		alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
 		alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (_) in
 			Settings().signOut()
+			self.timetableView.stopUpdate()
+			
 			self.performSegue(withIdentifier: "Sign Out", sender: nil)
 		}))
 		
@@ -174,7 +103,7 @@ class MainViewController: UIViewController {
 	}
 	
 	internal func showDisclaimerMessage() {
-		let message = "This application has been made with the intention of aggregating Woodhouse College's Learning Management and student facing systems. No harm is intended to the developers of the original systems, rather that the systems are slow, dated and unintuitive to use. This application is a mitigation to those factors, by taking advantage of local storage of a student's timetable, details and other cached data, as well as extending the system to notify for lessons. This application is in compliance with GDPR, since it piggybacks off of existing systems. Students can only access their information with their login details, unique to them. I am a student of the college and have no affiliation directly with the development teams responsible for Dashboard, Woodle, ReportServer or any other services used by the college."
+		let message = "This application has been made with the intention of aggregating Woodhouse College's Learning Management and student facing systems. This application is a solution to the slow, unintuitive and separated systems used by Woodhouse College. This application leverages use of local storage on the student's device. The student's timetable, details and image is stored, as well as generating local notifications for lessons. This application is in compliance with GDPR, since it piggybacks off of existing systems. Students can only access their information with their login details, unique to them. I am a student of the college and have no affiliation directly with the development teams responsible for Dashboard, Woodle, ReportServer or any other services used by the college. No harm is intended to the developers of the original systems."
 		let alert = UIAlertController(title: "Disclaimer", message: message, preferredStyle: .alert)
 		
 		alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -193,32 +122,8 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 0
 				self.woodleEventsView.alpha = 0
 				self.studentBulletinView.alpha = 0
-<<<<<<< Updated upstream
-=======
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 0
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 			})
 		}
 	}
@@ -234,32 +139,8 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 0
 				self.woodleEventsView.alpha = 0
 				self.studentBulletinView.alpha = 0
-<<<<<<< Updated upstream
-=======
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 0
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 			})
 		}
 	}
@@ -275,32 +156,8 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 0
 				self.woodleEventsView.alpha = 0
 				self.studentBulletinView.alpha = 0
-<<<<<<< Updated upstream
-=======
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 0
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 			})
 		}
 	}
@@ -316,32 +173,8 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 0
 				self.woodleEventsView.alpha = 0
 				self.studentBulletinView.alpha = 0
-<<<<<<< Updated upstream
-=======
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 0
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 			})
 		}
 	}
@@ -357,32 +190,8 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 0
 				self.woodleEventsView.alpha = 0
 				self.studentBulletinView.alpha = 0
-<<<<<<< Updated upstream
-=======
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 0
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 			})
 		}
 	}
@@ -398,32 +207,8 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 1
 				self.woodleEventsView.alpha = 0
 				self.studentBulletinView.alpha = 0
-<<<<<<< Updated upstream
-=======
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 0
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 			})
 		}
 	}
@@ -439,32 +224,8 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 0
 				self.woodleEventsView.alpha = 1
 				self.studentBulletinView.alpha = 0
-<<<<<<< Updated upstream
-=======
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 0
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 			})
 		}
 	}
@@ -480,8 +241,6 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 0
 				self.woodleEventsView.alpha = 0
 				self.studentBulletinView.alpha = 1
-<<<<<<< Updated upstream
-=======
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 0
 			})
@@ -518,28 +277,6 @@ class MainViewController: UIViewController {
 				self.studentBulletinView.alpha = 0
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 1
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 			})
 		}
 	}
@@ -581,34 +318,10 @@ extension MainViewController: ShowProtocol, DismissProtocol {
 			self.showWoodleEventsView()
 		case .studentBulletin:
 			self.showStudentBulletin()
-<<<<<<< Updated upstream
-=======
 		case .pastoral:
 			self.showPastoral()
 		case .staffGallery:
 			self.showStaffGallery()
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 		}
 	}
 	

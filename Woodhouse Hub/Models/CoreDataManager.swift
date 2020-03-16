@@ -115,7 +115,7 @@ class CoreDataManager {
 		studentDetailsEntry.setValue(studentDetails.name, forKey: "name")
 		studentDetailsEntry.setValue(studentDetails.id, forKey: "studentNumber")
 		studentDetailsEntry.setValue(studentDetails.tutorGroup, forKey: "tutorGroup")
-		studentDetailsEntry.setValue(studentDetails.image?.jpegData(compressionQuality: 1), forKey: "image")
+		studentDetailsEntry.setValue(studentDetails.image!.jpegData(compressionQuality: 1), forKey: "image")
 		
 		do {
 		   try managedContext.save()

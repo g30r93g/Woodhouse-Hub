@@ -60,9 +60,9 @@ class AttendanceCell: RoundUICollectionViewCell {
 			self.attendanceMark.textColor = .clear
 		}
 		
-		if let timetableEntry = data.correspondingTimetableEntry {
-			self.lessonName.text = timetableEntry.name
-			self.teacher.text = timetableEntry.teacher ?? ""
+		if let timetable = Student.current.getTimetable(), let matchingClass = timetable.first(where: {$0.day == data.date.dayOfWeek() && $0.classIdentifier == data.classIdentifier}) {
+			self.lessonName.text = matchingClass.name
+			self.teacher.text = matchingClass.teacher ?? ""
 		} else {
 			self.lessonName.text = data.classIdentifier
 		}

@@ -33,8 +33,15 @@ class Student {
 	
 	// MARK: Properties
 	private(set) var studentProfile: StudentProfile?
+	private(set) var updateNotifications: [UpdateNotification] = []
 	
 	// MARK: Structs
+	struct UpdateNotification {
+		let title: String
+		let body: String
+		let date: Date
+	}
+	
 	struct StudentProfile {
 		var details: StudentDetails?
 		var timetable: [TimetableEntry]
@@ -42,6 +49,7 @@ class Student {
 		var ucasPredictions: [UCASPredictions]
 		var exams: Exams?
 		var markbook: [SubjectMarkbook]
+		var pastoral: Pastoral?
 	}
 	
 	struct StudentDetails: Codable {
@@ -129,54 +137,10 @@ class Student {
 		let detailedAttendance: [AttendanceEntry]
 	}
 	
-	class AttendanceEntry: Comparable {
+	struct AttendanceEntry: Comparable {
 		let classIdentifier: String
 		let attendanceMark: AttendanceMark
 		let date: Date
-		let correspondingTimetableEntry: TimetableEntry?
-		
-		// MARK: Initialiser
-		init(classIdentifier: String, attendanceMark: AttendanceMark, date: Date) {
-			self.classIdentifier = classIdentifier
-			self.attendanceMark = attendanceMark
-			self.date = date
-			
-			if let timetable = Student.current.getTimetable(), let matchingClass = timetable.first(where: {$0.day == date.dayOfWeek() && $0.classIdentifier == classIdentifier}) {
-				self.correspondingTimetableEntry = matchingClass
-			} else {
-				self.correspondingTimetableEntry = nil
-			}
-		}
-		
-		// MARK: Methods
-		public func prettyAttendanceMark() -> String {
-			switch self.attendanceMark {
-			case .present:
-				return "Present"
-			case .late:
-				return "Late"
-			case .veryLate:
-				return "Very Late"
-			case .unauthorisedAbsence:
-				return "Unauthorised Absence"
-			case .notifiedAbsence:
-				return "Notified Absence"
-			case .internalExam:
-				return "Internal Exam"
-			case .permissionToMiss:
-				return "Permission to Miss Lesson"
-			case .cancelled:
-				return "Cancelled"
-			case .transferIntoSet:
-				return "Transfer In"
-			case .transferOutOfSet:
-				return "Transfer Out"
-			case .event:
-				return "Event"
-			case .mark:
-				return ""
-			}
-		}
 		
 		// MARK: Equatable
 		static func == (lhs: AttendanceEntry, rhs: AttendanceEntry) -> Bool {
@@ -255,8 +219,6 @@ class Student {
 		}
 	}
 	
-<<<<<<< Updated upstream
-=======
 	struct Pastoral {
 		let generalStatus: PastoralStatus
 		let praise: Int
@@ -327,7 +289,6 @@ class Student {
 		self.updateNotifications = []
 	}
 	
->>>>>>> Stashed changes
 	// MARK: Getter Methods
 	public func getDetails() -> StudentDetails? {
 		return CoreDataManager.manager.getStudentDetails() ?? self.studentProfile?.details
@@ -365,13 +326,17 @@ class Student {
 		return self.studentProfile?.exams
 	}
 	
+	public func getPastoral() -> Pastoral? {
+		return self.studentProfile?.pastoral
+	}
+	
 	// MARK: Setter Methods
 	public func addDetails(from details: StudentDetails) {
 		if let student = self.studentProfile {
-			self.studentProfile = StudentProfile(details: details, timetable: student.timetable, attendance: student.attendance, ucasPredictions: student.ucasPredictions, exams: student.exams, markbook: [])
+			self.studentProfile = StudentProfile(details: details, timetable: student.timetable, attendance: student.attendance, ucasPredictions: student.ucasPredictions, exams: student.exams, markbook: [], pastoral: student.pastoral)
 			Settings().studentDetails = details
 		} else {
-			self.studentProfile = StudentProfile(details: details, timetable: [], attendance: nil, ucasPredictions: [], exams: nil, markbook: [])
+			self.studentProfile = StudentProfile(details: details, timetable: [], attendance: nil, ucasPredictions: [], exams: nil, markbook: [], pastoral: nil)
 		}
 		
 		CoreDataManager.manager.saveStudentDetails(from: details)
@@ -381,49 +346,57 @@ class Student {
 		CoreDataManager.manager.saveTimetable(from: timetable)
 		
 		if let student = self.studentProfile {
-			self.studentProfile = StudentProfile(details: student.details, timetable: timetable, attendance: student.attendance, ucasPredictions: student.ucasPredictions, exams: student.exams, markbook: [])
+			self.studentProfile = StudentProfile(details: student.details, timetable: timetable, attendance: student.attendance, ucasPredictions: student.ucasPredictions, exams: student.exams, markbook: [], pastoral: student.pastoral)
 		} else {
-			self.studentProfile = StudentProfile(details: nil, timetable: timetable, attendance: nil, ucasPredictions: [], exams: nil, markbook: [])
+			self.studentProfile = StudentProfile(details: nil, timetable: timetable, attendance: nil, ucasPredictions: [], exams: nil, markbook: [], pastoral: nil)
 		}
 	}
 	
 	public func addAttendance(from attendance: Attendance) {
 		if let student = self.studentProfile {
-			self.studentProfile = StudentProfile(details: student.details, timetable: student.timetable, attendance: attendance, ucasPredictions: student.ucasPredictions, exams: student.exams, markbook: [])
+			self.studentProfile = StudentProfile(details: student.details, timetable: student.timetable, attendance: attendance, ucasPredictions: student.ucasPredictions, exams: student.exams, markbook: [], pastoral: student.pastoral)
 		} else {
-			self.studentProfile = StudentProfile(details: nil, timetable: [], attendance: attendance, ucasPredictions: [], exams: nil, markbook: [])
+			self.studentProfile = StudentProfile(details: nil, timetable: [], attendance: attendance, ucasPredictions: [], exams: nil, markbook: [], pastoral: nil)
 		}
 	}
 	
 	public func addUCASPredictions(from predictions: [UCASPredictions]) {
 		if let student = self.studentProfile {
-			self.studentProfile = StudentProfile(details: student.details, timetable: student.timetable, attendance: student.attendance, ucasPredictions: predictions, exams: student.exams, markbook: [])
+			self.studentProfile = StudentProfile(details: student.details, timetable: student.timetable, attendance: student.attendance, ucasPredictions: predictions, exams: student.exams, markbook: [], pastoral: student.pastoral)
 		} else {
-			self.studentProfile = StudentProfile(details: nil, timetable: [], attendance: nil, ucasPredictions: predictions, exams: nil, markbook: [])
+			self.studentProfile = StudentProfile(details: nil, timetable: [], attendance: nil, ucasPredictions: predictions, exams: nil, markbook: [], pastoral: nil)
 		}
 	}
 	
 	public func addExamTimetable(from examTimetable: [ExamEntry]) {
 		if let student = self.studentProfile {
-			self.studentProfile = StudentProfile(details: student.details, timetable: student.timetable, attendance: student.attendance, ucasPredictions: student.ucasPredictions, exams: student.exams, markbook: [])
+			self.studentProfile = StudentProfile(details: student.details, timetable: student.timetable, attendance: student.attendance, ucasPredictions: student.ucasPredictions, exams: student.exams, markbook: [], pastoral: student.pastoral)
 		} else {
-			self.studentProfile = StudentProfile(details: nil, timetable: [], attendance: nil, ucasPredictions: [],  exams: nil, markbook: [])
+			self.studentProfile = StudentProfile(details: nil, timetable: [], attendance: nil, ucasPredictions: [],  exams: nil, markbook: [], pastoral: nil)
 		}
 	}
 	
 	public func addExams(from exams: Exams) {
 		if let student = self.studentProfile {
-			self.studentProfile = StudentProfile(details: student.details, timetable: student.timetable, attendance: student.attendance, ucasPredictions: student.ucasPredictions, exams: exams, markbook: student.markbook)
+			self.studentProfile = StudentProfile(details: student.details, timetable: student.timetable, attendance: student.attendance, ucasPredictions: student.ucasPredictions, exams: exams, markbook: student.markbook, pastoral: student.pastoral)
 		} else {
-			self.studentProfile = StudentProfile(details: nil, timetable: [], attendance: nil, ucasPredictions: [], exams: exams, markbook: [])
+			self.studentProfile = StudentProfile(details: nil, timetable: [], attendance: nil, ucasPredictions: [], exams: exams, markbook: [], pastoral: nil)
 		}
 	}
 	
 	public func addMarkbook(from markbook: [SubjectMarkbook]) {
 		if let student = self.studentProfile {
-			self.studentProfile = StudentProfile(details: student.details, timetable: student.timetable, attendance: student.attendance, ucasPredictions: student.ucasPredictions, exams: student.exams, markbook: markbook)
+			self.studentProfile = StudentProfile(details: student.details, timetable: student.timetable, attendance: student.attendance, ucasPredictions: student.ucasPredictions, exams: student.exams, markbook: markbook, pastoral: student.pastoral)
 		} else {
-			self.studentProfile = StudentProfile(details: nil, timetable: [], attendance: nil, ucasPredictions: [], exams: nil, markbook: markbook)
+			self.studentProfile = StudentProfile(details: nil, timetable: [], attendance: nil, ucasPredictions: [], exams: nil, markbook: markbook, pastoral: nil)
+		}
+	}
+	
+	public func addPastoral(from pastoral: Pastoral) {
+		if let student = self.studentProfile {
+			self.studentProfile = StudentProfile(details: student.details, timetable: student.timetable, attendance: student.attendance, ucasPredictions: student.ucasPredictions, exams: student.exams, markbook: student.markbook, pastoral: pastoral)
+		} else {
+			self.studentProfile = StudentProfile(details: nil, timetable: [], attendance: nil, ucasPredictions: [], exams: nil, markbook: [], pastoral: pastoral)
 		}
 	}
 	
