@@ -54,6 +54,9 @@ class OtherView: RoundTopView {
 		self.delegate?.showRequested(.staffGallery)
 	}
 	
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	@IBAction private func signOutTapped(_ sender: UIButton) {
 		self.delegate?.signOutRequested()
