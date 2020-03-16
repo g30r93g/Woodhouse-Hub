@@ -8,12 +8,6 @@
 
 import UIKit
 
-protocol MarkbookProtocol {
-	
-	func changeSubjectRequiresDisplay(alert: UIAlertController)
-	
-}
-
 class MarkbookView: RoundTopView {
 	
 	// MARK: IBOutlets
@@ -24,7 +18,7 @@ class MarkbookView: RoundTopView {
 	@IBOutlet weak private var markbookEntries: UICollectionView!
 	
 	// MARK: Properties
-	var delegate: MarkbookProtocol? = nil
+	var delegate: ShowProtocol? = nil
 	private var currentSubject: Student.SubjectMarkbook?
 	
 	// MARK: Override Methods
@@ -80,7 +74,7 @@ class MarkbookView: RoundTopView {
 
 		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
 		
-		self.delegate?.changeSubjectRequiresDisplay(alert: alert)
+		self.delegate?.showAlert(alert)
 	}
 	
 	// MARK: IBActions

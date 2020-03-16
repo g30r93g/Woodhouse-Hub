@@ -22,6 +22,11 @@
 		1F34E41123D514460024C031 /* ReportServerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E41023D514460024C031 /* ReportServerInteractor.swift */; };
 		1F34E41523D521220024C031 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E41423D521220024C031 /* EventCell.swift */; };
 		1F34E41923D67EE80024C031 /* MarkbookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F34E41823D67EE80024C031 /* MarkbookCell.swift */; };
+		1F3DFDCC241C51990034A53F /* StaffGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DFDCB241C51990034A53F /* StaffGalleryView.swift */; };
+		1F3DFDCE241C69E60034A53F /* StaffCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DFDCD241C69E60034A53F /* StaffCell.swift */; };
+		1F3DFDD0241DA17F0034A53F /* MailingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DFDCF241DA17F0034A53F /* MailingDelegate.swift */; };
+		1F3DFDD6241E61580034A53F /* StudentImageFinder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F3DFDD5241E61580034A53F /* StudentImageFinder.storyboard */; };
+		1F3DFDD8241E62C50034A53F /* StudentImageFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DFDD7241E62C50034A53F /* StudentImageFinderViewController.swift */; };
 		1F3EA003240D01A1000F7F44 /* LoadingSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3EA002240D01A1000F7F44 /* LoadingSignInViewController.swift */; };
 		1F576973240C77250033D8C6 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F576972240C77250033D8C6 /* CalendarCell.swift */; };
 		1F576975240C862F0033D8C6 /* MarkbookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F576974240C862F0033D8C6 /* MarkbookView.swift */; };
@@ -101,6 +106,11 @@
 		1F34E41023D514460024C031 /* ReportServerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportServerInteractor.swift; sourceTree = "<group>"; };
 		1F34E41423D521220024C031 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		1F34E41823D67EE80024C031 /* MarkbookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkbookCell.swift; sourceTree = "<group>"; };
+		1F3DFDCB241C51990034A53F /* StaffGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffGalleryView.swift; sourceTree = "<group>"; };
+		1F3DFDCD241C69E60034A53F /* StaffCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffCell.swift; sourceTree = "<group>"; };
+		1F3DFDCF241DA17F0034A53F /* MailingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailingDelegate.swift; sourceTree = "<group>"; };
+		1F3DFDD5241E61580034A53F /* StudentImageFinder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StudentImageFinder.storyboard; sourceTree = "<group>"; };
+		1F3DFDD7241E62C50034A53F /* StudentImageFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentImageFinderViewController.swift; sourceTree = "<group>"; };
 		1F3EA002240D01A1000F7F44 /* LoadingSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSignInViewController.swift; sourceTree = "<group>"; };
 		1F576972240C77250033D8C6 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		1F576974240C862F0033D8C6 /* MarkbookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkbookView.swift; sourceTree = "<group>"; };
@@ -185,8 +195,18 @@
 				1F34E40823D4FA880024C031 /* UCASPredictionCell.swift */,
 				1F34E41423D521220024C031 /* EventCell.swift */,
 				1F34E40E23D50EF00024C031 /* ExamCell.swift */,
+				1F3DFDCD241C69E60034A53F /* StaffCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		1F3DFDD4241E614B0034A53F /* Student Image Finder */ = {
+			isa = PBXGroup;
+			children = (
+				1F3DFDD5241E61580034A53F /* StudentImageFinder.storyboard */,
+				1F3DFDD7241E62C50034A53F /* StudentImageFinderViewController.swift */,
+			);
+			path = "Student Image Finder";
 			sourceTree = "<group>";
 		};
 		1F8C25CB23F1FDAF004CECB7 /* Frameworks */ = {
@@ -272,6 +292,7 @@
 				1FDECF1B23CDED9C0063DDA8 /* DashboardInteractor.swift */,
 				1F34E41023D514460024C031 /* ReportServerInteractor.swift */,
 				1F1D290923D24E7E00707A4F /* WoodleInteractor.swift */,
+				1F3DFDCF241DA17F0034A53F /* MailingDelegate.swift */,
 				1F1D290723D20B9000707A4F /* NotificationManager.swift */,
 				1F07518223D3763C00600B18 /* CoreDataManager.swift */,
 				1F07517D23D3719F00600B18 /* Settings.swift */,
@@ -302,6 +323,7 @@
 		1FDECF1623CDDB140063DDA8 /* Supporting Views */ = {
 			isa = PBXGroup;
 			children = (
+				1F3DFDD4241E614B0034A53F /* Student Image Finder */,
 				1FBC5297240C500D00E2922C /* PillBar.swift */,
 				1F10C32223D132C7004E98B1 /* UI View Elements */,
 				1F10C32323D132D1004E98B1 /* Cells */,
@@ -333,6 +355,11 @@
 				1FA28A70240DC78100BEEA70 /* ExamTimetableView.swift */,
 				1FA28A72240DC79200BEEA70 /* WoodleEventsView.swift */,
 				1FA28A74240DC7A500BEEA70 /* StudentBulletinView.swift */,
+<<<<<<< Updated upstream
+=======
+				1F2DB841241B945D009657A8 /* PastoralView.swift */,
+				1F3DFDCB241C51990034A53F /* StaffGalleryView.swift */,
+>>>>>>> Stashed changes
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -451,6 +478,7 @@
 				1FDECEEF23CDDAC80063DDA8 /* LaunchScreen.storyboard in Resources */,
 				1F7DAAA223D06F8F00D42997 /* Sign In.storyboard in Resources */,
 				1FDECEEC23CDDAC80063DDA8 /* Assets.xcassets in Resources */,
+				1F3DFDD6241E61580034A53F /* StudentImageFinder.storyboard in Resources */,
 				1FF6ABCA240C18860065444B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,6 +507,7 @@
 				1F1D290A23D24E7E00707A4F /* WoodleInteractor.swift in Sources */,
 				1FCD87CE240C2E3800D37C84 /* MainViewController.swift in Sources */,
 				1FDECF2023CE11A60063DDA8 /* WoodhouseCredentials.swift in Sources */,
+				1F3DFDCC241C51990034A53F /* StaffGalleryView.swift in Sources */,
 				1F34E41523D521220024C031 /* EventCell.swift in Sources */,
 				1F10C32F23D1392A004E98B1 /* String.swift in Sources */,
 				1F6DC989240C9BA90096C20C /* OtherView.swift in Sources */,
@@ -486,11 +515,13 @@
 				1F07518323D3763C00600B18 /* CoreDataManager.swift in Sources */,
 				1F576973240C77250033D8C6 /* CalendarCell.swift in Sources */,
 				1F07518023D3721600600B18 /* UserDefaults.swift in Sources */,
+				1F3DFDD0241DA17F0034A53F /* MailingDelegate.swift in Sources */,
 				1FBC529A240C51CF00E2922C /* StudentInformation.swift in Sources */,
 				1F3EA003240D01A1000F7F44 /* LoadingSignInViewController.swift in Sources */,
 				1FBC5298240C500D00E2922C /* PillBar.swift in Sources */,
 				1F34E41923D67EE80024C031 /* MarkbookCell.swift in Sources */,
 				1FBC5296240C4FF800E2922C /* AttendanceView.swift in Sources */,
+				1F3DFDCE241C69E60034A53F /* StaffCell.swift in Sources */,
 				1F10C32B23D138E8004E98B1 /* TimetableCell.swift in Sources */,
 				1FA28A71240DC78100BEEA70 /* ExamTimetableView.swift in Sources */,
 				1FA28A75240DC7A500BEEA70 /* StudentBulletinView.swift in Sources */,
@@ -505,6 +536,7 @@
 				1FC0B89823ED7B6000D7EBEA /* Woodhouse_Hub.xcdatamodeld in Sources */,
 				1F34E41123D514460024C031 /* ReportServerInteractor.swift in Sources */,
 				1FD0E99A23DC79CD00D7185A /* TimeInterval.swift in Sources */,
+				1F3DFDD8241E62C50034A53F /* StudentImageFinderViewController.swift in Sources */,
 				1F07518523D376B300600B18 /* Student.swift in Sources */,
 				1FDECF1E23CDF1240063DDA8 /* SignInViewController.swift in Sources */,
 				1F34E40F23D50EF00024C031 /* ExamCell.swift in Sources */,
@@ -683,7 +715,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Woodhouse Hub/Woodhouse Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< Updated upstream
 				CURRENT_PROJECT_VERSION = 17;
+=======
+				CURRENT_PROJECT_VERSION = 20;
+>>>>>>> Stashed changes
 				DEVELOPMENT_TEAM = 3V93A3ACV9;
 				INFOPLIST_FILE = "Woodhouse Hub/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -706,7 +742,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Woodhouse Hub/Woodhouse Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< Updated upstream
 				CURRENT_PROJECT_VERSION = 17;
+=======
+				CURRENT_PROJECT_VERSION = 20;
+>>>>>>> Stashed changes
 				DEVELOPMENT_TEAM = 3V93A3ACV9;
 				INFOPLIST_FILE = "Woodhouse Hub/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

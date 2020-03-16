@@ -18,6 +18,7 @@ class WoodleInteractor: NSObject {
 	private let home = URL(string: "https://vle.woodhouse.ac.uk")!
 	private let upcomingEventsURL = URL(string: "https://vle.woodhouse.ac.uk/studenthome.aspx?eventcat=Events&#eventlist")!
 	private let registeredEventsURL = URL(string: "https://vle.woodhouse.ac.uk/studenthome.aspx?eventcat=Registered&#eventlist")!
+	private let staffGalleryURL = URL(string: "https://vle.woodhouse.ac.uk/staffgallery.aspx")!
 	var bulletinURL: URL? = nil {
 		didSet {
 			NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "woodle.studentBulletin")))
@@ -26,10 +27,12 @@ class WoodleInteractor: NSObject {
 	
 	// MARK: Properties 
 	private var homeWebView = WKWebView()
+	var isSignedIn = false
 	
 	// MARK: Data Properties
 	private var upcomingEvents: [Event] = []
 	private var registeredEvents: [Event] = []
+	private var staffGallery: [StaffMember] = []
 	
 	// MARK: Data Methods
 	public func getUpcomingEvents() -> [Event]? {
@@ -48,12 +51,19 @@ class WoodleInteractor: NSObject {
 		}
 	}
 	
+	public func getStaffGallery() -> [StaffMember]? {
+		if self.staffGallery.count > 0 {
+			return self.staffGallery
+		} else {
+			return nil
+		}
+	}
+	
 	// MARK: Initialisers
 	override init() {
 		super.init()
 		
 		self.setupWebViews()
-		self.signIn()
 	}
 	
 	// MARK: Structs
@@ -66,6 +76,33 @@ class WoodleInteractor: NSObject {
 		let fee: Double
 		let placesRemaining: Int?
 		let totalPlaces: Int?
+	}
+	
+	class StaffMember {
+		let firstName: String
+		let lastName: String
+		let code: String
+		let email: String
+		var image: UIImage?
+		
+		init(name: String, code: String, email: String, imageURL: String) {
+			self.firstName = name.split(separator: " ").map({String($0)})[0]
+			self.lastName = name.split(separator: " ").map({String($0)})[1...].joined()
+			self.code = code
+			self.email = email
+			self.image = nil
+			
+			self.fetchImage(from: imageURL)
+		}
+		
+		private func fetchImage(from url: String) {
+			guard let imageURL = URL(string: url) else { return }
+			
+			DispatchQueue.global(qos: .userInteractive).async {
+				guard let imageData = try? Data(contentsOf: imageURL) else { return }
+				self.image = UIImage(data: imageData)
+			}
+		}
 	}
 	
 	// MARK: Methods
@@ -89,16 +126,17 @@ class WoodleInteractor: NSObject {
 				
 				guard let mathsQuestion = html as? String else { fatalError() }
 				
+				print("[WoodleInteractor] Maths Question: \(mathsQuestion)")
+				
 				var answer: Int {
-					let splitQuestion = mathsQuestion.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "").replacingOccurrences(of: "+", with: "").replacingOccurrences(of: "plus", with: "").replacingOccurrences(of: "and", with: "").trimmingCharacters(in: .symbols).trimmingCharacters(in: .whitespaces).split(separator: " ").map({String($0)})
+					let splitQuestion = mathsQuestion.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "").replacingOccurrences(of: "+", with: " ").replacingOccurrences(of: "plus", with: " ").replacingOccurrences(of: "and", with: " ").trimmingCharacters(in: .symbols).trimmingCharacters(in: .whitespaces).split(separator: " ").map({String($0)}).map({Int($0) ?? 0})
 					
-					let leftSide = splitQuestion[0].extractNumbers(limit: 2)
-					let rightSide = splitQuestion[1].extractNumbers(limit: 2)
+					print("[WoodleInteractor] Tidied Maths Question: \(splitQuestion)")
 					
-					return leftSide + rightSide
+					return splitQuestion.reduce(0, { return $0 + $1 })
 				}
 				
-				self.homeWebView.evaluateJavaScript("document.getElementById('txtUsername').focused=true", completionHandler: nil)
+				self.homeWebView.evaluateJavaScript("document.getElementById('txtMathAns').focused=true", completionHandler: nil)
 				self.homeWebView.evaluateJavaScript("document.getElementById('txtMathAns').value='\(answer)'") { (html, error) in
 					if error != nil { fatalError() }
 					
@@ -155,7 +193,6 @@ class WoodleInteractor: NSObject {
 				let description = eventDetails[1].extract(until: "<")
 				
 				// 2 - Date
-//				let date = (eventDetails.first(where: {$0.contains("Date/Time")}) ?? "").extractTextBetweenFontTags()
 				var date: (Date, Date) {
 					if var dates = eventDetails.first(where: {$0.contains("Date/Time")}) {
 						dates = dates.extractTextBetweenFontTags()
@@ -194,7 +231,6 @@ class WoodleInteractor: NSObject {
 				let organiser = (eventDetails.first(where: {$0.contains("Organiser")}) ?? "").extractTextBetweenFontTags()
 				
 				// 4 - Fee
-//				let fee = Double(eventDetails.first(where: {$0.contains("Fee")})?.extractTextBetweenFontTags().replacingOccurrences(of: "£", with: "")) ?? -1
 				var fee: Double {
 					if var feeString = eventDetails.first(where: {$0.contains("Fee")}) {
 						if feeString.contains("Free") { return 0 }
@@ -342,13 +378,22 @@ class WoodleInteractor: NSObject {
 				
 				self.registeredEvents.append(Event(title: title, description: description, startDate: date.0, endDate: date.1, eventOrganiser: organiser, fee: fee, placesRemaining: nil, totalPlaces: nil))
 			}
+			
+			let futureRegisteredEvents = self.registeredEvents.filter({$0.startDate > Date()})
+			if !futureRegisteredEvents.isEmpty {
+				NotificationManager.session.setupWoodleEventNotifications(from: futureRegisteredEvents)
+			}
+			
 			print("[WoodleInteractor] Fetched registered events")
 			NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "woodle.updatedEvents")))
+			
+			// Update Student Bulletin
+			self.getStudentBulletinURL()
 		}
 	}
 	
+	// MARK: Student Bulletin
 	func getStudentBulletinURL() {
-		// document.getElementById('Righttable1_lblNews')
 		print("[WoodleInteractor] Retrieving latest student bulletin")
 		self.homeWebView.evaluateJavaScript("document.getElementById('Righttable1_lblNews').innerHTML") { (html, error) in
 			if error != nil { fatalError() }
@@ -363,14 +408,54 @@ class WoodleInteractor: NSObject {
 			
 			self.bulletinURL = URL(string: studentBulletinLink)
 			print("[WoodleInteractor] Student bulletin url obtained")
+			
+			// Fetch Staff Gallery
+			self.loadStaffGallery()
 		}
 	}
 	
+	// MARK: Staff Gallery
+	private func loadStaffGallery() {
+		let request = URLRequest(url: self.staffGalleryURL)
+		self.homeWebView.load(request)
+	}
+	
+	private func parseStaffGallery() {
+		print("[WoodleInteractor] Getting staff gallery...")
+		
+		self.homeWebView.evaluateJavaScript("document.getElementById('lblStaff').innerHTML") { (html, error) in
+			if error != nil { fatalError() }
+			
+			guard let htmlString = html as? String else { fatalError() }
+			let document = try! SwiftSoup.parse(htmlString)
+			
+			// Get Staff Entries
+			let staffEntries = try! document.getElementsByClass("dottedBottom")
+			
+			for entry in staffEntries {
+				guard let details = try! entry.getElementsByTag("td").last()?.html() else { continue }
+				let splitDetails = details.replacingOccurrences(of: "<br>", with: "§").split(separator: "§").map({try! SwiftSoup.parse(String($0))})
+				let name = try! splitDetails[0].text().extract(until: "(").trimmingCharacters(in: .whitespacesAndNewlines)
+				let code = try! splitDetails[0].text().extract(from: "(").extract(until: ")").replacingOccurrences(of: "(", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+				let email = try! splitDetails[1].text().extract(from: ":").replacingOccurrences(of: ":", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+				let imageURL = "https://vle.woodhouse.ac.uk/gfx/REMSphotos/\(code).jpg"
+				
+				print("[WoodleInteractor] Adding staff member: \(name) (\(code)) - \(email) - \(imageURL)")
+				self.staffGallery.append(StaffMember(name: name, code: code, email: email, imageURL: imageURL))
+			}
+			
+			NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "woodle.retrievedStaffGallery")))
+			print("[WoodleInteractor] Staff Members Retrieved")
+		}
+	}
+	
+	// MARK: Sign Out
 	func signOut() {
 		self.homeWebView = WKWebView()
 		
 		self.upcomingEvents = []
 		self.registeredEvents = []
+		self.staffGallery = []
 	}
 
 }
@@ -382,19 +467,28 @@ extension WoodleInteractor: WKNavigationDelegate {
 		
 		if url.contains("https://vle.woodhouse.ac.uk/login.aspx") {
 			// Log In
-			self.completeSignIn { (isSignedIn) in
-				print("[WoodleInteractor] Did \(isSignedIn ? "" : "not") sign in to woodle")
+			if !self.isSignedIn {
+				self.completeSignIn { (isSignedIn) in
+					print("[WoodleInteractor] Did\(isSignedIn ? "" : " not") sign in to woodle")
+					
+					self.isSignedIn = isSignedIn
+				}
 			}
-		} else if url.contains("https://vle.woodhouse.ac.uk/default.aspx") {
-			// Load Student Home for Upcoming Events and student bulletin - This is where the events tabs live
-			self.getStudentBulletinURL()
+		} else if url.contains("default.aspx") || url.contains("studenthome.aspx#eventlist") {
+			// Load Student Home for Upcoming Events and student bulletin
 			self.loadUpcomingEvents()
-		} else if url == "https://vle.woodhouse.ac.uk/studenthome.aspx?eventcat=Events&#eventlist" {
+		} else if url.contains("studenthome.aspx?eventcat=Events&#eventlist") {
 			// Parse Upcoming Events
 			self.fetchUpcomingEvents()
 		} else if url == "https://vle.woodhouse.ac.uk/studenthome.aspx?eventcat=Registered&#eventlist" {
 			// Parse Registered Events
 			self.fetchRegisteredEvents()
+		} else if url == "https://vle.woodhouse.ac.uk/staffgallery.aspx" {
+			// Get Staff Gallery
+			self.parseStaffGallery()
+		} else if url.contains("") {
+		} else {
+			print("[WoodleInteractor] Uncaught URL: \(url)")
 		}
 	}
 	

@@ -27,6 +27,7 @@ class TimetableView: RoundTopView {
 	}
 	
 	// MARK: Properties
+	var delegate: ShowProtocol? = nil
 	private var isShowingCurrentDay = true
 	
 	// MARK: Methods
@@ -46,7 +47,107 @@ class TimetableView: RoundTopView {
 			}
 		}
 		
+		self.attachLongPressRecogniser()
+		
 		self.updateView()
+	}
+	
+	private func attachLongPressRecogniser() {
+		let deleteLongPress = UILongPressGestureRecognizer(target: self, action: #selector(lessonOptionsHandler(gesture:)))
+		deleteLongPress.minimumPressDuration = 0.3
+		deleteLongPress.delaysTouchesBegan = true
+		deleteLongPress.delegate = self
+		self.timetable.addGestureRecognizer(deleteLongPress)
+	}
+	
+	@objc private func lessonOptionsHandler(gesture: UILongPressGestureRecognizer) {
+		guard gesture.state == .began else { return }
+		
+		let pointPressed = gesture.location(in: self.timetable)
+		
+		if let indexPath = self.timetable.indexPathForItem(at: pointPressed) {
+			guard let timetable = Student.current.getTimetable() else { return }
+			let data = timetable.filter({$0.day == self.daySelector.selectedSegmentIndex + 1})[indexPath.item]
+			
+			if data.name.contains("Lunch") || data.name.contains("Learning Zone Study") { return }
+			
+			// Show list of options
+			let alert = UIAlertController(title: "Options for \(data.name)", message: nil, preferredStyle: .actionSheet)
+			
+			let absense = UIAlertAction(title: "Notify Absence", style: .default) { (action) in
+				let body = """
+				Dear Attendance,
+
+				Please accept this written notification of my absence on the \(data.startTime.date()) at \(data.startTime.time())
+				This is due to
+				
+				Regards,
+				\(Student.current.getDetails()?.name ?? "Student") (\(Student.current.getDetails()?.id ?? "Student ID"))
+				"""
+				
+				var teacherEmail: String? {
+					if let teacherCode = data.teacherCode {
+						return WoodleInteractor.shared.getStaffGallery()?.first(where: {teacherCode == $0.code})?.email
+					} else {
+						return nil
+					}
+				}
+				
+				var recipients: [String] = ["attendance@woodhouse.ac.uk"]
+				if let teacherEmail = teacherEmail {
+					recipients.append(teacherEmail)
+				}
+
+				do {
+					let mail = MailingDelegate(subject: "Notifcation of Absence", body: body, recipients: recipients)
+					try mail.composeEmail()
+				} catch {
+					return
+				}
+			}
+			
+			let lateness = UIAlertAction(title: "Notify Lateness", style: .default) { (action) in
+				let body = """
+				Dear \(data.teacher ?? "Teacher"),
+
+				Please accept this written notification of my lateness for your lesson on the \(data.startTime.date()) at \(data.startTime.time())
+				This is due to
+				
+				Regards,
+				\(Student.current.getDetails()?.name ?? "Student") (\(Student.current.getDetails()?.id ?? "Student ID"))
+				"""
+				
+				var teacherEmail: String? {
+					if let teacherCode = data.teacherCode {
+						return WoodleInteractor.shared.getStaffGallery()?.first(where: {teacherCode == $0.code})?.email
+					} else {
+						return nil
+					}
+				}
+				
+				var recipients: [String] = []
+				if let teacherEmail = teacherEmail {
+					recipients.append(teacherEmail)
+				}
+				
+				do {
+					let mail = MailingDelegate(subject: "Notifcation of Absence", body: body, recipients: recipients)
+					try mail.composeEmail()
+				} catch {
+					return
+				}
+			}
+			
+			let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+				alert.dismiss(animated: true, completion: nil)
+			}
+			
+			alert.addAction(absense)
+			alert.addAction(lateness)
+			alert.addAction(cancel)
+			
+			self.delegate?.showAlert(alert)
+		}
 	}
 	
 	@objc private func updateView() {
@@ -126,6 +227,8 @@ class TimetableView: RoundTopView {
 	}
 	
 }
+
+extension TimetableView: UIGestureRecognizerDelegate { }
 
 extension TimetableView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	

@@ -27,7 +27,7 @@ class NotificationManager {
 		// Remove all timetable notifications
 		self.removeTimetableNotifications()
 		
-		// Timetable
+		// MARK: Timetable
 		let timetableCategory = UNNotificationCategory(identifier: "Timetabled", actions: [], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: .hiddenPreviewsShowTitle)
 		self.addCategory(timetableCategory)
 		
@@ -40,7 +40,7 @@ class NotificationManager {
 			self.addNotification(request)
 		}
 		
-		// Morning Timetable
+		// MARK: Morning Timetable
 		let morningTimetableCategory = UNNotificationCategory(identifier: "Morning Timetabled", actions: [], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: .hiddenPreviewsShowTitle)
 		self.addCategory(morningTimetableCategory)
 		
@@ -166,9 +166,68 @@ class NotificationManager {
 		return notification
 	}
 	
-	func removeBulletinNotifications() {
+	public func removeBulletinNotifications() {
 		print("Removing bulletin notifications")
 		self.removeNotification(identifier: "Student Bulletin")
+	}
+	
+	// MARK: Woodle Events
+	public func setupWoodleEventNotifications(from events: [WoodleInteractor.Event]) {
+		self.removeWoodleEventNotifications()
+		
+		let woodleEventCategory = UNNotificationCategory(identifier: "Woodle Event", actions: [], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: .hiddenPreviewsShowTitle)
+		self.addCategory(woodleEventCategory)
+		
+		for event in events {
+			let oneHourContent = self.createWoodleEventContent(from: event, numberOfDays: 0)
+			let oneDayContent = self.createWoodleEventContent(from: event, numberOfDays: 1)
+			let threeDaysContent = self.createWoodleEventContent(from: event, numberOfDays: 3)
+			let oneWeekContent = self.createWoodleEventContent(from: event, numberOfDays: 7)
+			
+			let oneHourInAdvanceTrigger = self.createWoodleEventTimeTrigger(from: event.startDate.addMinutes(amount: -60))
+			let oneDayInAdvanceTrigger = self.createWoodleEventTimeTrigger(from: event.startDate.addDays(value: -1))
+			let threeDaysInAdvanceTrigger = self.createWoodleEventTimeTrigger(from: event.startDate.addDays(value: -3))
+			let oneWeekInAdvanceTrigger = self.createWoodleEventTimeTrigger(from: event.startDate.addDays(value: -7))
+			
+			let oneHourRequest = UNNotificationRequest(identifier: UUID().uuidString, content: oneHourContent, trigger: oneHourInAdvanceTrigger)
+			let oneDayRequest = UNNotificationRequest(identifier: UUID().uuidString, content: oneDayContent, trigger: oneDayInAdvanceTrigger)
+			let threeDaysRequest = UNNotificationRequest(identifier: UUID().uuidString, content: threeDaysContent, trigger: threeDaysInAdvanceTrigger)
+			let oneWeekRequest = UNNotificationRequest(identifier: UUID().uuidString, content: oneWeekContent, trigger: oneWeekInAdvanceTrigger)
+			
+			self.addNotification(oneHourRequest)
+			self.addNotification(oneDayRequest)
+			self.addNotification(threeDaysRequest)
+			self.addNotification(oneWeekRequest)
+		}
+	}
+	
+	private func createWoodleEventTimeTrigger(from date: Date) -> UNCalendarNotificationTrigger {
+		let dateComponents = date.dateComponents([.weekday, .hour, .minute])
+		
+		return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+	}
+	
+	private func createWoodleEventContent(from event: WoodleInteractor.Event, numberOfDays: Int) -> UNNotificationContent {
+		let notification = UNMutableNotificationContent()
+		
+		if numberOfDays == 0 {
+			notification.title = "Woodle Event in 1 Hour"
+		} else if numberOfDays == 1 {
+			notification.title = "Woodle Event Tomorrow"
+		} else {
+			notification.title = "Woodle Event in \(numberOfDays) Days"
+		}
+		notification.subtitle = event.title
+		notification.sound = .default
+		notification.categoryIdentifier = "Woodle Event"
+		
+		
+		
+		return notification
+	}
+	
+	private func removeWoodleEventNotifications() {
+		self.removeNotification(identifier: "Woodle Event")
 	}
 	
 }

@@ -37,3 +37,12 @@ extension Array where Element: Hashable {
     }
 	
 }
+
+extension Array where Element: StringProtocol {
+	
+	/// Extracts the first character of each element
+	func mapFirstCharacter() -> [String] {
+		return self.map({String($0)}).map({String($0.first ?? Character(""))}).removeDuplicates().sorted()
+	}
+	
+}

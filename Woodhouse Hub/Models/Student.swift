@@ -92,17 +92,19 @@ class Student {
 		private(set) var startTime: Date
 		private(set) var endTime: Date
 		let teacher: String?
+		let teacherCode: String?
 		let room: String?
 		let attendanceMark: String?
 		
 		// MARK: Initialiser
-		init(classIdentifier: String, name: String, day: Int, startTime: Date, endTime: Date, teacher: String?, room: String?, attendanceMark: String?) {
+		init(classIdentifier: String, name: String, day: Int, startTime: Date, endTime: Date, teacher: String?, teacherCode: String?, room: String?, attendanceMark: String?) {
 			self.classIdentifier = classIdentifier
 			self.name = name
 			self.day = day
 			self.startTime = startTime
 			self.endTime = endTime
 			self.teacher = teacher
+			self.teacherCode = teacherCode
 			self.room = room
 			self.attendanceMark = attendanceMark
 			
@@ -127,10 +129,54 @@ class Student {
 		let detailedAttendance: [AttendanceEntry]
 	}
 	
-	struct AttendanceEntry: Comparable {
+	class AttendanceEntry: Comparable {
 		let classIdentifier: String
 		let attendanceMark: AttendanceMark
 		let date: Date
+		let correspondingTimetableEntry: TimetableEntry?
+		
+		// MARK: Initialiser
+		init(classIdentifier: String, attendanceMark: AttendanceMark, date: Date) {
+			self.classIdentifier = classIdentifier
+			self.attendanceMark = attendanceMark
+			self.date = date
+			
+			if let timetable = Student.current.getTimetable(), let matchingClass = timetable.first(where: {$0.day == date.dayOfWeek() && $0.classIdentifier == classIdentifier}) {
+				self.correspondingTimetableEntry = matchingClass
+			} else {
+				self.correspondingTimetableEntry = nil
+			}
+		}
+		
+		// MARK: Methods
+		public func prettyAttendanceMark() -> String {
+			switch self.attendanceMark {
+			case .present:
+				return "Present"
+			case .late:
+				return "Late"
+			case .veryLate:
+				return "Very Late"
+			case .unauthorisedAbsence:
+				return "Unauthorised Absence"
+			case .notifiedAbsence:
+				return "Notified Absence"
+			case .internalExam:
+				return "Internal Exam"
+			case .permissionToMiss:
+				return "Permission to Miss Lesson"
+			case .cancelled:
+				return "Cancelled"
+			case .transferIntoSet:
+				return "Transfer In"
+			case .transferOutOfSet:
+				return "Transfer Out"
+			case .event:
+				return "Event"
+			case .mark:
+				return ""
+			}
+		}
 		
 		// MARK: Equatable
 		static func == (lhs: AttendanceEntry, rhs: AttendanceEntry) -> Bool {
@@ -209,6 +255,79 @@ class Student {
 		}
 	}
 	
+<<<<<<< Updated upstream
+=======
+	struct Pastoral {
+		let generalStatus: PastoralStatus
+		let praise: Int
+		let neutral: Int
+		let concern: Int
+		let pastoralHistory: [PastoralHistory]
+	}
+	
+	struct PastoralHistory {
+		let status: PastoralStatus
+		let manager: String
+		let startDate: Date
+	}
+	
+	struct PastoralMessage {
+		let type: PastoralMessageType
+		let creationDate: Date
+		let lastUpdateDate: Date
+		let writtenBy: String
+		let relevantPersons: [String]
+		let comments: [PastoralComment]
+		let responses: [PastoralResponse]
+	}
+	
+	struct PastoralComment {
+		let creator: String
+		let date: Date
+		let body: String
+	}
+	
+	struct PastoralResponse {
+		let creator: String
+		let date: Date
+		let body: String
+	}
+	
+	enum PastoralMessageType: String {
+		case praise = "Praise"
+		case concern = "Concern"
+	}
+	
+	enum PastoralStatus: String {
+		case good = "Ok"
+		case unknown = ""
+		
+		case academicZero = "Academic Stage 0"
+		case academicOne = "Academic Stage 1"
+		case academicTwo = "Academic Stage 2"
+		case academicThree = "Academic Stage 3"
+		case academicFour = "Academic Stage 4"
+		
+		case attendanceZero = "Attendance Stage 0"
+		case attendanceOne = "Attendance Stage 1"
+		case attendanceTwo = "Attendance Stage 2"
+		case attendanceThree = "Attendance Stage 3"
+		case attendanceFour = "Attendance Stage 4"
+		
+		case behaviourZero = "Behaviour Stage 0"
+		case behaviourOne = "Behaviour Stage 1"
+		case behaviourTwo = "Behaviour Stage 2"
+		case behaviourThree = "Behaviour Stage 3"
+		case behaviourFour = "Behaviour Stage 4"
+	}
+	
+	// MARK: Sign Out
+	public func signOut() {
+		self.studentProfile = nil
+		self.updateNotifications = []
+	}
+	
+>>>>>>> Stashed changes
 	// MARK: Getter Methods
 	public func getDetails() -> StudentDetails? {
 		return CoreDataManager.manager.getStudentDetails() ?? self.studentProfile?.details

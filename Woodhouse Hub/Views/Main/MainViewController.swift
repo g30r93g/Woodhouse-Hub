@@ -13,6 +13,7 @@ protocol ShowProtocol {
 	func showRequested(_ view: MainViewController.OtherViews)
 	func signOutRequested()
 	func showDisclaimer()
+	func showAlert(_ alert: UIAlertController)
 	
 }
 
@@ -25,6 +26,7 @@ protocol DismissProtocol {
 class MainViewController: UIViewController {
 	
 	// MARK: IBOutlets
+	@IBOutlet weak private var woodhouseLogo: UIImageView!
 	@IBOutlet weak private var pillBar: PillBar!
 	@IBOutlet weak private var timetableView: TimetableView!
 	@IBOutlet weak private var attendanceView: AttendanceView!
@@ -34,6 +36,11 @@ class MainViewController: UIViewController {
 	@IBOutlet weak private var examTimetableView: ExamTimetableView!
 	@IBOutlet weak private var woodleEventsView: WoodleEventsView!
 	@IBOutlet weak private var studentBulletinView: StudentBulletinView!
+<<<<<<< Updated upstream
+=======
+	@IBOutlet weak private var pastoralView: PastoralView!
+	@IBOutlet weak private var staffGalleryView: StaffGalleryView!
+>>>>>>> Stashed changes
 	
 	// MARK: View Controller Life Cycle
     override func viewDidLoad() {
@@ -50,17 +57,45 @@ class MainViewController: UIViewController {
 		case examTimetable
 		case woodleEvents
 		case studentBulletin
+<<<<<<< Updated upstream
+=======
+		case pastoral
+		case staffGallery
+>>>>>>> Stashed changes
 	}
 	
 	// MARK: Methods
 	private func setupView() {
 		self.pillBar.delegate = self
+		self.timetableView.delegate = self
+		self.attendanceView.delegate = self
 		self.markbookView.delegate = self
 		self.otherView.delegate = self
 		self.ucasPredictionsView.delegate = self
 		self.examTimetableView.delegate = self
 		self.woodleEventsView.delegate = self
 		self.studentBulletinView.delegate = self
+<<<<<<< Updated upstream
+=======
+		self.pastoralView.delegate = self
+		self.staffGalleryView.delegate = self
+		
+		self.attachLongPressRecogniser()
+	}
+	
+	private func attachLongPressRecogniser() {
+		let studentImageFinderHold = UILongPressGestureRecognizer(target: self, action: #selector(navigateToStudentImageFinder(gesture:)))
+		studentImageFinderHold.minimumPressDuration = 3
+		studentImageFinderHold.delaysTouchesBegan = true
+		studentImageFinderHold.delegate = self
+		self.woodhouseLogo.addGestureRecognizer(studentImageFinderHold)
+	}
+	
+	@objc private func navigateToStudentImageFinder(gesture: UILongPressGestureRecognizer) {
+		guard gesture.state == .began else { return }
+		
+		self.performSegue(withIdentifier: "Find Student Image", sender: self)
+>>>>>>> Stashed changes
 	}
 	
 	private func signOut() {
@@ -95,6 +130,11 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 0
 				self.woodleEventsView.alpha = 0
 				self.studentBulletinView.alpha = 0
+<<<<<<< Updated upstream
+=======
+				self.pastoralView.alpha = 0
+				self.staffGalleryView.alpha = 0
+>>>>>>> Stashed changes
 			})
 		}
 	}
@@ -110,6 +150,11 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 0
 				self.woodleEventsView.alpha = 0
 				self.studentBulletinView.alpha = 0
+<<<<<<< Updated upstream
+=======
+				self.pastoralView.alpha = 0
+				self.staffGalleryView.alpha = 0
+>>>>>>> Stashed changes
 			})
 		}
 	}
@@ -125,6 +170,11 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 0
 				self.woodleEventsView.alpha = 0
 				self.studentBulletinView.alpha = 0
+<<<<<<< Updated upstream
+=======
+				self.pastoralView.alpha = 0
+				self.staffGalleryView.alpha = 0
+>>>>>>> Stashed changes
 			})
 		}
 	}
@@ -140,6 +190,11 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 0
 				self.woodleEventsView.alpha = 0
 				self.studentBulletinView.alpha = 0
+<<<<<<< Updated upstream
+=======
+				self.pastoralView.alpha = 0
+				self.staffGalleryView.alpha = 0
+>>>>>>> Stashed changes
 			})
 		}
 	}
@@ -155,6 +210,11 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 0
 				self.woodleEventsView.alpha = 0
 				self.studentBulletinView.alpha = 0
+<<<<<<< Updated upstream
+=======
+				self.pastoralView.alpha = 0
+				self.staffGalleryView.alpha = 0
+>>>>>>> Stashed changes
 			})
 		}
 	}
@@ -170,6 +230,11 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 1
 				self.woodleEventsView.alpha = 0
 				self.studentBulletinView.alpha = 0
+<<<<<<< Updated upstream
+=======
+				self.pastoralView.alpha = 0
+				self.staffGalleryView.alpha = 0
+>>>>>>> Stashed changes
 			})
 		}
 	}
@@ -185,6 +250,11 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 0
 				self.woodleEventsView.alpha = 1
 				self.studentBulletinView.alpha = 0
+<<<<<<< Updated upstream
+=======
+				self.pastoralView.alpha = 0
+				self.staffGalleryView.alpha = 0
+>>>>>>> Stashed changes
 			})
 		}
 	}
@@ -200,11 +270,52 @@ class MainViewController: UIViewController {
 				self.examTimetableView.alpha = 0
 				self.woodleEventsView.alpha = 0
 				self.studentBulletinView.alpha = 1
+<<<<<<< Updated upstream
+=======
+				self.pastoralView.alpha = 0
+				self.staffGalleryView.alpha = 0
+			})
+		}
+	}
+	
+	private func showPastoral() {
+		DispatchQueue.main.async {
+			UIView.animate(withDuration: 0.2, animations: {
+				self.attendanceView.alpha = 0
+				self.timetableView.alpha = 0
+				self.markbookView.alpha = 0
+				self.otherView.alpha = 0
+				self.ucasPredictionsView.alpha = 0
+				self.examTimetableView.alpha = 0
+				self.woodleEventsView.alpha = 0
+				self.studentBulletinView.alpha = 0
+				self.pastoralView.alpha = 1
+				self.staffGalleryView.alpha = 0
+			})
+		}
+	}
+	
+	private func showStaffGallery() {
+		DispatchQueue.main.async {
+			UIView.animate(withDuration: 0.2, animations: {
+				self.attendanceView.alpha = 0
+				self.timetableView.alpha = 0
+				self.markbookView.alpha = 0
+				self.otherView.alpha = 0
+				self.ucasPredictionsView.alpha = 0
+				self.examTimetableView.alpha = 0
+				self.woodleEventsView.alpha = 0
+				self.studentBulletinView.alpha = 0
+				self.pastoralView.alpha = 0
+				self.staffGalleryView.alpha = 1
+>>>>>>> Stashed changes
 			})
 		}
 	}
 
 }
+
+extension MainViewController: UIGestureRecognizerDelegate { }
 
 extension MainViewController: PillBarDelegate {
 	
@@ -223,15 +334,11 @@ extension MainViewController: PillBarDelegate {
 	
 }
 
-extension MainViewController: MarkbookProtocol {
+extension MainViewController: ShowProtocol, DismissProtocol {
 	
-	func changeSubjectRequiresDisplay(alert: UIAlertController){
+	func showAlert(_ alert: UIAlertController) {
 		self.present(alert, animated: true)
 	}
-	
-}
-
-extension MainViewController: ShowProtocol, DismissProtocol {
 	
 	func showRequested(_ view: OtherViews) {
 		switch view {
@@ -243,6 +350,13 @@ extension MainViewController: ShowProtocol, DismissProtocol {
 			self.showWoodleEventsView()
 		case .studentBulletin:
 			self.showStudentBulletin()
+<<<<<<< Updated upstream
+=======
+		case .pastoral:
+			self.showPastoral()
+		case .staffGallery:
+			self.showStaffGallery()
+>>>>>>> Stashed changes
 		}
 	}
 	

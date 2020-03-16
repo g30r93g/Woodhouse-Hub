@@ -53,14 +53,14 @@ class TimetableCell: RoundUICollectionViewCell {
 	}
 	
 	private func unhighlightPastLesson(from data: Student.TimetableEntry) {
-		print("[TimetableCell] \(data.endTime) < \(Date()) == \(data.endTime < Date())")
+//		print("[TimetableCell] \(data.endTime) < \(Date()) == \(data.endTime < Date())")
 		if data.endTime < Date() {
 			self.lessonContainerView.backgroundColor = #colorLiteral(red: 0.462745098, green: 0.5529411765, blue: 0.6745098039, alpha: 1)
 		}
 	}
 
 	private func highlightCurrentLesson(from data: Student.TimetableEntry) {
-		print("[TimetableCell] \(data.startTime) < \(Date()) < \(data.endTime) == \(Date().fallsIn(lower: data.startTime, upper: data.endTime))")
+//		print("[TimetableCell] \(data.startTime) < \(Date()) < \(data.endTime) == \(Date().fallsIn(lower: data.startTime, upper: data.endTime))")
 		if Date().fallsIn(lower: data.startTime, upper: data.endTime) {
 			self.lessonContainerView.backgroundColor = #colorLiteral(red: 0.1490196078, green: 0.4156862745, blue: 0.7176470588, alpha: 1)
 			self.nextCurrentLesson.text = "\(Int(data.endTime.timeIntervalSince(Date()) / 60)) mins left"
@@ -71,7 +71,7 @@ class TimetableCell: RoundUICollectionViewCell {
 	private func highlightNextLesson(from data: Student.TimetableEntry) {
 		guard let nextLesson = Student.current.studentProfile?.timetable.sorted(by: {$0.day < $1.day}).filter({$0.startTime > Date()}).first else { return }
 		
-		print("[TimetableCell] \(data) = \(nextLesson) == \(data == nextLesson)")
+//		print("[TimetableCell] \(data) = \(nextLesson) == \(data == nextLesson)")
 		if data == nextLesson {
 			self.lessonContainerView.backgroundColor = #colorLiteral(red: 0.1058823529, green: 0.2862745098, blue: 0.5921568627, alpha: 1)
 			self.nextCurrentLesson.text = "Next"

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fn3-ze-B7Q">
+    <device id="retina4_7" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Student Image Finder View Controller-->
+        <scene sceneID="UXO-6I-ZqN">
+            <objects>
+                <viewController id="fn3-ze-B7Q" customClass="StudentImageFinderViewController" customModule="Woodhouse_Hub" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IMz-wa-ROO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Student ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WRf-V8-Boy">
+                                <rect key="frame" x="35" y="78" width="305" height="34"/>
+                                <color key="backgroundColor" name="Buttons"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSK-ao-DsR" customClass="RoundButton" customModule="Woodhouse_Hub" customModuleProvider="target">
+                                <rect key="frame" x="35" y="18" width="40" height="40"/>
+                                <color key="backgroundColor" name="Buttons"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="84y-HT-QlC"/>
+                                    <constraint firstAttribute="height" constant="40" id="HOj-BN-pWT"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="xmark" catalog="system"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="dismissTapped:" destination="fn3-ze-B7Q" eventType="touchUpInside" id="a0p-Er-mWc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1oh-Ys-TSL" customClass="RoundButton" customModule="Woodhouse_Hub" customModuleProvider="target">
+                                <rect key="frame" x="60" y="132" width="255" height="50"/>
+                                <color key="backgroundColor" name="Buttons"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Xgz-Zg-qXt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Find">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="findImageTapped:" destination="fn3-ze-B7Q" eventType="touchUpInside" id="7Yb-nQ-OeT"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="tGy-NW-yIZ">
+                                <rect key="frame" x="303" y="18" width="37" height="40"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" name="Background"/>
+                        <constraints>
+                            <constraint firstItem="WRf-V8-Boy" firstAttribute="leading" secondItem="gSK-ao-DsR" secondAttribute="leading" id="2tQ-n7-oKt"/>
+                            <constraint firstItem="1oh-Ys-TSL" firstAttribute="leading" secondItem="WRf-V8-Boy" secondAttribute="leading" constant="25" id="Elv-UB-HDG"/>
+                            <constraint firstItem="WRf-V8-Boy" firstAttribute="top" secondItem="gSK-ao-DsR" secondAttribute="bottom" constant="20" id="Ghn-g6-B7f"/>
+                            <constraint firstItem="1oh-Ys-TSL" firstAttribute="centerX" secondItem="WRf-V8-Boy" secondAttribute="centerX" id="L8h-cb-E69"/>
+                            <constraint firstItem="tGy-NW-yIZ" firstAttribute="bottom" secondItem="gSK-ao-DsR" secondAttribute="bottom" id="TcE-sP-gv0"/>
+                            <constraint firstItem="WRf-V8-Boy" firstAttribute="centerX" secondItem="Lct-k5-aXC" secondAttribute="centerX" id="VvC-sT-sMU"/>
+                            <constraint firstItem="tGy-NW-yIZ" firstAttribute="trailing" secondItem="WRf-V8-Boy" secondAttribute="trailing" id="Z5U-V1-vHl"/>
+                            <constraint firstItem="tGy-NW-yIZ" firstAttribute="top" secondItem="gSK-ao-DsR" secondAttribute="top" id="eLe-dh-acW"/>
+                            <constraint firstItem="gSK-ao-DsR" firstAttribute="leading" secondItem="Lct-k5-aXC" secondAttribute="leading" constant="35" id="l4y-jn-R1w"/>
+                            <constraint firstItem="1oh-Ys-TSL" firstAttribute="top" secondItem="WRf-V8-Boy" secondAttribute="bottom" constant="20" id="nQm-TA-zXw"/>
+                            <constraint firstItem="tGy-NW-yIZ" firstAttribute="centerY" secondItem="gSK-ao-DsR" secondAttribute="centerY" id="qoe-iB-FaI"/>
+                            <constraint firstItem="gSK-ao-DsR" firstAttribute="top" secondItem="Lct-k5-aXC" secondAttribute="top" constant="18" id="z1K-Mi-5m4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Lct-k5-aXC"/>
+                    </view>
+                    <connections>
+                        <outlet property="dismissButton" destination="gSK-ao-DsR" id="PWv-W9-exX"/>
+                        <outlet property="findImageButton" destination="1oh-Ys-TSL" id="UqK-l9-R1E"/>
+                        <outlet property="loadingIndicator" destination="tGy-NW-yIZ" id="Y2e-qf-zge"/>
+                        <outlet property="studentIDTextField" destination="WRf-V8-Boy" id="t7d-DY-qvj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BWQ-hI-Wxa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-24.800000000000001" y="-20.239880059970016"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="Background">
+            <color red="0.96100002527236938" green="0.96100002527236938" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Buttons">
+            <color red="0.058823529411764705" green="0.15686274509803921" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

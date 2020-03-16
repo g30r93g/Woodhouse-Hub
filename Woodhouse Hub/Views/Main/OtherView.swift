@@ -15,6 +15,7 @@ class OtherView: RoundTopView {
 	@IBOutlet weak private var examTimetable: UIButton!
 	@IBOutlet weak private var woodleEvents: UIButton!
 	@IBOutlet weak private var studentBulletin: UIButton!
+	@IBOutlet weak private var staffLookup: UIButton!
 	@IBOutlet weak private var signOut: UIButton!
 	@IBOutlet weak private var authorName: UIButton!
 	
@@ -43,6 +44,17 @@ class OtherView: RoundTopView {
 		self.delegate?.showRequested(.studentBulletin)
 	}
 	
+<<<<<<< Updated upstream
+=======
+	@IBAction private func showPastoral(_ sender: UIButton) {
+		self.delegate?.showRequested(.pastoral)
+	}
+	
+	@IBAction private func showStaffLookup(_ sender: UIButton) {
+		self.delegate?.showRequested(.staffGallery)
+	}
+	
+>>>>>>> Stashed changes
 	@IBAction private func signOutTapped(_ sender: UIButton) {
 		self.delegate?.signOutRequested()
 	}
