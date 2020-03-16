@@ -362,6 +362,9 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -728,7 +731,11 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				CURRENT_PROJECT_VERSION = 17;
+=======
+				CURRENT_PROJECT_VERSION = 20;
+>>>>>>> Stashed changes
 =======
 				CURRENT_PROJECT_VERSION = 20;
 >>>>>>> Stashed changes
@@ -767,7 +774,11 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				CURRENT_PROJECT_VERSION = 17;
+=======
+				CURRENT_PROJECT_VERSION = 20;
+>>>>>>> Stashed changes
 =======
 				CURRENT_PROJECT_VERSION = 20;
 >>>>>>> Stashed changes
