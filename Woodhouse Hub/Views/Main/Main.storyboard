@@ -22,6 +22,7 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tNn-bv-698" customClass="StudentBulletinView" customModule="Woodhouse_Hub" customModuleProvider="target">
 =======
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wej-dg-gw1" customClass="StaffGalleryView" customModule="Woodhouse_Hub" customModuleProvider="target">
@@ -33,6 +34,137 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wej-dg-gw1" customClass="StaffGalleryView" customModule="Woodhouse_Hub" customModuleProvider="target">
 =======
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wej-dg-gw1" customClass="StaffGalleryView" customModule="Woodhouse_Hub" customModuleProvider="target">
+=======
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wej-dg-gw1" customClass="StaffGalleryView" customModule="Woodhouse_Hub" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="284" width="414" height="612"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Staff Lookup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mZ-hn-jRd">
+                                        <rect key="frame" x="65" y="10" width="95" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="textColor" name="Text"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGe-yg-lFH" customClass="RoundButton" customModule="Woodhouse_Hub" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="10" width="30" height="30"/>
+                                        <color key="backgroundColor" name="Buttons"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="4sU-cZ-7Oc"/>
+                                            <constraint firstAttribute="width" constant="30" id="GZ7-53-tSc"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="arrow.left" catalog="system"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="backTapped:" destination="ZG0-mY-KuF" eventType="touchUpInside" id="KNw-CX-olf"/>
+                                            <action selector="backTapped:" destination="wej-dg-gw1" eventType="touchUpInside" id="ulm-8O-Pa5"/>
+                                        </connections>
+                                    </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="120" estimatedRowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Jdb-DY-X31">
+                                        <rect key="frame" x="20" y="50" width="374" height="438"/>
+                                        <color key="backgroundColor" name="Background"/>
+                                        <color key="separatorColor" name="Buttons"/>
+                                        <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="sectionIndexBackgroundColor" name="Buttons"/>
+                                        <color key="sectionIndexTrackingBackgroundColor" name="Buttons"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Staff Member" id="Sl0-g8-dgb" customClass="StaffCell" customModule="Woodhouse_Hub" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="374" height="120"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sl0-g8-dgb" id="20r-co-HXK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="120"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tjk-zW-9PM">
+                                                            <rect key="frame" x="0.0" y="0.0" width="85" height="120"/>
+                                                            <color key="backgroundColor" name="Color"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="120" id="SIu-IJ-xW8"/>
+                                                                <constraint firstAttribute="width" constant="85" id="hK5-4L-2Ka"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="0.0"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ix6-Jr-Cgy">
+                                                            <rect key="frame" x="95" y="20" width="269" height="19.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnA-fv-sSn" customClass="RoundButton" customModule="Woodhouse_Hub" customModuleProvider="target">
+                                                            <rect key="frame" x="95" y="70" width="269" height="30"/>
+                                                            <color key="backgroundColor" name="Buttons"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <state key="normal" title="Email: ">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="15"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="sendEmail:" destination="Sl0-g8-dgb" eventType="touchUpInside" id="yl0-c4-RYj"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="ix6-Jr-Cgy" firstAttribute="leading" secondItem="tjk-zW-9PM" secondAttribute="trailing" constant="10" id="DJf-1z-FLg"/>
+                                                        <constraint firstAttribute="bottom" secondItem="gnA-fv-sSn" secondAttribute="bottom" constant="20" id="Exe-ZS-Pyq"/>
+                                                        <constraint firstItem="tjk-zW-9PM" firstAttribute="leading" secondItem="20r-co-HXK" secondAttribute="leading" id="K2U-OO-zQK"/>
+                                                        <constraint firstItem="gnA-fv-sSn" firstAttribute="centerX" secondItem="ix6-Jr-Cgy" secondAttribute="centerX" id="OYK-5U-bED"/>
+                                                        <constraint firstItem="ix6-Jr-Cgy" firstAttribute="top" secondItem="20r-co-HXK" secondAttribute="top" constant="20" id="UgU-SE-Do2"/>
+                                                        <constraint firstItem="gnA-fv-sSn" firstAttribute="trailing" secondItem="ix6-Jr-Cgy" secondAttribute="trailing" id="fsa-qe-EJV"/>
+                                                        <constraint firstAttribute="trailing" secondItem="ix6-Jr-Cgy" secondAttribute="trailing" constant="10" id="gZC-pu-JTf"/>
+                                                        <constraint firstItem="tjk-zW-9PM" firstAttribute="top" secondItem="20r-co-HXK" secondAttribute="top" id="pmS-Bt-7m4"/>
+                                                        <constraint firstItem="gnA-fv-sSn" firstAttribute="leading" secondItem="ix6-Jr-Cgy" secondAttribute="leading" id="wGC-VS-2PD"/>
+                                                        <constraint firstAttribute="bottom" secondItem="tjk-zW-9PM" secondAttribute="bottom" id="yTd-kH-k12"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" name="Background"/>
+                                                <connections>
+                                                    <outlet property="staffEmail" destination="gnA-fv-sSn" id="D7T-3v-A4a"/>
+                                                    <outlet property="staffImage" destination="tjk-zW-9PM" id="vf4-ge-FMZ"/>
+                                                    <outlet property="staffName" destination="ix6-Jr-Cgy" id="nsn-hQ-Dj4"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="wej-dg-gw1" id="sUZ-OC-zsf"/>
+                                            <outlet property="delegate" destination="wej-dg-gw1" id="HaA-4T-fKN"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" name="Foreground"/>
+                                <constraints>
+                                    <constraint firstItem="6mZ-hn-jRd" firstAttribute="leading" secondItem="MGe-yg-lFH" secondAttribute="trailing" constant="15" id="Lwk-82-eN5"/>
+                                    <constraint firstItem="Jdb-DY-X31" firstAttribute="top" secondItem="MGe-yg-lFH" secondAttribute="bottom" constant="10" id="aRe-Tn-edz"/>
+                                    <constraint firstItem="6mZ-hn-jRd" firstAttribute="bottom" secondItem="MGe-yg-lFH" secondAttribute="bottom" id="cU0-N2-IqP"/>
+                                    <constraint firstItem="Jdb-DY-X31" firstAttribute="leading" secondItem="MGe-yg-lFH" secondAttribute="leading" id="dn2-vb-TtY"/>
+                                    <constraint firstItem="MGe-yg-lFH" firstAttribute="top" secondItem="wej-dg-gw1" secondAttribute="top" constant="10" id="jGO-MV-td0"/>
+                                    <constraint firstItem="MGe-yg-lFH" firstAttribute="leading" secondItem="wej-dg-gw1" secondAttribute="leading" constant="20" id="oYB-pj-cLf"/>
+                                    <constraint firstItem="6mZ-hn-jRd" firstAttribute="top" secondItem="MGe-yg-lFH" secondAttribute="top" id="wru-dq-XN1"/>
+                                    <constraint firstItem="6mZ-hn-jRd" firstAttribute="centerY" secondItem="MGe-yg-lFH" secondAttribute="centerY" id="xbZ-Rs-WHu"/>
+                                    <constraint firstItem="Jdb-DY-X31" firstAttribute="centerX" secondItem="wej-dg-gw1" secondAttribute="centerX" id="zg6-LV-YZW"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="staffGallery" destination="Jdb-DY-X31" id="FiO-eA-JRn"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f8s-jg-Wff" userLabel="UCAS Predictions View" customClass="UCASPredictionsView" customModule="Woodhouse_Hub" customModuleProvider="target">
+>>>>>>> Stashed changes
                                 <rect key="frame" x="0.0" y="284" width="414" height="612"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Staff Lookup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mZ-hn-jRd">
@@ -1326,7 +1458,11 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="490"/>
+=======
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="630"/>
+>>>>>>> Stashed changes
 =======
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="630"/>
 >>>>>>> Stashed changes
@@ -1421,7 +1557,11 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                                                         <rect key="frame" x="10" y="320" width="354" height="50"/>
+=======
+                                                        <rect key="frame" x="10" y="460" width="354" height="50"/>
+>>>>>>> Stashed changes
 =======
                                                         <rect key="frame" x="10" y="460" width="354" height="50"/>
 >>>>>>> Stashed changes
@@ -1459,7 +1599,11 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                                                         <rect key="frame" x="0.0" y="450" width="374" height="30"/>
+=======
+                                                        <rect key="frame" x="0.0" y="590" width="374" height="30"/>
+>>>>>>> Stashed changes
 =======
                                                         <rect key="frame" x="0.0" y="590" width="374" height="30"/>
 >>>>>>> Stashed changes
@@ -1492,9 +1636,12 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                                                         <rect key="frame" x="10" y="390" width="354" height="50"/>
                                                         <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -2574,6 +2721,9 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -2604,7 +2754,10 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
