@@ -10,6 +10,7 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             uuid = "2DF0C2F6-8EA7-4756-A9FC-508A290CE1C0"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -168,22 +169,8 @@
             uuid = "A014B3DF-1138-46A6-81A1-DE7DB0198B09"
 =======
             uuid = "A014B3DF-1138-46A6-81A1-DE7DB0198B09"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Woodhouse Hub/Supporting Views/Student Image Finder/StudentImageFinderViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "loadStudentImage()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "67D6C57C-73CB-45F7-8C0F-4F523884FAA7"
+=======
+            uuid = "B0F6FADA-09B6-4443-96B6-4BA14D7D09F3"
 >>>>>>> Stashed changes
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -194,6 +181,67 @@
 <<<<<<< Updated upstream
             startingLineNumber = "46"
             endingLineNumber = "46"
+=======
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+>>>>>>> Stashed changes
+            landmarkName = "loadStudentImage()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B0F6FADA-09B6-4443-96B6-4BA14D7D09F3 - 161326cbf562f966"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Woodhouse_Hub.StudentImageFinderViewController.(loadStudentImage in _ED00F193EA665B83ACFCBA2640B05723)() -&gt; ()"
+                  moduleName = "Woodhouse Hub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/g30r93g/Local%20Documents/GitHub/Woodhouse-Hub/Woodhouse%20Hub/Supporting%20Views/Student%20Image%20Finder/StudentImageFinderViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "1236">
+               </Location>
+               <Location
+                  uuid = "B0F6FADA-09B6-4443-96B6-4BA14D7D09F3 - 682126861e90fa49"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Woodhouse_Hub.StudentImageFinderViewController.(loadStudentImage in _ED00F193EA665B83ACFCBA2640B05723)() -&gt; ()"
+                  moduleName = "Woodhouse Hub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/g30r93g/Local%20Documents/GitHub/Woodhouse-Hub/Woodhouse%20Hub/Supporting%20Views/Student%20Image%20Finder/StudentImageFinderViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "292">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+<<<<<<< Updated upstream
+            uuid = "67D6C57C-73CB-45F7-8C0F-4F523884FAA7"
+>>>>>>> Stashed changes
+=======
+            uuid = "A014B3DF-1138-46A6-81A1-DE7DB0198B09"
+>>>>>>> Stashed changes
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Woodhouse Hub/Supporting Views/Student Image Finder/StudentImageFinderViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "loadStudentImage()"
             landmarkType = "7">
          </BreakpointContent>
@@ -201,6 +249,9 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             uuid = "67D6C57C-73CB-45F7-8C0F-4F523884FAA7"
             shouldBeEnabled = "Yes"
@@ -213,6 +264,7 @@
             endingLineNumber = "53"
             landmarkName = "saveToPhotos(_:)"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -223,6 +275,11 @@
             startingLineNumber = "53"
             endingLineNumber = "53"
             landmarkName = "saveToPhotos(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+>>>>>>> Stashed changes
+=======
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
