@@ -588,6 +588,29 @@ class DashboardInteractor: NSObject {
 //
 //					}
 					
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+					// TODO: Add Pastoral Messages
+					guard let statusMessages = try! pastoralDoc.getElementsByClass("studentPastoralNotifications").first() else { self.retryPastoral(); return }
+//					print("[DashboardInteractor] Pastoral - Status Messages: \(try! statusMessages.text())")
+					
+					// Use native browser to parse each time we click the relevant button
+//					self.studentProfileWebView.evaluateJavaScript("document.getElementsByClassName('studentPastoralNotifications')[0].getElementsByTagName('a').toString()") { (html, error) in
+//
+//					}
+					
+//					guard let messages = try! pastoralDoc.getElementsByTag("table").first()?.getElementsByTag("tbody").first()?.getElementsByTag("tr") else { self.retryPastoral(); return }
+//
+//					var pastoralMessageEntries: [Student.PastoralMessage] = []
+//					for (index, message) in messages.enumerated() {
+//						let tableData = try! message.getElementsByTag("td")
+//						let url = try! tableData[7].attr("href")
+//
+//						guard let messageURL = URL(string: url) else { continue }
+//
+//					}
+					
 >>>>>>> Stashed changes
 					// Attatch Pastoral Information
 					Student.current.addPastoral(from: Student.Pastoral(generalStatus: Student.PastoralStatus(rawValue: pastoralStatus) ?? .unknown, praise: Int(praise)!, neutral: Int(neutral)!, concern: Int(concern)!, pastoralHistory: statusHistoryEntries))

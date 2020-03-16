@@ -41,6 +41,9 @@ class MainViewController: UIViewController {
 	@IBOutlet weak private var pastoralView: PastoralView!
 	@IBOutlet weak private var staffGalleryView: StaffGalleryView!
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -65,6 +68,9 @@ class MainViewController: UIViewController {
 		case pastoral
 		case staffGallery
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -102,6 +108,9 @@ class MainViewController: UIViewController {
 		
 		self.performSegue(withIdentifier: "Find Student Image", sender: self)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -144,6 +153,9 @@ class MainViewController: UIViewController {
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -167,6 +179,9 @@ class MainViewController: UIViewController {
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -190,6 +205,9 @@ class MainViewController: UIViewController {
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -213,6 +231,9 @@ class MainViewController: UIViewController {
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -236,6 +257,9 @@ class MainViewController: UIViewController {
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -259,6 +283,9 @@ class MainViewController: UIViewController {
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -282,6 +309,9 @@ class MainViewController: UIViewController {
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -339,6 +369,9 @@ class MainViewController: UIViewController {
 				self.pastoralView.alpha = 0
 				self.staffGalleryView.alpha = 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -390,6 +423,9 @@ extension MainViewController: ShowProtocol, DismissProtocol {
 		case .staffGallery:
 			self.showStaffGallery()
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

@@ -360,6 +360,9 @@
 				1F2DB841241B945D009657A8 /* PastoralView.swift */,
 				1F3DFDCB241C51990034A53F /* StaffGalleryView.swift */,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -720,7 +723,11 @@
 				CODE_SIGN_STYLE = Automatic;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				CURRENT_PROJECT_VERSION = 17;
+=======
+				CURRENT_PROJECT_VERSION = 20;
+>>>>>>> Stashed changes
 =======
 				CURRENT_PROJECT_VERSION = 20;
 >>>>>>> Stashed changes
@@ -751,7 +758,11 @@
 				CODE_SIGN_STYLE = Automatic;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				CURRENT_PROJECT_VERSION = 17;
+=======
+				CURRENT_PROJECT_VERSION = 20;
+>>>>>>> Stashed changes
 =======
 				CURRENT_PROJECT_VERSION = 20;
 >>>>>>> Stashed changes
