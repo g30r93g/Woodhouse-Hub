@@ -11,6 +11,7 @@ import UIKit
 class OtherView: RoundTopView {
 	
 	// MARK: IBOutlets
+	@IBOutlet weak private var pastoral: UIButton!
 	@IBOutlet weak private var ucasPredictions: UIButton!
 	@IBOutlet weak private var examTimetable: UIButton!
 	@IBOutlet weak private var woodleEvents: UIButton!

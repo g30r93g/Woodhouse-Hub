@@ -119,10 +119,18 @@ class AttendanceView: RoundTopView {
 extension AttendanceView: UIGestureRecognizerDelegate { }
 
 extension AttendanceView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+	
+	func numberOfSections(in collectionView: UICollectionView) -> Int {
+		if collectionView == self.calendarCollection {
+			return self.weekBeginnings.count
+		} else {
+			return 1
+		}
+	}
 
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		if collectionView == self.calendarCollection {
-			return self.weekBeginnings.count * 5
+			return 5
 		} else if collectionView == self.attendanceEntryCollection {
 			guard let attendance = Student.current.getAttendance()?.detailedAttendance else { return 0 }
 			
@@ -137,9 +145,9 @@ extension AttendanceView: UICollectionViewDelegate, UICollectionViewDataSource, 
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Calendar", for: indexPath) as! CalendarCell
 			var data: Date {
 				// Determine week beginning
-				let weekBeginning = self.weekBeginnings[indexPath.item / 5]
+				let weekBeginning = self.weekBeginnings[indexPath.section]
 				
-				return weekBeginning.addDays(value: 4 - (indexPath.item % 5))
+				return weekBeginning.addDays(value: indexPath.row)
 			}
 			
 			cell.setupCell(with: data, selectedDate: self.selectedDate)
