@@ -5,7 +5,6 @@
 //  Created by George Nick Gorzynski on 14/01/2020.
 //  Copyright © 2020 g30r93g. All rights reserved.
 //
-
 import UIKit
 
 @available(iOS 13.0, *)
@@ -53,7 +52,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// Called as the scene transitions from the foreground to the background.
 		// Use this method to save data, release shared resources, and store enough scene-specific state information
 		// to restore the scene back to its current state.
-
 		// Save changes in the application's managed object context when the application transitions to the background.
 	}
 	
@@ -72,4 +70,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	}
 	
 }
-

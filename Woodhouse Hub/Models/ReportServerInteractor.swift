@@ -167,7 +167,7 @@ class ReportServerInteractor: NSObject {
 extension ReportServerInteractor: WKNavigationDelegate {
 	
 	func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-		print("ReportServerInteractor] Navigation Ended - \(webView.url?.absoluteString)")
+//		print("Navigation Ended - \(webView.url?.absoluteString)")
 		
 		switch webView {
 		case self.ucasWebView:
@@ -183,7 +183,7 @@ extension ReportServerInteractor: WKNavigationDelegate {
 	}
 	
 	func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-		print("[ReportServerInteractor] Auth requested for host \(challenge.protectionSpace.host) via \(challenge.protectionSpace.authenticationMethod)")
+//		print("Auth requested for host \(challenge.protectionSpace.host) via \(challenge.protectionSpace.authenticationMethod)")
 		
 		if challenge.protectionSpace.host == "reportserver.woodhouse.ac.uk" {
 			guard let credentials = WoodhouseCredentials.shared.getCredential() else { completionHandler(.performDefaultHandling, nil); return }

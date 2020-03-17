@@ -48,7 +48,6 @@ class RoundTopView: UIView {
 	}
 	
 }
-
 // A round UIButton
 @IBDesignable
 class RoundButton: UIButton {

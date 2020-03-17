@@ -87,7 +87,7 @@ class MailingDelegate {
 		return url
 	}
 	
-	// MARK: Enum
+	// MARK: Enums
 	enum MailComposeError: Error {
 		case urlError
 		case unexpectedError

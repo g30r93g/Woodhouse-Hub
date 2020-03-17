@@ -141,8 +141,8 @@ class WoodleInteractor: NSObject {
 					if error != nil { fatalError() }
 					
 					self.homeWebView.evaluateJavaScript("document.getElementById('ImageButton1').click()") { (_, error) in
-						print("[WoodleInteractor] Finished Sign In Sequence")
 						completion(error == nil)
+						print("[WoodleInteractor] Finished Sign In Sequence")
 					}
 				}
 			}
@@ -474,10 +474,10 @@ extension WoodleInteractor: WKNavigationDelegate {
 					self.isSignedIn = isSignedIn
 				}
 			}
-		} else if url.contains("https://vle.woodhouse.ac.uk/default.aspx") {
+		} else if url.contains("default.aspx") || url.contains("studenthome.aspx#eventlist") {
 			// Load Student Home for Upcoming Events and student bulletin
 			self.loadUpcomingEvents()
-		} else if url == "https://vle.woodhouse.ac.uk/studenthome.aspx?eventcat=Events&#eventlist" {
+		} else if url.contains("studenthome.aspx?eventcat=Events&#eventlist") {
 			// Parse Upcoming Events
 			self.fetchUpcomingEvents()
 		} else if url == "https://vle.woodhouse.ac.uk/studenthome.aspx?eventcat=Registered&#eventlist" {

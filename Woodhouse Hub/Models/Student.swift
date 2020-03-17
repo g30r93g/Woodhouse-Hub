@@ -6,7 +6,6 @@
 //  Copyright © 2020 g30r93g. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class Student {
@@ -137,10 +136,53 @@ class Student {
 		let detailedAttendance: [AttendanceEntry]
 	}
 	
-	struct AttendanceEntry: Comparable {
+	class AttendanceEntry: Comparable {
 		let classIdentifier: String
 		let attendanceMark: AttendanceMark
 		let date: Date
+		let correspondingTimetableEntry: TimetableEntry?
+		
+		// MARK: Initialiser
+		init(classIdentifier: String, attendanceMark: AttendanceMark, date: Date) {
+			self.classIdentifier = classIdentifier
+			self.attendanceMark = attendanceMark
+			self.date = date
+			
+			if let timetable = Student.current.getTimetable(), let matchingEntry = timetable.first(where: {$0.classIdentifier == classIdentifier}) {
+				self.correspondingTimetableEntry = matchingEntry
+			} else {
+				self.correspondingTimetableEntry = nil
+			}
+		}
+		
+		func prettyAttendanceMark() -> String {
+			switch self.attendanceMark {
+			case .present:
+				return "Present"
+			case .late:
+				return "Late"
+			case .veryLate:
+				return "Very Late"
+			case .unauthorisedAbsence:
+				return "Unauthorised Absence"
+			case .notifiedAbsence:
+				return "Notified Absence"
+			case .internalExam:
+				return "Internal Exam"
+			case .permissionToMiss:
+				return "Permission to Miss Lesson"
+			case .cancelled:
+				return "Cancelled"
+			case .transferIntoSet:
+				return "Transfer In"
+			case .transferOutOfSet:
+				return "Transfer Out"
+			case .event:
+				return "Event"
+			case .mark:
+				return ""
+			}
+		}
 		
 		// MARK: Equatable
 		static func == (lhs: AttendanceEntry, rhs: AttendanceEntry) -> Bool {

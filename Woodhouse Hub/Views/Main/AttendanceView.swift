@@ -15,8 +15,9 @@ class AttendanceView: RoundTopView {
 	@IBOutlet weak private var attendanceEntryCollection: UICollectionView!
 	
 	// MARK: Properties
+	var delegate: ShowProtocol? = nil
 	private var weekBeginnings: [Date] = []
-	private var selectedDate = Date()
+	private var selectedDate = Date().getMondayOfWeek()
 	
 	// MARK: Override Methods
 	override func awakeFromNib() {
@@ -26,18 +27,82 @@ class AttendanceView: RoundTopView {
 	}
 	
 	// MARK: Methods
+	private func attachLongPressRecogniser() {
+		let deleteLongPress = UILongPressGestureRecognizer(target: self, action: #selector(attendanceOptionsHandler(gesture:)))
+		deleteLongPress.minimumPressDuration = 0.3
+		deleteLongPress.delaysTouchesBegan = true
+		deleteLongPress.delegate = self
+		self.attendanceEntryCollection.addGestureRecognizer(deleteLongPress)
+	}
+	
+	@objc private func attendanceOptionsHandler(gesture: UILongPressGestureRecognizer) {
+		guard gesture.state == .began else { return }
+		
+		let pointPressed = gesture.location(in: self.attendanceEntryCollection)
+		
+		if let indexPath = self.attendanceEntryCollection.indexPathForItem(at: pointPressed) {
+			guard let attendance = Student.current.getAttendance()?.detailedAttendance else { return }
+			let data = attendance.filter({$0.date == self.selectedDate})[indexPath.item]
+			let className = data.correspondingTimetableEntry?.name ?? data.classIdentifier
+			
+			let alert = UIAlertController(title: "Options for \(className)", message: nil, preferredStyle: .actionSheet)
+			
+			let challenge = UIAlertAction(title: "Challenge Attendance Mark", style: .default) { (_) in
+				let body = """
+				Dear \(data.correspondingTimetableEntry?.teacher ?? "Teacher"),
+
+				I am writing regarding our lesson on \(data.date.extendedDate()). You marked me as \(data.prettyAttendanceMark()). However, I believe I should have been marked ________.
+				Please could you update this?
+				
+				Many thanks,
+				\(Student.current.getDetails()?.name ?? "Student") (\(Student.current.getDetails()?.id ?? "Student ID"))
+				"""
+				
+				var teacherEmail: String? {
+					if let teacherCode = data.correspondingTimetableEntry?.teacherCode {
+						return WoodleInteractor.shared.getStaffGallery()?.first(where: {teacherCode == $0.code})?.email
+					} else {
+						return nil
+					}
+				}
+				
+				var recipients: [String] = []
+				if let teacherEmail = teacherEmail {
+					recipients.append(teacherEmail)
+				}
+				
+				do {
+					let mail = MailingDelegate(subject: "Incorrect Attendance Mark for Lesson on \(data.date.extendedDate())", body: body, recipients: recipients)
+					try mail.composeEmail()
+				} catch {
+					return
+				}
+			}
+			
+			let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+				alert.dismiss(animated: true, completion: nil)
+			}
+			
+			alert.addAction(challenge)
+			alert.addAction(cancel)
+			
+			self.delegate?.showAlert(alert)
+		}
+	}
+	
 	private func registerForNotifications() {
 		NotificationCenter.default.addObserver(self, selector: #selector(updateView), name: Notification.Name(rawValue: "dashboard.gatheredAttendance"), object: nil)
 	}
 	
 	private func setupView() {
 		self.registerForNotifications()
+		self.attachLongPressRecogniser()
 		self.updateView()
 	}
 	
 	func setupWeekBeginnings() {
 		if let attendance = Student.current.getAttendance()?.detailedAttendance {
-			self.weekBeginnings = attendance.map({$0.date.getMondayOfWeek()}).removeDuplicates()
+			self.weekBeginnings = attendance.map({$0.date.getMondayOfWeek()}).removeDuplicates().sorted().reversed()
 		}
 	}
 	
@@ -51,19 +116,13 @@ class AttendanceView: RoundTopView {
 	
 }
 
+extension AttendanceView: UIGestureRecognizerDelegate { }
+
 extension AttendanceView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-	
-	func numberOfSections(in collectionView: UICollectionView) -> Int {
-		if collectionView == self.calendarCollection {
-			return self.weekBeginnings.count
-		} else {
-			return 1
-		}
-	}
 
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		if collectionView == self.calendarCollection {
-			return 5
+			return self.weekBeginnings.count * 5
 		} else if collectionView == self.attendanceEntryCollection {
 			guard let attendance = Student.current.getAttendance()?.detailedAttendance else { return 0 }
 			
@@ -78,9 +137,9 @@ extension AttendanceView: UICollectionViewDelegate, UICollectionViewDataSource, 
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Calendar", for: indexPath) as! CalendarCell
 			var data: Date {
 				// Determine week beginning
-				let weekBeginning = self.weekBeginnings[indexPath.section]
+				let weekBeginning = self.weekBeginnings[indexPath.item / 5]
 				
-				return weekBeginning.addDays(value: indexPath.item % 5)
+				return weekBeginning.addDays(value: 4 - (indexPath.item % 5))
 			}
 			
 			cell.setupCell(with: data, selectedDate: self.selectedDate)
@@ -122,5 +181,5 @@ extension AttendanceView: UICollectionViewDelegate, UICollectionViewDataSource, 
 			return .zero
 		}
 	}
-	
+
 }

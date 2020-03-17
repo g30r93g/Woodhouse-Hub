@@ -73,7 +73,7 @@ class Settings {
 	
 	// MARK: Methods
 	func signOut() {
-		Settings().isSignedIn = false
+		self.isSignedIn = false
 		
 		// Remove credentials
 		WoodhouseCredentials.shared.setUsername(to: "")
@@ -84,12 +84,7 @@ class Settings {
 		DashboardInteractor.shared.signOut()
 		ReportServerInteractor.shared.signOut()
 		WoodleInteractor.shared.signOut()
-		
 		NotificationManager.session.removeAllNotifications()
-		CoreDataManager.manager.deleteAndRebuild()
-		
-		// Crash app to reset app completely
-		abort()
 	}
 	
 }

@@ -44,7 +44,7 @@ class NotificationManager {
 		let morningTimetableCategory = UNNotificationCategory(identifier: "Morning Timetabled", actions: [], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: .hiddenPreviewsShowTitle)
 		self.addCategory(morningTimetableCategory)
 		
-		for date in timetable.map({$0.startTime.dayOfWeek()}).removeDuplicates().map({Date().getMondayOfWeek().addDays(value: $0 - 1)}) {
+		for date in timetable.map({$0.startTime.dayOfWeek()}).removeDuplicates().map({Date().getMondayOfWeek().addDays(value: $0)}) {
 			var lessonNames = timetable.filter({$0.startTime.dayOfWeek() == date.dayOfWeek()}).map({$0.name}).removeDuplicates()
 			lessonNames.removeAll(where: {$0.contains("Lunch")})
 			lessonNames.removeAll(where: {$0.contains("Learning Zone Study")})
@@ -151,15 +151,15 @@ class NotificationManager {
 	}
 	
 	private func createThursdayBulletinTimeTrigger() -> UNCalendarNotificationTrigger {
-		let dateComponents = Date().getMondayOfWeek().addDays(value: 3).usingTime(10, 30, 0).dateComponents([.weekday, .hour, .minute])
+		let dateComponents = Date().getMondayOfWeek().addDays(value: 4).usingTime(10, 30, 0).dateComponents([.weekday, .hour, .minute])
 		return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
 	}
 	
 	private func createBulletinNotificationContent() -> UNNotificationContent {
 		let notification = UNMutableNotificationContent()
 		
-		notification.title = "New Student Bulletin"
-		notification.body = "Head over to the 'Other' tab and tap Student Bulletin and check to see what's going on around college."
+		notification.title = "Student Bulletin Updated"
+		notification.body = "Head over to the 'Other' tab and tap Student Bulletin to see the latest update."
 		notification.sound = .default
 		notification.categoryIdentifier = "Student Bulletin"
 		

@@ -5,7 +5,6 @@
 //  Created by George Nick Gorzynski on 14/01/2020.
 //  Copyright © 2020 g30r93g. All rights reserved.
 //
-
 import UIKit
 import CoreData
 
@@ -13,9 +12,6 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	var window: UIWindow?
-	var appRefreshTimer: Timer = Timer.scheduledTimer(withTimeInterval: 300, repeats: true) { (timer) in
-		NotificationCenter.default.post(Notification(name: Notification.Name("Delegate.AppRefresh")))
-	}
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
@@ -60,8 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			WoodleInteractor.shared.signIn()
 			_ = ReportServerInteractor.shared
 			NotificationManager.session.setupBulletinNotifications()
-			
-			self.appRefreshTimer.fire()
 		}
 	}
 	

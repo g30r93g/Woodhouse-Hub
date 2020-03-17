@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fn3-ze-B7Q">
-    <device id="retina4_7" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
@@ -14,18 +14,18 @@
             <objects>
                 <viewController id="fn3-ze-B7Q" customClass="StudentImageFinderViewController" customModule="Woodhouse_Hub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IMz-wa-ROO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Student ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WRf-V8-Boy">
-                                <rect key="frame" x="35" y="78" width="305" height="34"/>
+                                <rect key="frame" x="35" y="122" width="344" height="34"/>
                                 <color key="backgroundColor" name="Buttons"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSK-ao-DsR" customClass="RoundButton" customModule="Woodhouse_Hub" customModuleProvider="target">
-                                <rect key="frame" x="35" y="18" width="40" height="40"/>
+                                <rect key="frame" x="35" y="62" width="40" height="40"/>
                                 <color key="backgroundColor" name="Buttons"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="84y-HT-QlC"/>
@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1oh-Ys-TSL" customClass="RoundButton" customModule="Woodhouse_Hub" customModuleProvider="target">
-                                <rect key="frame" x="60" y="132" width="255" height="50"/>
+                                <rect key="frame" x="60" y="176" width="294" height="50"/>
                                 <color key="backgroundColor" name="Buttons"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Xgz-Zg-qXt"/>
@@ -62,7 +62,7 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="tGy-NW-yIZ">
-                                <rect key="frame" x="303" y="18" width="37" height="40"/>
+                                <rect key="frame" x="342" y="62" width="37" height="40"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" name="Background"/>

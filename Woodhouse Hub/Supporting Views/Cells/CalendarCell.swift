@@ -70,7 +70,7 @@ class CalendarCell: RoundUICollectionViewCell{
 	
 	public func deselect() {
 		self.day.textColor = .white
-		self.backgroundColor = .customGrey
+		self.backgroundColor = .gray
 	}
 	
 }
