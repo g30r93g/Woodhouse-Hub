@@ -59,7 +59,7 @@ class AttendanceView: RoundTopView {
 				"""
 				
 				var teacherEmail: String? {
-					if let teacherCode = data.correspondingTimetableEntry?.teacherCode {
+					if let teacherCode = data.correspondingTimetableEntry?.teacher {
 						return WoodleInteractor.shared.getStaffGallery()?.first(where: {teacherCode == $0.code})?.email
 					} else {
 						return nil

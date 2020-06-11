@@ -13,6 +13,7 @@ class StaffCell: UITableViewCell {
 	// MARK: IBOutlets
 	@IBOutlet weak private var staffImage: UIImageView!
 	@IBOutlet weak private var staffName: UILabel!
+    @IBOutlet weak private var staffPosition: UILabel!
 	@IBOutlet weak private var staffEmail: UIButton!
 	
 	// MARK: Properties
@@ -21,7 +22,8 @@ class StaffCell: UITableViewCell {
 	// MARK: Methods
 	func setupCell(from data: WoodleInteractor.StaffMember) {
 		self.staffImage.image = data.image
-		self.staffName.text = "\(data.firstName) \(data.lastName) (\(data.code))"
+        self.staffName.text = "\(data.firstName) \(data.lastName) (\(data.code))"
+        self.staffPosition.text = data.position
 		self.staffEmail.setTitle(data.email, for: .normal)
 		
 		self.email = data.email

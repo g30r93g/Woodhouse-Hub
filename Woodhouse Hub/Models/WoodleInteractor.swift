@@ -16,8 +16,8 @@ class WoodleInteractor: NSObject {
 	
 	// MARK: URLs
 	private let home = URL(string: "https://vle.woodhouse.ac.uk")!
-	private let upcomingEventsURL = URL(string: "https://vle.woodhouse.ac.uk/studenthome.aspx?eventcat=Events&#eventlist")!
-	private let registeredEventsURL = URL(string: "https://vle.woodhouse.ac.uk/studenthome.aspx?eventcat=Registered&#eventlist")!
+	private let upcomingEventsURL = URL(string: "https://vle.woodhouse.ac.uk/events.aspx?eventcat=Events&#eventlist")!
+	private let registeredEventsURL = URL(string: "https://vle.woodhouse.ac.uk/events.aspx?eventcat=Registered&#eventlist")!
 	private let staffGalleryURL = URL(string: "https://vle.woodhouse.ac.uk/staffgallery.aspx")!
 	var bulletinURL: URL? = nil {
 		didSet {
@@ -79,20 +79,22 @@ class WoodleInteractor: NSObject {
 	}
 	
 	class StaffMember {
-		let firstName: String
-		let lastName: String
-		let code: String
+        let firstName: String
+        let lastName: String
+        let code: String
+		let position: String
 		let email: String
 		var image: UIImage?
 		
-		init(name: String, code: String, email: String, imageURL: String) {
-			self.firstName = name.split(separator: " ").map({String($0)})[0]
-			self.lastName = name.split(separator: " ").map({String($0)})[1...].joined()
-			self.code = code
-			self.email = email
+		init(name: String, position: String, email: String, imageURL: String) {
+            self.firstName = name.extract(until: " ").trimmingCharacters(in: .whitespaces)
+            self.lastName = name.extract(from: " ").trimmingCharacters(in: .whitespaces)
+            self.code = imageURL.replacingOccurrences(of: "gfx/REMSphotos/", with: "").replacingOccurrences(of: ".jpg", with: "").replacingOccurrences(of: ".JPG", with: "").uppercased()
+			self.position = position.trimmingCharacters(in: .whitespaces)
+            self.email = email.trimmingCharacters(in: .whitespaces)
 			self.image = nil
 			
-			self.fetchImage(from: imageURL)
+			self.fetchImage(from: "https://vle.woodhouse.ac.uk/\(imageURL)")
 		}
 		
 		private func fetchImage(from url: String) {
@@ -121,8 +123,8 @@ class WoodleInteractor: NSObject {
 		print("[WoodleInteractor] Signing in...")
 		self.enterUsernamePassword {
 			// Maths question
-			self.homeWebView.evaluateJavaScript("document.getElementsByTagName('b')[0].innerText") { (html, error) in
-				if error != nil { fatalError() }
+			self.homeWebView.evaluateJavaScript("document.getElementById('pagecontentdiv').getElementsByTagName('div')[4].getElementsByTagName('span')[0].innerText") { (html, error) in
+                if error != nil { fatalError("\(error)") }
 				
 				guard let mathsQuestion = html as? String else { fatalError() }
 				
@@ -135,12 +137,14 @@ class WoodleInteractor: NSObject {
 					
 					return splitQuestion.reduce(0, { return $0 + $1 })
 				}
+                
+                print("[WoodleInteractor] Maths Answer: \(answer)")
 				
 				self.homeWebView.evaluateJavaScript("document.getElementById('txtMathAns').focused=true", completionHandler: nil)
 				self.homeWebView.evaluateJavaScript("document.getElementById('txtMathAns').value='\(answer)'") { (html, error) in
 					if error != nil { fatalError() }
 					
-					self.homeWebView.evaluateJavaScript("document.getElementById('ImageButton1').click()") { (_, error) in
+					self.homeWebView.evaluateJavaScript("document.getElementById('btnSubmit').click()") { (_, error) in
 						completion(error == nil)
 						print("[WoodleInteractor] Finished Sign In Sequence")
 					}
@@ -177,90 +181,136 @@ class WoodleInteractor: NSObject {
 	
 	private func fetchUpcomingEvents() {
 		print("[WoodleInteractor] Retrieving upcoming events")
-		self.homeWebView.evaluateJavaScript("document.getElementById('Importantnotices1_eventregister1_lblEvents').innerHTML") { (html, error) in
-			if error != nil { fatalError() }
+		self.homeWebView.evaluateJavaScript("document.getElementById('pagecontentdiv').innerHTML") { (html, error) in
+            if error != nil { fatalError() }
 			
-			guard let htmlString = html as? String else { fatalError() }
-			let events = htmlString.replacingOccurrences(of: "<hr>", with: "§").split(separator: "§")
+            guard let htmlString = html as? String else { fatalError() }
+            let htmlDocument = try! SwiftSoup.parse(htmlString)
+            let events = try! htmlDocument.getElementsByClass("grid-item").array()
 			
 			for event in events {
-				let eventDetails = event.replacingOccurrences(of: "<br>", with: "§").split(separator: "§").map({String($0)})
-				
-				// 0 - Title
-				let title = eventDetails[0].replacingOccurrences(of: "</b>", with: "").replacingOccurrences(of: "<b>", with: "")
-				
-				// 1 - Description
-				let description = eventDetails[1].extract(until: "<")
-				
-				// 2 - Date
-				var date: (Date, Date) {
-					if var dates = eventDetails.first(where: {$0.contains("Date/Time")}) {
-						dates = dates.extractTextBetweenFontTags()
-						dates = dates.replacingOccurrences(of: "to", with: "§")
-						
-						if dates.contains(":") {
-							dates.insert("§", at: dates.index(dates.endIndex, offsetBy: -14))
-						}
-						
-						let splitDates = dates.split(separator: "§").map({String($0)})
-						if splitDates.count == 4 {
-							// Date & Time
-							let fromDateString = "\(splitDates[0]) - \(splitDates[2])"
-							let toDateString = "\(splitDates[1]) - \(splitDates[3])"
-							
-							let fromDate = Date.woodleFormat(from: fromDateString)
-							let toDate = Date.woodleFormat(from: toDateString)
-							
-							return (fromDate, toDate)
-						} else {
-							// Date
-							guard let fromDateString = splitDates.first else { return (Date(), Date()) }
-							guard let toDateString = splitDates.safelyAccess(index: 1) else { return (Date(), Date()) }
-							
-							let fromDate = Date.woodleFormat(from: fromDateString)
-							let toDate = Date.woodleFormat(from: toDateString)
-							
-							return (fromDate, toDate)
-						}
-					} else {
-						return (Date(), Date())
-					}
-				}
-				
-				// 3 - Organiser
-				let organiser = (eventDetails.first(where: {$0.contains("Organiser")}) ?? "").extractTextBetweenFontTags()
-				
-				// 4 - Fee
-				var fee: Double {
-					if var feeString = eventDetails.first(where: {$0.contains("Fee")}) {
-						if feeString.contains("Free") { return 0 }
-						
-						feeString = feeString.extractTextBetweenFontTags()
-						feeString = feeString.replacingOccurrences(of: "£", with: "").trimmingCharacters(in: .whitespaces)
-						return Double(feeString) ?? -1
-					} else {
-						return -1
-					}
-				}
-				
-				// 5 - Places remaining & Total Places
-				var placesRemaining: (Int?, Int?) {
-					if var htmlString = eventDetails.first(where: {$0.contains("Places Remaining")}) {
-						htmlString = htmlString.extractTextBetweenFontTags()
-						htmlString = htmlString.replacingOccurrences(of: "of", with: "§")
-						
-						let splitString = htmlString.split(separator: "§").map({String($0)})
-						
-						let placesRemaining = splitString[0].extractNumbers()
-						let totalPlaces = splitString[1].extractNumbers()
-						
-						return (placesRemaining, totalPlaces)
-					} else {
-						return (nil, nil)
-					}
-				}
-				
-				self.upcomingEvents.append(Event(title: title, description: description, startDate: date.0, endDate: date.1, eventOrganiser: organiser, fee: fee, placesRemaining: placesRemaining.0, totalPlaces: placesRemaining.1))
+                guard let eventCard = try! event.getElementsByClass("card-body").first() else { continue }
+                print(try! eventCard.html())
+                
+                let details = try! eventCard.getAllElements().array()
+                
+                let title = try! details[1].text()
+                let description = try! eventCard.html().extract(from: ">", occurrence: 10).extract(until: "<").trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "READ ON...", with: "")
+                var dateString = try! details[6].text()
+                let organiser = try! details[8].text()
+                var feeString = try! details[10].text()
+                let signUpURL = "https://vle.woodhouse.ac.uk/" + (try! details[13].attr("href") ?? "")
+                
+                var date: (Date?, Date?) {
+                    // Replace month names with numbers to make date dd/mm/yyyy
+                    dateString = dateString.replaceMonthWithCardinals()
+                    
+                    let dateRegex = NSRegularExpression("([0]?[1-9]|[1|2][0-9]|[3][0|1])[./-]([0]?[1-9]|[1][0-2])[./-]([0-9]{4}|[0-9]{2})")
+                    let dates = dateRegex.allMatches(for: dateString)
+                    
+                    let timeRegex = NSRegularExpression("[0-9][0-9]:[0-9][0-9]+")
+                    let times = timeRegex.allMatches(for: dateString)
+                    
+                    let fromDateString = "\(dates.first ?? "") \(times.first ?? "")"
+                    let toDateString = "\(dates.last ?? "") \(times.last ?? "")"
+                    
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "DD/MM/YYYY HH:mm"
+                    
+                    let fromDate = formatter.date(from: fromDateString)
+                    let toDate = formatter.date(from: toDateString)
+                    
+                    return (fromDate, toDate)
+                }
+                
+                var fee: Double {
+                    if feeString.contains("Free") {
+                        return 0.00
+                    }
+                    
+                    feeString = feeString.replacingOccurrences(of: "£", with: "")
+                    
+                    return Double(feeString) ?? -1
+                }
+                
+                
+//				let eventDetails = event.replacingOccurrences(of: "<br>", with: "§").split(separator: "§").map({String($0)})
+//
+//				// 0 - Title
+//				let title = eventDetails[0].replacingOccurrences(of: "</b>", with: "").replacingOccurrences(of: "<b>", with: "")
+//
+//				// 1 - Description
+//				let description = eventDetails[1].extract(until: "<")
+//
+//				// 2 - Date
+//				var date: (Date, Date) {
+//					if var dates = eventDetails.first(where: {$0.contains("Date/Time")}) {
+//						dates = dates.extractTextBetweenFontTags()
+//						dates = dates.replacingOccurrences(of: "to", with: "§")
+//
+//						if dates.contains(":") {
+//							dates.insert("§", at: dates.index(dates.endIndex, offsetBy: -14))
+//						}
+//
+//						let splitDates = dates.split(separator: "§").map({String($0)})
+//						if splitDates.count == 4 {
+//							// Date & Time
+//							let fromDateString = "\(splitDates[0]) - \(splitDates[2])"
+//							let toDateString = "\(splitDates[1]) - \(splitDates[3])"
+//
+//							let fromDate = Date.woodleFormat(from: fromDateString)
+//							let toDate = Date.woodleFormat(from: toDateString)
+//
+//							return (fromDate, toDate)
+//						} else {
+//							// Date
+//							guard let fromDateString = splitDates.first else { return (Date(), Date()) }
+//							guard let toDateString = splitDates.safelyAccess(index: 1) else { return (Date(), Date()) }
+//
+//							let fromDate = Date.woodleFormat(from: fromDateString)
+//							let toDate = Date.woodleFormat(from: toDateString)
+//
+//							return (fromDate, toDate)
+//						}
+//					} else {
+//						return (Date(), Date())
+//					}
+//				}
+//
+//				// 3 - Organiser
+//				let organiser = (eventDetails.first(where: {$0.contains("Organiser")}) ?? "").extractTextBetweenFontTags()
+//
+//				// 4 - Fee
+//				var fee: Double {
+//					if var feeString = eventDetails.first(where: {$0.contains("Fee")}) {
+//						if feeString.contains("Free") { return 0 }
+//
+//						feeString = feeString.extractTextBetweenFontTags()
+//						feeString = feeString.replacingOccurrences(of: "£", with: "").trimmingCharacters(in: .whitespaces)
+//						return Double(feeString) ?? -1
+//					} else {
+//						return -1
+//					}
+//				}
+//
+//				// 5 - Places remaining & Total Places
+//				var placesRemaining: (Int?, Int?) {
+//					if var htmlString = eventDetails.first(where: {$0.contains("Places Remaining")}) {
+//						htmlString = htmlString.extractTextBetweenFontTags()
+//						htmlString = htmlString.replacingOccurrences(of: "of", with: "§")
+//
+//						let splitString = htmlString.split(separator: "§").map({String($0)})
+//
+//						let placesRemaining = splitString[0].extractNumbers()
+//						let totalPlaces = splitString[1].extractNumbers()
+//
+//						return (placesRemaining, totalPlaces)
+//					} else {
+//						return (nil, nil)
+//					}
+//				}
+//
+//				self.upcomingEvents.append(Event(title: title, description: description, startDate: date.0, endDate: date.1, eventOrganiser: organiser, fee: fee, placesRemaining: placesRemaining.0, totalPlaces: placesRemaining.1))
 			}
 			print("[WoodleInteractor] Fetched upcoming events")
 			NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "woodle.updatedEvents")))
@@ -277,7 +327,7 @@ class WoodleInteractor: NSObject {
 	private func fetchRegisteredEvents() {
 		print("[WoodleInteractor] Retrieving registered events")
 		self.homeWebView.evaluateJavaScript("document.getElementById('Importantnotices1_eventregister1_lblEvents').innerHTML") { (html, error) in
-			if error != nil { fatalError() }
+            if error != nil { return }
 		
 			guard let htmlString = html as? String else { fatalError() }
 			let events = htmlString.replacingOccurrences(of: "<hr>", with: "§").split(separator: "§")
@@ -386,28 +436,25 @@ class WoodleInteractor: NSObject {
 			
 			print("[WoodleInteractor] Fetched registered events")
 			NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "woodle.updatedEvents")))
-			
-			// Update Student Bulletin
-			self.getStudentBulletinURL()
 		}
 	}
 	
 	// MARK: Student Bulletin
 	func getStudentBulletinURL() {
 		print("[WoodleInteractor] Retrieving latest student bulletin")
-		self.homeWebView.evaluateJavaScript("document.getElementById('Righttable1_lblNews').innerHTML") { (html, error) in
-			if error != nil { fatalError() }
+		self.homeWebView.evaluateJavaScript("document.getElementsByClassName('isotope-grid cols-3')[0].getElementsByClassName('grid-item')[0].innerHTML") { (html, error) in
+            if error != nil { self.loadStaffGallery(); return }
 		
 			guard let htmlString = html as? String else { fatalError() }
 			
 			let document = try! SwiftSoup.parse(htmlString)
 			let links = try! document.getElementsByTag("a").map({try! $0.attr("href")})
 			
-			let studentBulletinRelativeLink = links.safelyAccess(index: 0) ?? ""
-			let studentBulletinLink = "https://vle.woodhouse.ac.uk/\(studentBulletinRelativeLink)"
+			let studentBulletinRelativeURL = links.safelyAccess(index: 0) ?? ""
+			let studentBulletinURL = "https://vle.woodhouse.ac.uk/\(studentBulletinRelativeURL)"
 			
-			self.bulletinURL = URL(string: studentBulletinLink)
-			print("[WoodleInteractor] Student bulletin url obtained")
+			self.bulletinURL = URL(string: studentBulletinURL)
+			print("[WoodleInteractor] Student Bulletin URL obtained - \(studentBulletinRelativeURL)")
 			
 			// Fetch Staff Gallery
 			self.loadStaffGallery()
@@ -423,29 +470,29 @@ class WoodleInteractor: NSObject {
 	private func parseStaffGallery() {
 		print("[WoodleInteractor] Getting staff gallery...")
 		
-		self.homeWebView.evaluateJavaScript("document.getElementById('lblStaff').innerHTML") { (html, error) in
+		self.homeWebView.evaluateJavaScript("document.getElementsByClassName('row')[0].innerHTML") { (html, error) in
 			if error != nil { fatalError() }
 			
 			guard let htmlString = html as? String else { fatalError() }
 			let document = try! SwiftSoup.parse(htmlString)
 			
 			// Get Staff Entries
-			let staffEntries = try! document.getElementsByClass("dottedBottom")
+			let staffEntries = try! document.getElementsByClass("col-xl-3 col-sm-6 mb-30")
 			
-			for entry in staffEntries {
-				guard let details = try! entry.getElementsByTag("td").last()?.html() else { continue }
-				let splitDetails = details.replacingOccurrences(of: "<br>", with: "§").split(separator: "§").map({try! SwiftSoup.parse(String($0))})
-				let name = try! splitDetails[0].text().extract(until: "(").trimmingCharacters(in: .whitespacesAndNewlines)
-				let code = try! splitDetails[0].text().extract(from: "(").extract(until: ")").replacingOccurrences(of: "(", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
-				let email = try! splitDetails[1].text().extract(from: ":").replacingOccurrences(of: ":", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
-				let imageURL = "https://vle.woodhouse.ac.uk/gfx/REMSphotos/\(code).jpg"
+			for profile in staffEntries {
+                let name = try! profile.getElementsByClass("team-name").text()
+                let positionName = try! profile.getElementsByClass("team-position").text()
+                let email = try! profile.getElementsByClass("team-contact-link").text()
+                let imageURL = try! profile.getElementsByClass("team-thumb").first()?.getElementsByTag("img").attr("src") ?? ""
 				
-				print("[WoodleInteractor] Adding staff member: \(name) (\(code)) - \(email) - \(imageURL)")
-				self.staffGallery.append(StaffMember(name: name, code: code, email: email, imageURL: imageURL))
+				print("[WoodleInteractor] Adding staff member: \(name) (\(positionName)) - \(email) - \(imageURL)")
+				self.staffGallery.append(StaffMember(name: name, position: positionName, email: email, imageURL: imageURL))
 			}
 			
 			NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "woodle.retrievedStaffGallery")))
 			print("[WoodleInteractor] Staff Members Retrieved")
+            
+            self.loadUpcomingEvents()
 		}
 	}
 	
@@ -463,7 +510,7 @@ class WoodleInteractor: NSObject {
 extension WoodleInteractor: WKNavigationDelegate {
 	
 	func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-		guard let url = webView.url?.absoluteString else { return }
+        guard let url = webView.url?.absoluteString else { return }
 		
 		if url.contains("https://vle.woodhouse.ac.uk/login.aspx") {
 			// Log In
@@ -474,35 +521,33 @@ extension WoodleInteractor: WKNavigationDelegate {
 					self.isSignedIn = isSignedIn
 				}
 			}
-		} else if url.contains("default.aspx") || url.contains("studenthome.aspx#eventlist") {
+		} else if url.contains("default.aspx") || url.contains("studenthome.aspx") {
 			// Load Student Home for Upcoming Events and student bulletin
-			self.loadUpcomingEvents()
-		} else if url.contains("studenthome.aspx?eventcat=Events&#eventlist") {
+            self.getStudentBulletinURL()
+		} else if url.contains("events.aspx?eventcat=Events&#eventlist") {
 			// Parse Upcoming Events
 			self.fetchUpcomingEvents()
-		} else if url == "https://vle.woodhouse.ac.uk/studenthome.aspx?eventcat=Registered&#eventlist" {
+        } else if url.contains("events.aspx?eventcat=Registered&#eventlist") {
 			// Parse Registered Events
 			self.fetchRegisteredEvents()
-		} else if url == "https://vle.woodhouse.ac.uk/staffgallery.aspx" {
-			// Get Staff Gallery
-			self.parseStaffGallery()
-		} else if url.contains("") {
-		} else {
-			print("[WoodleInteractor] Uncaught URL: \(url)")
-		}
-	}
-	
-	func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-		
-			if challenge.protectionSpace.host == "vle.woodhouse.ac.uk" {
-				guard let credentials = WoodhouseCredentials.shared.getCredential() else { completionHandler(.performDefaultHandling, nil); return }
-				
-				URLCredentialStorage.shared.setDefaultCredential(credentials, for: challenge.protectionSpace)
-				challenge.sender?.use(credentials, for: challenge)
-				completionHandler(.useCredential, credentials)
-			} else {
-				completionHandler(.performDefaultHandling, nil)
-			}
-		}
-	
+        } else if url.contains("staffgallery.aspx") {
+            // Get Staff Gallery
+            self.parseStaffGallery()
+        } else {
+            print("[WoodleInteractor] Uncaught URL: \(url)")
+        }
+    }
+    
+    func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        if challenge.protectionSpace.host == "vle.woodhouse.ac.uk" {
+            guard let credentials = WoodhouseCredentials.shared.getCredential() else { completionHandler(.performDefaultHandling, nil); return }
+            
+            URLCredentialStorage.shared.setDefaultCredential(credentials, for: challenge.protectionSpace)
+            challenge.sender?.use(credentials, for: challenge)
+            completionHandler(.useCredential, credentials)
+        } else {
+            completionHandler(.performDefaultHandling, nil)
+        }
+    }
+    
 }

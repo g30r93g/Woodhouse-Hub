@@ -18,9 +18,18 @@ extension NSRegularExpression {
 		}
 	}
 	
-	func matches(_ string: String) -> Bool {
-		let range = NSRange(location: 0, length: string.utf16.count)
-		return firstMatch(in: string, options: [], range: range) != nil
+	func matches(_ text: String) -> Bool {
+		let range = NSRange(location: 0, length: text.utf16.count)
+		return firstMatch(in: text, options: [], range: range) != nil
 	}
+    
+    func allMatches(for text: String) -> [String] {
+        let range = NSRange(location: 0, length: text.utf16.count)
+        let results = matches(in: text, options: [], range: range)
+        
+        return results.map {
+            String(text[Range($0.range, in: text)!])
+        }
+    }
 	
 }

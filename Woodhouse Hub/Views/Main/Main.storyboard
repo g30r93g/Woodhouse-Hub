@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PCD-Nn-zfj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PCD-Nn-zfj">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -76,13 +76,13 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ix6-Jr-Cgy">
-                                                            <rect key="frame" x="95" y="20" width="269" height="19.5"/>
+                                                            <rect key="frame" x="95" y="15" width="269" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnA-fv-sSn" customClass="RoundButton" customModule="Woodhouse_Hub" customModuleProvider="target">
-                                                            <rect key="frame" x="95" y="70" width="269" height="30"/>
+                                                            <rect key="frame" x="95" y="78" width="269" height="30"/>
                                                             <color key="backgroundColor" name="Buttons"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <state key="normal" title="Email: ">
@@ -97,18 +97,27 @@
                                                                 <action selector="sendEmail:" destination="Sl0-g8-dgb" eventType="touchUpInside" id="yl0-c4-RYj"/>
                                                             </connections>
                                                         </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Position" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idq-DC-GdQ">
+                                                            <rect key="frame" x="95" y="44.5" width="269" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" name="Secondary Text"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="ix6-Jr-Cgy" firstAttribute="leading" secondItem="tjk-zW-9PM" secondAttribute="trailing" constant="10" id="DJf-1z-FLg"/>
-                                                        <constraint firstAttribute="bottom" secondItem="gnA-fv-sSn" secondAttribute="bottom" constant="20" id="Exe-ZS-Pyq"/>
+                                                        <constraint firstAttribute="bottom" secondItem="gnA-fv-sSn" secondAttribute="bottom" constant="12" id="Exe-ZS-Pyq"/>
                                                         <constraint firstItem="tjk-zW-9PM" firstAttribute="leading" secondItem="20r-co-HXK" secondAttribute="leading" id="K2U-OO-zQK"/>
+                                                        <constraint firstItem="idq-DC-GdQ" firstAttribute="trailing" secondItem="ix6-Jr-Cgy" secondAttribute="trailing" id="OU7-0N-nhM"/>
                                                         <constraint firstItem="gnA-fv-sSn" firstAttribute="centerX" secondItem="ix6-Jr-Cgy" secondAttribute="centerX" id="OYK-5U-bED"/>
-                                                        <constraint firstItem="ix6-Jr-Cgy" firstAttribute="top" secondItem="20r-co-HXK" secondAttribute="top" constant="20" id="UgU-SE-Do2"/>
+                                                        <constraint firstItem="idq-DC-GdQ" firstAttribute="leading" secondItem="ix6-Jr-Cgy" secondAttribute="leading" id="TzO-KN-sxT"/>
+                                                        <constraint firstItem="ix6-Jr-Cgy" firstAttribute="top" secondItem="20r-co-HXK" secondAttribute="top" constant="15" id="UgU-SE-Do2"/>
                                                         <constraint firstItem="gnA-fv-sSn" firstAttribute="trailing" secondItem="ix6-Jr-Cgy" secondAttribute="trailing" id="fsa-qe-EJV"/>
                                                         <constraint firstAttribute="trailing" secondItem="ix6-Jr-Cgy" secondAttribute="trailing" constant="10" id="gZC-pu-JTf"/>
                                                         <constraint firstItem="tjk-zW-9PM" firstAttribute="top" secondItem="20r-co-HXK" secondAttribute="top" id="pmS-Bt-7m4"/>
                                                         <constraint firstItem="gnA-fv-sSn" firstAttribute="leading" secondItem="ix6-Jr-Cgy" secondAttribute="leading" id="wGC-VS-2PD"/>
                                                         <constraint firstAttribute="bottom" secondItem="tjk-zW-9PM" secondAttribute="bottom" id="yTd-kH-k12"/>
+                                                        <constraint firstItem="idq-DC-GdQ" firstAttribute="top" secondItem="ix6-Jr-Cgy" secondAttribute="bottom" constant="10" id="yU3-hz-sI4"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" name="Background"/>
@@ -116,6 +125,7 @@
                                                     <outlet property="staffEmail" destination="gnA-fv-sSn" id="D7T-3v-A4a"/>
                                                     <outlet property="staffImage" destination="tjk-zW-9PM" id="vf4-ge-FMZ"/>
                                                     <outlet property="staffName" destination="ix6-Jr-Cgy" id="nsn-hQ-Dj4"/>
+                                                    <outlet property="staffPosition" destination="idq-DC-GdQ" id="FLp-UH-3Io"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
