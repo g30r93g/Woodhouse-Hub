@@ -190,7 +190,6 @@ class WoodleInteractor: NSObject {
 			
 			for event in events {
                 guard let eventCard = try! event.getElementsByClass("card-body").first() else { continue }
-                print(try! eventCard.html())
                 
                 let details = try! eventCard.getAllElements().array()
                 

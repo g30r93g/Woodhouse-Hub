@@ -252,7 +252,6 @@
 				1FDECF1623CDDB140063DDA8 /* Supporting Views */,
 				1FDECF1323CDDADC0063DDA8 /* Models */,
 				1FDECF1423CDDAE30063DDA8 /* Extensions */,
-				1FDECF1523CDDAEC0063DDA8 /* Resources */,
 				1FDECEEB23CDDAC80063DDA8 /* Assets.xcassets */,
 				1FDECEED23CDDAC80063DDA8 /* LaunchScreen.storyboard */,
 				1FDECEF023CDDAC80063DDA8 /* Info.plist */,
@@ -316,13 +315,6 @@
 				1FE905DF2411473E009EF9C1 /* UIColor.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		1FDECF1523CDDAEC0063DDA8 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		1FDECF1623CDDB140063DDA8 /* Supporting Views */ = {
