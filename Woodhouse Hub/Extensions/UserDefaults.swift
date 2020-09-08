@@ -7,10 +7,18 @@
 //
 
 import Foundation
+import KeychainAccess
 
 extension UserDefaults {
 	
-	/// The user defaults suite for TfL Planner
+	/// The user defaults suite for Woodhouse Hub
 	static let data = UserDefaults(suiteName: "group.com.g30r93g.Woodhouse-Hub")!
 	
+}
+
+extension Keychain {
+    
+    /// The keychain suite for Woodhouse Hub
+    static let data = Keychain(accessGroup: "group.com.g30r93g.Woodhouse-Hub.Keychain")
+    
 }

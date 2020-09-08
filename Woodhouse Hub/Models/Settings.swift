@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import KeychainAccess
 
 class Settings {
 	
@@ -16,20 +17,36 @@ class Settings {
 	// MARK: Properties
 	public var username: String? {
 		get {
-			return UserDefaults.data.string(forKey: "Woodhouse-Username")
+            do {
+                return try Keychain.data.getString("Woodhouse-Username")
+            }
+            catch { return nil }
 		}
 		set {
-			UserDefaults.data.set(newValue, forKey: "Woodhouse-Username")
+            if let newUsername = newValue {
+                do {
+                    try Keychain.data.set(newUsername, key: "Woodhouse-Username")
+                }
+                catch { return }
+            }
 		}
 	}
 	
 	public var password: String? {
 		get {
-			return UserDefaults.data.string(forKey: "Woodhouse-Password")
-		}
-		set {
-			UserDefaults.data.set(newValue, forKey: "Woodhouse-Password")
-		}
+            do {
+                return try Keychain.data.getString("Woodhouse-Password")
+            }
+            catch { return nil }
+        }
+        set {
+            if let newUsername = newValue {
+                do {
+                    try Keychain.data.set(newUsername, key: "Woodhouse-Password")
+                }
+                catch { return }
+            }
+        }
 	}
 	
 	public var isSignedIn: Bool {

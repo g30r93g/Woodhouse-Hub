@@ -14,6 +14,11 @@ UCAS Predictions and Exam Timetable uses Woodhouse's reportserver system.
 
 Uses student timetable to send lesson notifications 5 mins before lesson.
 
+## Sample Screenshots
+
+![Light Mode Timetable View](githubImages/Light_Mode_Timetable_View.png "Timetable")
+![Dark Mode Timetable View](githubImages/Dark_Mode_Timetable_View.png "Timetable")
+
 ## Note to Woodhouse Students
 
 I am an alumni of Woodhouse College. Therefore, I have no access to the system.

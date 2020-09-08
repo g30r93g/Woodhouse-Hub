@@ -26,11 +26,10 @@
 		1F3DFDCC241C51990034A53F /* StaffGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DFDCB241C51990034A53F /* StaffGalleryView.swift */; };
 		1F3DFDCE241C69E60034A53F /* StaffCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DFDCD241C69E60034A53F /* StaffCell.swift */; };
 		1F3DFDD0241DA17F0034A53F /* MailingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DFDCF241DA17F0034A53F /* MailingDelegate.swift */; };
-		1F3DFDD6241E61580034A53F /* StudentImageFinder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F3DFDD5241E61580034A53F /* StudentImageFinder.storyboard */; };
-		1F3DFDD8241E62C50034A53F /* StudentImageFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DFDD7241E62C50034A53F /* StudentImageFinderViewController.swift */; };
 		1F3EA003240D01A1000F7F44 /* LoadingSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3EA002240D01A1000F7F44 /* LoadingSignInViewController.swift */; };
 		1F576973240C77250033D8C6 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F576972240C77250033D8C6 /* CalendarCell.swift */; };
 		1F576975240C862F0033D8C6 /* MarkbookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F576974240C862F0033D8C6 /* MarkbookView.swift */; };
+		1F5C0B222508313200F0F3A5 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 1F5C0B212508313200F0F3A5 /* KeychainAccess */; };
 		1F6DC989240C9BA90096C20C /* OtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6DC988240C9BA80096C20C /* OtherView.swift */; };
 		1F7DAAA223D06F8F00D42997 /* Sign In.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F7DAAA123D06F8F00D42997 /* Sign In.storyboard */; };
 		1F7DAAA423D0723D00D42997 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7DAAA323D0723D00D42997 /* Round.swift */; };
@@ -112,8 +111,6 @@
 		1F3DFDCB241C51990034A53F /* StaffGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffGalleryView.swift; sourceTree = "<group>"; };
 		1F3DFDCD241C69E60034A53F /* StaffCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffCell.swift; sourceTree = "<group>"; };
 		1F3DFDCF241DA17F0034A53F /* MailingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailingDelegate.swift; sourceTree = "<group>"; };
-		1F3DFDD5241E61580034A53F /* StudentImageFinder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StudentImageFinder.storyboard; sourceTree = "<group>"; };
-		1F3DFDD7241E62C50034A53F /* StudentImageFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentImageFinderViewController.swift; sourceTree = "<group>"; };
 		1F3EA002240D01A1000F7F44 /* LoadingSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSignInViewController.swift; sourceTree = "<group>"; };
 		1F576972240C77250033D8C6 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		1F576974240C862F0033D8C6 /* MarkbookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkbookView.swift; sourceTree = "<group>"; };
@@ -160,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F5C0B222508313200F0F3A5 /* KeychainAccess in Frameworks */,
 				1FE0A2BD23F40B6900BEB261 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,15 +200,6 @@
 				1F3DFDCD241C69E60034A53F /* StaffCell.swift */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		1F3DFDD4241E614B0034A53F /* Student Image Finder */ = {
-			isa = PBXGroup;
-			children = (
-				1F3DFDD5241E61580034A53F /* StudentImageFinder.storyboard */,
-				1F3DFDD7241E62C50034A53F /* StudentImageFinderViewController.swift */,
-			);
-			path = "Student Image Finder";
 			sourceTree = "<group>";
 		};
 		1F8C25CB23F1FDAF004CECB7 /* Frameworks */ = {
@@ -320,7 +309,6 @@
 		1FDECF1623CDDB140063DDA8 /* Supporting Views */ = {
 			isa = PBXGroup;
 			children = (
-				1F3DFDD4241E614B0034A53F /* Student Image Finder */,
 				1FBC5297240C500D00E2922C /* PillBar.swift */,
 				1F10C32223D132C7004E98B1 /* UI View Elements */,
 				1F10C32323D132D1004E98B1 /* Cells */,
@@ -377,6 +365,7 @@
 			name = "Woodhouse Hub";
 			packageProductDependencies = (
 				1FE0A2BC23F40B6900BEB261 /* SwiftSoup */,
+				1F5C0B212508313200F0F3A5 /* KeychainAccess */,
 			);
 			productName = "Woodhouse Hub";
 			productReference = 1FDECEDC23CDDAC60063DDA8 /* Woodhouse Hub.app */;
@@ -452,6 +441,7 @@
 			mainGroup = 1FDECED323CDDAC60063DDA8;
 			packageReferences = (
 				1F10C32423D136C6004E98B1 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				1F5C0B202508313200F0F3A5 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 1FDECEDD23CDDAC60063DDA8 /* Products */;
 			projectDirPath = "";
@@ -472,7 +462,6 @@
 				1FDECEEF23CDDAC80063DDA8 /* LaunchScreen.storyboard in Resources */,
 				1F7DAAA223D06F8F00D42997 /* Sign In.storyboard in Resources */,
 				1FDECEEC23CDDAC80063DDA8 /* Assets.xcassets in Resources */,
-				1F3DFDD6241E61580034A53F /* StudentImageFinder.storyboard in Resources */,
 				1FF6ABCA240C18860065444B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,7 +521,6 @@
 				1FC0B89823ED7B6000D7EBEA /* Woodhouse_Hub.xcdatamodeld in Sources */,
 				1F34E41123D514460024C031 /* ReportServerInteractor.swift in Sources */,
 				1FD0E99A23DC79CD00D7185A /* TimeInterval.swift in Sources */,
-				1F3DFDD8241E62C50034A53F /* StudentImageFinderViewController.swift in Sources */,
 				1F07518523D376B300600B18 /* Student.swift in Sources */,
 				1FDECF1E23CDF1240063DDA8 /* SignInViewController.swift in Sources */,
 				1F34E40F23D50EF00024C031 /* ExamCell.swift in Sources */,
@@ -711,7 +699,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Woodhouse Hub/Woodhouse Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = 3V93A3ACV9;
 				INFOPLIST_FILE = "Woodhouse Hub/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -734,7 +722,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Woodhouse Hub/Woodhouse Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = 3V93A3ACV9;
 				INFOPLIST_FILE = "Woodhouse Hub/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -884,9 +872,22 @@
 				minimumVersion = 2.3.0;
 			};
 		};
+		1F5C0B202508313200F0F3A5 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1F5C0B212508313200F0F3A5 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1F5C0B202508313200F0F3A5 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
 		1FE0A2BC23F40B6900BEB261 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1F10C32423D136C6004E98B1 /* XCRemoteSwiftPackageReference "SwiftSoup" */;

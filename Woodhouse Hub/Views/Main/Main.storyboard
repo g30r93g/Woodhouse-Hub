@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PCD-Nn-zfj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PCD-Nn-zfj">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -18,6 +18,92 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ovP-sk-IHZ" customClass="PastoralView" customModule="Woodhouse_Hub" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="284" width="414" height="612"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pastoral" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6N-OT-Vdb">
+                                        <rect key="frame" x="65" y="10" width="60.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="textColor" name="Text"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General Status: ––––––––" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0y8-nn-Hcc">
+                                        <rect key="frame" x="20" y="50" width="374" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="textColor" name="Text"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Praise:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ys1-zl-tZc">
+                                        <rect key="frame" x="20" y="71.5" width="374" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="textColor" name="Secondary Text"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neutral:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6t9-wQ-hZs">
+                                        <rect key="frame" x="20" y="93" width="374" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="textColor" name="Secondary Text"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Concern:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZz-Vu-mJk">
+                                        <rect key="frame" x="20" y="114.5" width="374" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="textColor" name="Secondary Text"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVi-WD-19X" customClass="RoundButton" customModule="Woodhouse_Hub" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="10" width="30" height="30"/>
+                                        <color key="backgroundColor" name="Buttons"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="0Si-ia-rJA"/>
+                                            <constraint firstAttribute="height" constant="30" id="Fme-Js-00R"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="arrow.left" catalog="system"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="backTapped:" destination="ovP-sk-IHZ" eventType="touchUpInside" id="KB8-An-H0T"/>
+                                            <action selector="backTapped:" destination="ZG0-mY-KuF" eventType="touchUpInside" id="yVs-LH-vBm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="Foreground"/>
+                                <constraints>
+                                    <constraint firstItem="dVi-WD-19X" firstAttribute="leading" secondItem="ovP-sk-IHZ" secondAttribute="leading" constant="20" id="2Aw-0H-unJ"/>
+                                    <constraint firstItem="dZz-Vu-mJk" firstAttribute="top" secondItem="6t9-wQ-hZs" secondAttribute="bottom" constant="2" id="Anr-9i-lDq"/>
+                                    <constraint firstItem="dVi-WD-19X" firstAttribute="top" secondItem="ovP-sk-IHZ" secondAttribute="top" constant="10" id="D4Y-LA-jb1"/>
+                                    <constraint firstItem="l6N-OT-Vdb" firstAttribute="bottom" secondItem="dVi-WD-19X" secondAttribute="bottom" id="Diw-kI-9r3"/>
+                                    <constraint firstItem="ys1-zl-tZc" firstAttribute="leading" secondItem="0y8-nn-Hcc" secondAttribute="leading" id="ENH-mi-S4P"/>
+                                    <constraint firstItem="dZz-Vu-mJk" firstAttribute="trailing" secondItem="6t9-wQ-hZs" secondAttribute="trailing" id="I3E-T6-OEY"/>
+                                    <constraint firstItem="6t9-wQ-hZs" firstAttribute="trailing" secondItem="ys1-zl-tZc" secondAttribute="trailing" id="KiJ-NA-VeF"/>
+                                    <constraint firstItem="l6N-OT-Vdb" firstAttribute="leading" secondItem="dVi-WD-19X" secondAttribute="trailing" constant="15" id="MEI-40-ZNL"/>
+                                    <constraint firstItem="0y8-nn-Hcc" firstAttribute="top" secondItem="dVi-WD-19X" secondAttribute="bottom" constant="10" id="Pbf-9y-nNS"/>
+                                    <constraint firstItem="6t9-wQ-hZs" firstAttribute="leading" secondItem="ys1-zl-tZc" secondAttribute="leading" id="Qk1-ox-2oC"/>
+                                    <constraint firstItem="l6N-OT-Vdb" firstAttribute="centerY" secondItem="dVi-WD-19X" secondAttribute="centerY" id="aXD-rN-OCb"/>
+                                    <constraint firstItem="0y8-nn-Hcc" firstAttribute="centerX" secondItem="ovP-sk-IHZ" secondAttribute="centerX" id="cde-R8-O7k"/>
+                                    <constraint firstItem="ys1-zl-tZc" firstAttribute="trailing" secondItem="0y8-nn-Hcc" secondAttribute="trailing" id="hfk-US-6bQ"/>
+                                    <constraint firstItem="ys1-zl-tZc" firstAttribute="top" secondItem="0y8-nn-Hcc" secondAttribute="bottom" constant="2" id="lsy-2b-CN3"/>
+                                    <constraint firstItem="6t9-wQ-hZs" firstAttribute="top" secondItem="ys1-zl-tZc" secondAttribute="bottom" constant="2" id="qWm-iC-Ls1"/>
+                                    <constraint firstItem="l6N-OT-Vdb" firstAttribute="top" secondItem="dVi-WD-19X" secondAttribute="top" id="rCa-CK-k9v"/>
+                                    <constraint firstItem="dZz-Vu-mJk" firstAttribute="leading" secondItem="6t9-wQ-hZs" secondAttribute="leading" id="rim-q0-3Zm"/>
+                                    <constraint firstItem="0y8-nn-Hcc" firstAttribute="leading" secondItem="dVi-WD-19X" secondAttribute="leading" id="uED-1s-gZ1"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="concern" destination="dZz-Vu-mJk" id="LdL-yx-t7i"/>
+                                    <outlet property="neutral" destination="6t9-wQ-hZs" id="gjT-iQ-HZB"/>
+                                    <outlet property="overallStatus" destination="0y8-nn-Hcc" id="BDS-mL-ah5"/>
+                                    <outlet property="praise" destination="ys1-zl-tZc" id="V43-oi-WFd"/>
+                                </connections>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wej-dg-gw1" customClass="StaffGalleryView" customModule="Woodhouse_Hub" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="284" width="414" height="612"/>
                                 <subviews>
@@ -1698,96 +1784,10 @@
                                     <outlet property="timetableDaySelectorSeparation" destination="ydL-IZ-R6b" id="NDd-jk-IOn"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ovP-sk-IHZ" customClass="PastoralView" customModule="Woodhouse_Hub" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="284" width="414" height="612"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pastoral" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6N-OT-Vdb">
-                                        <rect key="frame" x="65" y="10" width="60.5" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                        <color key="textColor" name="Text"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General Status: ––––––––" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0y8-nn-Hcc">
-                                        <rect key="frame" x="20" y="50" width="374" height="19.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                        <color key="textColor" name="Text"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Praise:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ys1-zl-tZc">
-                                        <rect key="frame" x="20" y="71.5" width="374" height="19.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                        <color key="textColor" name="Secondary Text"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neutral:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6t9-wQ-hZs">
-                                        <rect key="frame" x="20" y="93" width="374" height="19.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                        <color key="textColor" name="Secondary Text"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Concern:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZz-Vu-mJk">
-                                        <rect key="frame" x="20" y="114.5" width="374" height="19.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                        <color key="textColor" name="Secondary Text"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVi-WD-19X" customClass="RoundButton" customModule="Woodhouse_Hub" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="10" width="30" height="30"/>
-                                        <color key="backgroundColor" name="Buttons"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="0Si-ia-rJA"/>
-                                            <constraint firstAttribute="height" constant="30" id="Fme-Js-00R"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="arrow.left" catalog="system"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="15"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="backTapped:" destination="ovP-sk-IHZ" eventType="touchUpInside" id="KB8-An-H0T"/>
-                                            <action selector="backTapped:" destination="ZG0-mY-KuF" eventType="touchUpInside" id="yVs-LH-vBm"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" name="Foreground"/>
-                                <constraints>
-                                    <constraint firstItem="dVi-WD-19X" firstAttribute="leading" secondItem="ovP-sk-IHZ" secondAttribute="leading" constant="20" id="2Aw-0H-unJ"/>
-                                    <constraint firstItem="dZz-Vu-mJk" firstAttribute="top" secondItem="6t9-wQ-hZs" secondAttribute="bottom" constant="2" id="Anr-9i-lDq"/>
-                                    <constraint firstItem="dVi-WD-19X" firstAttribute="top" secondItem="ovP-sk-IHZ" secondAttribute="top" constant="10" id="D4Y-LA-jb1"/>
-                                    <constraint firstItem="l6N-OT-Vdb" firstAttribute="bottom" secondItem="dVi-WD-19X" secondAttribute="bottom" id="Diw-kI-9r3"/>
-                                    <constraint firstItem="ys1-zl-tZc" firstAttribute="leading" secondItem="0y8-nn-Hcc" secondAttribute="leading" id="ENH-mi-S4P"/>
-                                    <constraint firstItem="dZz-Vu-mJk" firstAttribute="trailing" secondItem="6t9-wQ-hZs" secondAttribute="trailing" id="I3E-T6-OEY"/>
-                                    <constraint firstItem="6t9-wQ-hZs" firstAttribute="trailing" secondItem="ys1-zl-tZc" secondAttribute="trailing" id="KiJ-NA-VeF"/>
-                                    <constraint firstItem="l6N-OT-Vdb" firstAttribute="leading" secondItem="dVi-WD-19X" secondAttribute="trailing" constant="15" id="MEI-40-ZNL"/>
-                                    <constraint firstItem="0y8-nn-Hcc" firstAttribute="top" secondItem="dVi-WD-19X" secondAttribute="bottom" constant="10" id="Pbf-9y-nNS"/>
-                                    <constraint firstItem="6t9-wQ-hZs" firstAttribute="leading" secondItem="ys1-zl-tZc" secondAttribute="leading" id="Qk1-ox-2oC"/>
-                                    <constraint firstItem="l6N-OT-Vdb" firstAttribute="centerY" secondItem="dVi-WD-19X" secondAttribute="centerY" id="aXD-rN-OCb"/>
-                                    <constraint firstItem="0y8-nn-Hcc" firstAttribute="centerX" secondItem="ovP-sk-IHZ" secondAttribute="centerX" id="cde-R8-O7k"/>
-                                    <constraint firstItem="ys1-zl-tZc" firstAttribute="trailing" secondItem="0y8-nn-Hcc" secondAttribute="trailing" id="hfk-US-6bQ"/>
-                                    <constraint firstItem="ys1-zl-tZc" firstAttribute="top" secondItem="0y8-nn-Hcc" secondAttribute="bottom" constant="2" id="lsy-2b-CN3"/>
-                                    <constraint firstItem="6t9-wQ-hZs" firstAttribute="top" secondItem="ys1-zl-tZc" secondAttribute="bottom" constant="2" id="qWm-iC-Ls1"/>
-                                    <constraint firstItem="l6N-OT-Vdb" firstAttribute="top" secondItem="dVi-WD-19X" secondAttribute="top" id="rCa-CK-k9v"/>
-                                    <constraint firstItem="dZz-Vu-mJk" firstAttribute="leading" secondItem="6t9-wQ-hZs" secondAttribute="leading" id="rim-q0-3Zm"/>
-                                    <constraint firstItem="0y8-nn-Hcc" firstAttribute="leading" secondItem="dVi-WD-19X" secondAttribute="leading" id="uED-1s-gZ1"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="concern" destination="dZz-Vu-mJk" id="LdL-yx-t7i"/>
-                                    <outlet property="neutral" destination="6t9-wQ-hZs" id="gjT-iQ-HZB"/>
-                                    <outlet property="overallStatus" destination="0y8-nn-Hcc" id="BDS-mL-ah5"/>
-                                    <outlet property="praise" destination="ys1-zl-tZc" id="V43-oi-WFd"/>
-                                </connections>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cD9-91-duo" customClass="StudentInformation" customModule="Woodhouse_Hub" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="119" width="414" height="160"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FCK-zq-oKr" customClass="RoundImageView" customModule="Woodhouse_Hub" customModuleProvider="target">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sampleImage.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="FCK-zq-oKr" customClass="RoundImageView" customModule="Woodhouse_Hub" customModuleProvider="target">
                                         <rect key="frame" x="20" y="10" width="93.5" height="131"/>
                                         <color key="backgroundColor" name="Color"/>
                                         <constraints>
@@ -1800,7 +1800,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gwr-pF-XyW" customClass="RoundVisualView" customModule="Woodhouse_Hub" customModuleProvider="target">
+                                    <visualEffectView opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gwr-pF-XyW" customClass="RoundVisualView" customModule="Woodhouse_Hub" customModuleProvider="target">
                                         <rect key="frame" x="20" y="10" width="93.5" height="131"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9eH-YI-H1e">
                                             <rect key="frame" x="0.0" y="0.0" width="93.5" height="131"/>
@@ -1823,26 +1823,26 @@
                                             <action selector="studentImageVisibilityToggled:" destination="cD9-91-duo" eventType="touchUpInside" id="V8n-fs-AVN"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W30-uF-vGs">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student ID: 18000136" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W30-uF-vGs">
                                         <rect key="frame" x="123.5" y="39" width="280.5" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                         <color key="textColor" name="Secondary Text"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutor Group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpt-3k-Vc4">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutor Group: STS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpt-3k-Vc4">
                                         <rect key="frame" x="123.5" y="60.5" width="280.5" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                         <color key="textColor" name="Secondary Text"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRv-ac-nei">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="George Nick Gorzynski" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRv-ac-nei">
                                         <rect key="frame" x="123.5" y="10" width="280.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <color key="textColor" name="Text"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attendance: --%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wh-N9-evo">
-                                        <rect key="frame" x="123.5" y="84" width="135" height="25"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attendance: 100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wh-N9-evo">
+                                        <rect key="frame" x="123.5" y="84" width="140" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="hTA-GP-jpQ"/>
                                         </constraints>
@@ -1850,10 +1850,10 @@
                                         <color key="textColor" name="Secondary Text"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Punctuality: --%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1i-8z-U0v">
-                                        <rect key="frame" x="123.5" y="111" width="135" height="25"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Punctuality: 100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1i-8z-U0v">
+                                        <rect key="frame" x="123.5" y="111" width="140" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="135" id="TqH-eh-KSa"/>
+                                            <constraint firstAttribute="width" constant="140" id="TqH-eh-KSa"/>
                                             <constraint firstAttribute="height" constant="25" id="mbf-Tv-9qw"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
@@ -1861,8 +1861,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWY-Ti-g36" customClass="RoundView" customModule="Woodhouse_Hub" customModuleProvider="target">
-                                        <rect key="frame" x="263.5" y="84" width="25" height="25"/>
-                                        <color key="backgroundColor" name="Grey"/>
+                                        <rect key="frame" x="268.5" y="84" width="25" height="25"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="12.5"/>
@@ -1870,8 +1870,8 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYK-k5-EPq" customClass="RoundView" customModule="Woodhouse_Hub" customModuleProvider="target">
-                                        <rect key="frame" x="263.5" y="111" width="25" height="25"/>
-                                        <color key="backgroundColor" name="Grey"/>
+                                        <rect key="frame" x="268.5" y="111" width="25" height="25"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="CwJ-7t-ZDs"/>
                                             <constraint firstAttribute="height" constant="25" id="bc8-M2-Aar"/>
@@ -2099,7 +2099,6 @@
                         <outlet property="woodhouseLogo" destination="gIA-ue-KHI" id="oNE-O3-FOq"/>
                         <outlet property="woodleEventsView" destination="ZG0-mY-KuF" id="Mwg-0h-Q44"/>
                         <segue destination="Rw4-Gd-jCl" kind="presentation" identifier="Sign Out" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="I9V-t5-jdE"/>
-                        <segue destination="Shr-tf-48z" kind="presentation" identifier="Find Student Image" id="aiZ-YU-XuR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Dy-CX-3SM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2135,6 +2134,7 @@
         <image name="largecircle.fill.circle" catalog="system" width="128" height="121"/>
         <image name="pencil.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="sampleImage.jpeg" width="300" height="400"/>
         <image name="smallcircle.fill.circle" catalog="system" width="128" height="121"/>
         <image name="square" catalog="system" width="128" height="114"/>
         <image name="sterlingsign.circle.fill" catalog="system" width="128" height="121"/>

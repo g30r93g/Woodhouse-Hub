@@ -9,7 +9,7 @@
 import UIKit
 
 class Student {
-	
+    
 	// MARK: Shared Instance
 	static let current = Student()
 	
@@ -29,6 +29,10 @@ class Student {
 			}
 		}
 	}
+    
+    init(studentProfile: StudentProfile) {
+        self.studentProfile = studentProfile
+    }
 	
 	// MARK: Properties
 	private(set) var studentProfile: StudentProfile?
