@@ -16,8 +16,8 @@ Uses student timetable to send lesson notifications 5 mins before lesson.
 
 ## Sample Screenshots
 
-![Light Mode Timetable View](githubImages/Light_Mode_Timetable_View.png "Timetable")
-![Dark Mode Timetable View](githubImages/Dark_Mode_Timetable_View.png "Timetable")
+<img src="https://github.com/g30r93g/Woodhouse-Hub/blob/master/githubImages/Light_Mode_Timetable_View.png" width="400"> 
+<img src="https://github.com/g30r93g/Woodhouse-Hub/blob/master/githubImages/Dark_Mode_Timetable_View.png" width="400">
 
 ## Note to Woodhouse Students
 
